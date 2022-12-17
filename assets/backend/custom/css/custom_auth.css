@@ -1,0 +1,180 @@
+/* 
+body {
+	background-image: url(../img/photo4.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	min-height: 100%;
+	color:snow;
+}
+
+.login-box,
+.regis-box {
+	width: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: snow;
+	overflow: hidden;
+}
+
+.verify-box,
+.re-pwd {
+	width: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+}
+
+.login-box .card,
+.regis-box .card {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-box h4,
+.regis-box h4 {
+	font-size: 28px;
+	font-weight: 700;
+}
+
+.login-box .card-body,
+.login-box .card-header,
+.login-box .card-footer,
+.regis-box .card-body,
+.regis-box .card-header,
+.regis-box .card-footer {
+	opacity: 1;
+}
+
+#login-form .btn-login,
+#regis-form .btn-regis,
+a.btn-link {
+	background: none;
+	color: snow;
+	border: 1px solid royalblue;
+	font-weight: 600;
+}
+
+#login-form .btn-login:hover,
+#regis-form .btn-regis:hover,
+a.btn-link:hover {
+	background: royalblue;
+	color: snow;
+	font-weight: 600;
+}
+
+#login-form input {
+	outline: none;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 20px;
+	border-bottom: 1px solid;
+	padding-left: 0px;
+}
+
+#login-form .input-group-text {
+	outline: none;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+#login-form input::-webkit-input-placeholder {
+	color: white;
+}
+
+#login-form input:-ms-input-placeholder {
+	color: white;
+}
+
+#login-form input:-moz-input-placeholder {
+	color: white;
+}
+
+#login-form input::placeholder {
+	color: white;
+}
+
+#login-form .error,
+#regis-form .error {
+	color: red;
+	font-size: 10pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-shadow: .5px .5px rgba(255, 255, 255, 0.5);
+}
+
+#regis-form input {
+	outline: none;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 20px;
+	border-bottom: 1px solid;
+	padding-left: 0px;
+}
+
+#regis-form .input-group-text {
+	outline: none;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+#regis-form input::-webkit-input-placeholder {
+	color: white;
+}
+
+#regis-form input:-ms-input-placeholder {
+	color: white;
+}
+
+#regis-form input:-moz-input-placeholder {
+	color: white;
+}
+
+#regis-form input::placeholder {
+	color: white;
+}
+
+.myIcon {
+	width: 380px;
+	height: 300px;
+}
+
+.my-link {
+	color: white;
+}
+
+.my-link:hover {
+	color: red;
+	font-weight: bold;
+}
+
+.label-email {
+	margin-left: 2pt;
+} 
+
+.my-link {
+	color: white;
+}
+
+.my-link:hover {
+	color: red;
+	font-weight: bold;
+}
+
+*/
+
+.myIcon {
+	width: auto;
+	height: 240px;
+}

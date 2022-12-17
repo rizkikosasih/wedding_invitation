@@ -1,0 +1,111 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+}
+
+.logo {
+	text-align: left;
+	width: 100%;
+	height: auto;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+
+.header {
+	/* position: fixed; */
+	text-align: center;
+}
+
+.head-title,
+.pt-nama,
+.alamat {
+	text-transform: capitalize;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 3px 3px;
+}
+
+.alamat {
+	padding-bottom: 6px;
+	border-bottom: 2px solid #000;
+}
+
+.isi {
+	margin-top: 32px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+table {
+	border-collapse: collapse;
+	margin: auto;
+	width: 100%;
+	height: auto;
+}
+
+thead {
+	text-align: center;
+	text-transform: center;
+	font-weight: 700;
+}
+
+table,
+td {
+	border: 1px solid #000;
+}
+
+tbody td {
+	padding: 6px 6px 6px 6px;
+}
+
+td {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+td.no{
+	width:30px;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.text-red {
+	color: red;
+}
+
+.footer {
+	float: left;
+	text-align: right;
+	color: #000;
+	margin-top: 40px;
+	margin-right: 10px;
+	font-size: 12pt;
+}
+
+.jabatan {
+	padding-top: 6px;
+	padding-bottom: 4em;
+}
+
+.nama {
+	text-decoration: underline;
+}

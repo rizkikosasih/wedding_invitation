@@ -1,0 +1,390 @@
+[class*=fa-].timeline-icon {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+}
+
+.font-small-1 {
+	font-size: 0.7rem !important;
+}
+
+svg.font-small-1 {
+	height: 0.7rem !important;
+	width: 0.7rem !important;
+}
+
+.font-small-2 {
+	font-size: 0.8rem !important;
+}
+
+svg.font-small-2 {
+	height: 0.8rem !important;
+	width: 0.8rem !important;
+}
+
+.font-small-3 {
+	font-size: 0.9rem !important;
+}
+
+svg.font-small-3 {
+	height: 0.9rem !important;
+	width: 0.9rem !important;
+}
+
+.font-small-4 {
+	font-size: 1rem !important;
+}
+
+svg.font-small-4 {
+	height: 1rem !important;
+	width: 1rem !important;
+}
+
+.font-medium-1 {
+	font-size: 1.1rem !important;
+}
+
+svg.font-medium-1 {
+	height: 1.1rem !important;
+	width: 1.1rem !important;
+}
+
+.font-medium-2 {
+	font-size: 1.2rem !important;
+}
+
+svg.font-medium-2 {
+	height: 1.2rem !important;
+	width: 1.2rem !important;
+}
+
+.font-medium-3 {
+	font-size: 1.3rem !important;
+}
+
+svg.font-medium-3 {
+	height: 1.3rem !important;
+	width: 1.3rem !important;
+}
+
+.font-medium-4 {
+	font-size: 1.4rem !important;
+}
+
+svg.font-medium-4 {
+	height: 1.4rem !important;
+	width: 1.4rem !important;
+}
+
+.font-medium-5 {
+	font-size: 1.5rem !important;
+}
+
+svg.font-medium-5 {
+	height: 1.5rem !important;
+	width: 1.5rem !important;
+}
+
+.font-large-1 {
+	font-size: 2rem !important;
+}
+
+svg.font-large-1 {
+	height: 2rem !important;
+	width: 2rem !important;
+}
+
+.font-large-2 {
+	font-size: 3rem !important;
+}
+
+svg.font-large-2 {
+	height: 3rem !important;
+	width: 3rem !important;
+}
+
+.font-large-3 {
+	font-size: 4rem !important;
+}
+
+svg.font-large-3 {
+	height: 4rem !important;
+	width: 4rem !important;
+}
+
+.font-large-4 {
+	font-size: 5rem !important;
+}
+
+svg.font-large-4 {
+	height: 5rem !important;
+	width: 5rem !important;
+}
+
+.font-large-5 {
+	font-size: 6rem !important;
+}
+
+svg.font-large-5 {
+	height: 6rem !important;
+	width: 6rem !important;
+}
+
+.fs-1 {
+	font-size: calc(1.375rem + 1.5vw) !important
+}
+
+.fs-2 {
+	font-size: calc(1.325rem + .9vw) !important
+}
+
+.fs-3 {
+	font-size: calc(1.3rem + .6vw) !important
+}
+
+.fs-4 {
+	font-size: calc(1.275rem + .3vw) !important
+}
+
+.fs-5 {
+	font-size: 1.25rem !important
+}
+
+.fs-6 {
+	font-size: 1rem !important
+}
+
+.fst-italic {
+	font-style: italic !important
+}
+
+.fst-normal {
+	font-style: normal !important
+}
+
+.fw-light {
+	font-weight: 300 !important
+}
+
+.fw-lighter {
+	font-weight: lighter !important
+}
+
+.fw-normal {
+	font-weight: 400 !important
+}
+
+.fw-bold {
+	font-weight: 700 !important
+}
+
+.fw-semibold {
+	font-weight: 600 !important
+}
+
+.fw-bolder {
+	font-weight: bolder !important
+}
+
+.text-small {
+	font-size: small !important;
+}
+
+.text-medium {
+	font-size: medium !important;
+}
+
+.text-large {
+	font-size: large !important;
+}
+
+.text-25 {
+	font-size: 2.5vw !important;
+}
+
+.text-shadow {
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.10);
+}
+
+.text-shadow-md {
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.text-shadow-lg {
+	text-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.text-shadow-none {
+	text-shadow: none;
+}
+
+.opacity-0 {
+	opacity: 0 !important;
+}
+
+.opacity-25 {
+	opacity: .25 !important;
+}
+
+.opacity-50 {
+	opacity: .50 !important;
+}
+
+.opacity-75 {
+	opacity: .75 !important;
+}
+
+.opacity-100 {
+	opacity: .100 !important;
+}
+
+.gap-0 {
+	gap: 0 !important
+}
+
+.gap-1 {
+	gap: .25rem !important
+}
+
+.gap-2 {
+	gap: .5rem !important
+}
+
+.gap-3 {
+	gap: 1rem !important
+}
+
+.gap-4 {
+	gap: 1.5rem !important
+}
+
+.gap-5 {
+	gap: 3rem !important
+}
+
+.cursor-auto {
+	cursor: auto !important
+}
+
+.cursor-pointer {
+	cursor: pointer !important
+}
+
+.cursor-none {
+	cursor: none !important
+}
+
+.cursor-default {
+	cursor: default !important
+}
+
+.cursor-not-allowed {
+	cursor: not-allowed !important
+}
+
+.cursor-move {
+	cursor: move !important
+}
+
+.cursor-progress {
+	cursor: progress !important
+}
+
+hr.solid {
+	border-style: solid;
+	border-color: var(--dark);
+}
+
+hr.dotted {
+	border-style: dotted;
+	border-color: var(--dark);
+}
+
+hr.dashed {
+	border-style: dashed;
+	border-color: var(--dark);
+}
+
+hr.dashed.bc-light,
+hr.dotted.bc-light,
+hr.solid.bc-light {
+	border-color: var(--light)
+}
+
+hr.dashed.bc-warning,
+hr.dotted.bc-warning,
+hr.solid.bc-warning {
+	border-color: var(--warning)
+}
+
+hr.dashed.bc-danger,
+hr.dotted.bc-danger,
+hr.solid.bc-danger {
+	border-color: var(--danger)
+}
+
+hr.dashed.bc-info,
+hr.dotted.bc-info,
+hr.solid.bc-info {
+	border-color: var(--info)
+}
+
+hr.dashed.bc-primary,
+hr.dotted.bc-primary,
+hr.solid.bc-primary {
+	border-color: var(--primary)
+}
+
+hr.dashed.bc-secondary,
+hr.dotted.bc-secondary,
+hr.solid.bc-secondary {
+	border-color: var(--secondary)
+}
+
+hr.dashed.bc-success,
+hr.dotted.bc-success,
+hr.solid.bc-success {
+	border-color: var(--success)
+}
+
+.lh-1 {
+	line-height: 1 !important;
+}
+
+.lh-2 {
+	line-height: 2 !important;
+}
+
+.lh-3 {
+	line-height: 3 !important;
+}
+
+@media (max-width: 767.98px) {
+     .gap-md-0 {
+          gap: 0;
+     }
+
+     .gap-md-1 {
+          gap: .5rem;
+     }
+
+     .gap-md-2 {
+          gap: 1.5rem;
+     }
+
+     .gap-md-3 {
+          gap: 2.5rem;
+     }
+
+     .gap-md-3 {
+          gap: 3.5rem;
+     }
+
+     .gap-md-4 {
+          gap: 4.5rem;
+     }
+
+     .gap-md-5 {
+          gap: 6rem;
+     }
+}
