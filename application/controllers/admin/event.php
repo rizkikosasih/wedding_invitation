@@ -5,6 +5,7 @@ class event extends CI_Controller {
      private $dir_img = 'assets/public/images';
      private $table = 'event';
      private $table_story = 'love_story';
+     private $table_gallery = 'gallery';
      private $url;
 
      public function __construct() {
@@ -21,7 +22,7 @@ class event extends CI_Controller {
 
      public function index() {
           $user = users();
-          $event = $this->m_event->get(['u.id' => $user->id]);
+          $event = $this->m_event->get(['event.id' => 1]);
           $data = [
                'user' => $user,
                "content" => "$this->url/index",
@@ -32,10 +33,26 @@ class event extends CI_Controller {
                "today" => date('Y-m-d'), 
                "e" => $event,
                'list_tab' => $this->m_event->tabList(),
-               'list_bank' => $this->m_event->getBank(),
+               'list_bank' => $this->m_event->get_all_bank(),
           ];
           $this->load->view('templates/admin/main-app', $data);
      }
+
+     public function modal($action, $id=null) {
+          $explode = explode('-', $id);
+          $index = $explode[0] != '' ? decode64($explode[0]) : null;
+          $event_id = decode64($explode[1]);
+          $data = [
+               "this_story" => $this->m_event->get_story($index),
+               "this_gallery" => $this->m_event->get_gallery($index),
+               "url" => $this->url,
+               "dir_img" => $this->dir_img,
+               "action" => $action,
+               "event_id" => $event_id,
+          ];
+
+          $this->load->view("$this->url/modals", $data);
+     } 
 
      public function update_event() {
           $id = decode64($this->input->post('id'));
@@ -198,22 +215,7 @@ class event extends CI_Controller {
           ->set_status_header(200);
      }
 
-     public function modal($action, $id=null) {
-          $explode = explode('-', $id);
-          $index = $explode[0] != '' ? decode64($explode[0]) : null;
-          $event_id = decode64($explode[1]);
-          $data = [
-               "this_story" => $this->m_event->get_story($index),
-               "url" => $this->url,
-               "action" => $action,
-               "event_id" => $event_id,
-          ];
-
-          $this->load->view("$this->url/modals", $data);
-     } 
-
      public function list_story($id) {
-          // $event_id = decode64($id);
           $event_id = decode64($id);
           $result = $this->m_event->story(['event_id' => $event_id]);
           $data = [];
@@ -226,7 +228,6 @@ class event extends CI_Controller {
                     html_entity_decode($row->body), 
                     '<div class="text-center">'.$row->sort.'</div>',
                     '<div class="text-center text-capitalize">'.$position.'</div>',
-                    '<div class="text-center text-capitalize">'.$position.'</div>',
                     '<div class="text-center">
                          <div class="btn-group">
                               <a 
@@ -234,7 +235,7 @@ class event extends CI_Controller {
                                    class="btn btn-xs btn-primary title openPopup" 
                                    data-url="'. base_url("$this->url/modal/edit_story") .'" 
                                    data-id="'. encode64($row->id) .'-'. encode64($event_id) .'" 
-                                   data-style="modal-lg animated slideInDown"
+                                   data-style="animated slideInDown"
                                    title="Ubah Data"
                               >
                                    <i class="fas fa-edit"></i>
@@ -244,7 +245,7 @@ class event extends CI_Controller {
                                    class="btn btn-xs btn-danger title delete-side" 
                                    data-message="Yakin mau dihapus ?"
                                    title="Hapus Data" 
-                                   data-url="'. base_url("$this->url/hapus/") .'"
+                                   data-url="'. base_url("$this->url/delete_story/") .'"
                                    data-id="'.encode64($row->id).'"
                               >
                                    <i class="fas fa-trash"></i>
@@ -274,7 +275,7 @@ class event extends CI_Controller {
           $data = [
                'event_id' => $event_id,
                'title' => $this->input->post('title'),
-               'body' => $this->input->post('body'),
+               'body' => htmlentities($this->input->post('body')),
                'sort' => $this->input->post('sort'),
                'position' => $this->input->post('position'),
                'date_added' => date('Y-m-d H:i:s'),
@@ -298,7 +299,7 @@ class event extends CI_Controller {
           $data = [
                'event_id' => $event_id,
                'title' => $this->input->post('title'),
-               'body' => $this->input->post('body'),
+               'body' => htmlentities($this->input->post('body')),
                'sort' => $this->input->post('sort'),
                'position' => $this->input->post('position'),
           ];
@@ -315,5 +316,205 @@ class event extends CI_Controller {
           ->set_status_header(200);
      }
 
-     public function delete_story($id) {}
+     public function delete_story() {
+          $id = decode64($this->input->post('id'));
+          $deleted = $this->m_master->update($this->table_story, ['id' => $id], ['isDelete' => 1]);
+          $result = [
+               'response' => 200,
+               'status' => 'SUKSES',
+               'message' => "Love Story Berhasil Dihapus!",
+               'affected_row' => $deleted,
+          ];
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
+
+     public function gallery($id) {
+          $event_id = decode64($id);
+          $result = $this->m_event->gallery(['event_id' => $event_id]);
+          $data = [];
+          $nomor = $this->input->post('start');
+          foreach ($result as $row) {
+               $tBtn = $row->isActive == 1 ? "Aktif" : "Non-Aktif";
+               $msg = $row->isActive == 1 ? "Yakin mau dinonaktifkan?" : "Yakin mau diaktifkan?";
+               $icon = $row->isActive == 1 ? "fa-check text-success" : "fa-times text-danger";
+               $rows[] = [ 
+                    '<div class="text-center">'.++$nomor.'</div>', 
+                    '<div class="text-center">
+                         <a class="lightbox title" href="'.base_url("$this->dir_img/gallery/$row->images").'" data-title="Image Gallery">
+                              <img src="'.base_url("$this->dir_img/gallery/$row->images").'" class="img-rounded" alt="" width="100" height="100">
+                         </a>
+                    </div>', 
+                    html_entity_decode($row->description), 
+                    '<div class="text-center">
+                         <a 
+                              href="javascript:void(0)" 
+                              class="title status-side" 
+                              title='.$tBtn.' 
+                              data-status="'.$row->isActive.'" 
+                              data-message="'.$msg.'" 
+                              data-url="'.base_url("$this->url/active_gallery/").'" 
+                              data-id="'.encode64($row->id).'" 
+                              data-code="'.$row->isActive.'" 
+                         >
+                              <i class="fas '.$icon.'"></i>
+                         </a>
+                    </div>',
+                    '<div class="text-center">
+                         <div class="btn-group">
+                              <a 
+                                   href="javascript:void(0)" 
+                                   class="btn btn-xs btn-primary title openPopup" 
+                                   data-url="'. base_url("$this->url/modal/edit_gallery") .'" 
+                                   data-id="'. encode64($row->id) .'-'. encode64($event_id) .'" 
+                                   data-style="animated slideInDown"
+                                   title="Ubah Data"
+                              >
+                                   <i class="fas fa-edit"></i>
+                              </a> 
+                              <a 
+                                   href="javascript:void(0)" 
+                                   class="btn btn-xs btn-danger title delete-side" 
+                                   data-message="Yakin mau dihapus ?"
+                                   title="Hapus Data" 
+                                   data-url="'. base_url("$this->url/delete_gallery/") .'"
+                                   data-id="'.encode64($row->id).'"
+                              >
+                                   <i class="fas fa-trash"></i>
+                              </a> 
+                         </div>
+                    </div>'
+               ];
+
+               $data = $rows;
+          }
+
+          $output = [
+               "draw" => intval($this->input->post('draw')),
+               "recordsTotal" => intval($this->m_event->count_all_gallery()),
+               "recordsFiltered" => intval($this->m_event->count_gallery()),
+               "data" => $data,
+          ];
+
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($output))
+          ->set_status_header(200);
+     }
+
+     public function add_gallery() {
+          $event_id = decode64($this->input->post('event_id'));
+          $images = $_FILES['images']['name'];
+          if ($images) {
+               $config = [
+                    'allowed_types' => 'gif|jpg|png|jpeg',
+                    'upload_path' => "$this->dir_img/gallery/",
+                    'remove_spaces' => true,
+                    'file_ext_tolower' => true,
+                    'file_name' => rand(1,99999) . "_" . $images,
+               ];
+               $this->load->library('upload', $config);
+               if ( $this->upload->do_upload('images') ) {
+                    $images = $this->upload->data('file_name');
+               } else {
+                    $images = '';
+               } 
+               $data = [
+                    'event_id' => $event_id,
+                    'images' => $images,
+                    'description' => htmlentities($this->input->post('description')),
+                    'date_added' => date('Y-m-d H:i:s'),
+               ];
+               $added = $this->m_master->add($this->table_gallery, $data);
+               $result = [
+                    'response' => 200,
+                    'status' => 'SUKSES',
+                    'message' => 'Gallery Berhasil Ditambahkan...',
+                    'affected_row' => $added,
+               ];
+          } else {
+               $result = [
+                    'response' => 302,
+                    'status' => 'GAGAL',
+                    'message' => 'Images Tidak Boleh Kosong...',
+                    'affected_row' => 0,
+               ];
+          }
+
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
+
+     public function edit_gallery() {
+          $id = decode64($this->input->post('id'));
+          $event_id = decode64($this->input->post('event_id'));
+          $images = $_FILES['images']['name'];
+          $current = $this->m_event->get_gallery($id);
+          if ($images) {
+               $config = [
+                    'allowed_types' => 'gif|jpg|png|jpeg',
+                    'upload_path' => "$this->dir_img/gallery/",
+                    'remove_spaces' => true,
+                    'file_ext_tolower' => true,
+                    'file_name' => rand(1,99999) . "_" . $images,
+               ];
+               $this->load->library('upload', $config);
+               if( $current->images ){
+                    unlink(FCPATH . "$this->dir_img/gallery/$current->images");
+               }
+               if ( $this->upload->do_upload('images') ) {
+                    $images = $this->upload->data('file_name');
+                    $response = 200;
+                    $status = 'SUKSES';
+                    $message = "Gallery Berhasil Ditambahkan...";
+               } else {
+                    $images = '';
+                    $response = 500;
+                    $status = 'GAGAL';
+                    $message = $this->upload->display_errors();
+               } 
+          } else {
+               $response = 200;
+               $status = 'SUKSES';
+               $message = 'Gallery Berhasil Ditambahkan';
+               $images = $current->images;
+          } 
+
+          $data = [
+               'event_id' => $event_id,
+               'images' => $images,
+               'description' => htmlentities($this->input->post('description')),
+          ];
+          $updated = $response === 200 ? $this->m_master->update($this->table_gallery, ['id' => $id], $data) : 0;
+          $result = [
+               'response' => $response,
+               'status' => $status,
+               'message' => $message,
+               'affected_row' => $updated,
+          ];
+
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
+
+     public function delete_gallery() {
+          $id = decode64($this->input->post('id'));
+          $deleted = $this->m_master->update($this->table_gallery, ['id' => $id], ['isDelete' => 1]);
+          $result = [
+               'response' => 200,
+               'status' => 'SUKSES',
+               'message' => "Gallery Berhasil Dihapus!",
+               'affected_row' => $deleted,
+          ];
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
 }

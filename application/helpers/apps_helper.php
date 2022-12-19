@@ -429,3 +429,15 @@
         ];
         return $dayList[$i];
     }
+
+    // function clear_latest_cache() {
+    //     $ci =& get_instance();
+    //     $ci->load->driver('cache');
+    //     $wildcard = 'latest';
+    //     $all_cache = $ci->cache->cache_info();
+    //     foreach ($all_cache as $id => $cache):
+    //         if (strpos($id, $wildcard) !== false):
+    //             $ci->cache->delete($cache_id);
+    //         endif;
+    //     endforeach;
+    // }

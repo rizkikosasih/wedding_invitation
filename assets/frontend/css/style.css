@@ -9734,27 +9734,27 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .gallery-carousel .owl-nav {
-  position: absolute;
-  width: 135px;
-  height: 60px;
-  top: -90px;
-  left: calc(50% - 67px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
+  position: absolute !important;
+  width: 135px !important;
+  height: 60px !important;
+  top: -90px !important;
+  left: calc(50% - 67px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  z-index: 1 !important;
 }
 
 .gallery-carousel .owl-nav .owl-prev,
 .gallery-carousel .owl-nav .owl-next {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #E47A2E;
-  background: #FFFFFF;
-  font-size: 30px;
+  width: 60px !important;
+  height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #E47A2E !important;
+  background: #FFFFFF !important;
+  font-size: 30px !important;
 }
 
 @media (max-width: 767.98px) {

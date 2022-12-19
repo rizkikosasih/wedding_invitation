@@ -113,10 +113,8 @@ class menu extends CI_Controller {
                          >
                               <i class="fas '.$icon.'"></i>
                          </a>
-                    </div>
-                    ',
-                    '
-                    <div class="text-center">
+                    </div>',
+                    '<div class="text-center">
                          <a 
                               href="javascript:void(0)" 
                               class="title status-sides" 
@@ -127,10 +125,8 @@ class menu extends CI_Controller {
                          >
                               <i class="fas '.$ilogin.'"></i>
                          </a>
-                    </div>
-                    ',
-                    '
-                    <div class="text-center">
+                    </div>',
+                    '<div class="text-center">
                          <div class="btn-group">
                               <a 
                                    href="javascript:void(0)" 
@@ -165,8 +161,7 @@ class menu extends CI_Controller {
                               </a> 
                               
                          </div>
-                    </div>
-                    '
+                    </div>'
                ];
 
                $data = $rows;

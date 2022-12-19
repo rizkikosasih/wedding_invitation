@@ -97,7 +97,7 @@
                     }
                })
           })
-     
+
           $(document).on('click', '.delete-side', function () {
                Swal.fire({
                     title: $(this).data('message'),
@@ -128,7 +128,11 @@
           })
 
           $(window).on('load', function () {
-               console.clear()
+               if (!window.location.origin.match(/localhost/i)) {
+                    setTimeout(() => {
+                         console.clear()
+                    }, 3000)
+               }
           })
           
      })

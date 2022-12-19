@@ -13,7 +13,7 @@
 
      <div class="form-group">
           <label>Body</label>
-          <textarea name="body" id="" cols="5" rows="10" class="form-control" placeholder="Masukan Isi Story" required><?= $this_story->body ?></textarea>
+          <textarea name="body" id="" cols="5" rows="10" class="form-control" placeholder="Masukan Isi Story" required><?= html_entity_decode($this_story->body) ?></textarea>
      </div>
 
      <div class="form-group">
@@ -40,7 +40,42 @@
           <label for="position" class="error" id="position-error" style="display:none;">Kolom ini diperlukan.</label>
      </div>
 </div>
+<?php elseif (preg_match('/gallery/i', $action)): ?>
+<div class="modal-body">
+     <input type="hidden" class="form-control" id="id" name="id" value="<?= $this_gallery->id ? encode64($this_gallery->id) : '' ?>" required>
+     <input type="hidden" class="form-control" id="event_id" name="event_id" value="<?= encode64($event_id) ?>" required>
 
+     <div class="form-group">
+          <label for="images">Images</label>
+          <div class="custom-file">
+               <input type="file" class="custom-file-input images" <?= $this_gallery->id ? '' : 'required' ?> name="images">
+               <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                    Choose image
+               </label>
+          </div>
+          <div class="border text-center p-3">
+               <a 
+                    href="<?= $this_gallery->images ? base_url("$dir_img/event/$this_gallery->images") : base_url("$dir_img/no-image.jpg") ?>" 
+                    class="lightbox" 
+                    data-title="Images"
+               >
+                    <img 
+                         src="<?= $this_gallery->images ? base_url("$dir_img/gallery/$this_gallery->images") : base_url("$dir_img/no-image.jpg") ?>" 
+                         class="img-fluid img-rounded preview-image" 
+                         width="100" 
+                         height="auto"
+                         alt=""
+                    >
+               </a>
+          </div>
+          <label id="images-error" class="error" for="images" style="display:none;">Kolom ini diperlukan.</label>
+     </div>
+
+     <div class="form-group">
+          <label>Description</label>
+          <textarea name="description" id="" cols="5" rows="10" class="form-control" placeholder="Masukan Deskripsi Images" required><?= html_entity_decode($this_gallery->description) ?></textarea>
+     </div>
+</div>
 <?php endif; ?>
 
 <div class="modal-footer">

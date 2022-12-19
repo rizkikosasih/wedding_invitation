@@ -21,11 +21,9 @@ function formatRupiah(angka, prefix) {
 	return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '')
 }
 
-function reloadTables(v) {
-	let fullReload = !v ? false : true
-	if ($('#server_side').length) $('#server_side').DataTable().ajax.reload(null, fullReload)
-	if ($('#get-story').length) $('#get-story').DataTable().ajax.reload(null, fullReload)
-	if ($('#get-gallery').length) $('#get-gallery').DataTable().ajax.reload(null, fullReload)
+function reloadTables(v, element) {
+	let fullReload = !v ? false : true 
+	$('table#' + element || 'server_side').DataTable().ajax.reload(null, fullReload)
 }
 
 /* current date YYYY/MM/DD */
@@ -45,10 +43,12 @@ function selisih_hari(tgl) {
 }
 
 let siteUrl = (url='') => {
-	let origin = window.location.origin + '/',
-		pathname = window.location.pathname.split('/')[0]
-	direct = !url ? '' : '/' + url
-	return origin + pathname + direct
+	let index = window.location.origin.match(/localhost/i) ? 1 : 0,
+		delimiter = index ? '/' : '',
+		origin = window.location.origin + delimiter,
+		pathname = window.location.pathname.split('/')[index],
+		lastUrl = !url ? '' : '/' + url
+	return origin + pathname + lastUrl
 }
 
 (function (window, document, $) {
@@ -66,30 +66,59 @@ let siteUrl = (url='') => {
 	const dataTables = $('#dataTables'),
 	$modal = $('#myModal')
 
-	/* List Story */
-	$('#get-story').DataTable({
-		"autoWidth": false,
-		"pageLength": 10,
-		"responsive": true,
-		"processing": true,
-		"serverSide": true,
-		"order": [],
-		"language": {
-			"processing": (`
-                         <div class="spinner-loader">
-                              <img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
-                              <div class="mt-1 font-small-1">Loading...</div>
-                         </div>
-                    `)
-		},
-		"ajax": {
-			"url": $('#get-story').data('url'),
-			"type": "post"
-		},
-		"columnDefs": [{
-			"target": [-1],
-			"orderable": false
-		}]
+	/* server side table */
+	$(function () {
+		/* love story */
+		$('table#get-story').DataTable({
+			"autoWidth": false,
+			"pageLength": 10,
+			"responsive": true,
+			"processing": true,
+			"serverSide": true,
+			"order": [],
+			"language": {
+				"processing": (`
+						<div class="spinner-loader">
+							<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
+							<div class="mt-1 font-small-1">Loading...</div>
+						</div>
+					`)
+			},
+			"ajax": {
+				"url": $('table#get-story').data('url'),
+				"type": "post"
+			},
+			"columnDefs": [{
+				"target": [-1],
+				"orderable": false
+			}]
+		})
+
+		/* galler */
+		$('table#gallery').DataTable({
+			"autoWidth": false,
+			"pageLength": 10,
+			"responsive": true,
+			"processing": true,
+			"serverSide": true,
+			"order": [],
+			"language": {
+				"processing": (`
+						<div class="spinner-loader">
+							<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
+							<div class="mt-1 font-small-1">Loading...</div>
+						</div>
+					`)
+			},
+			"ajax": {
+				"url": $('table#gallery').data('url'),
+				"type": "post"
+			},
+			"columnDefs": [{
+				"target": [-1],
+				"orderable": false
+			}]
+		})
 	})
 
 	/* TinyMCE */
@@ -258,8 +287,6 @@ let siteUrl = (url='') => {
 							contentType: false,
 							processData: false,
 							success: function (res) {
-								$('.modal').modal('hide')
-								reloadTables(1)
 								var icon = res.response == 200 ? 'success' : 'error'
 								Swal.mixin({
 									toast: true,
@@ -271,6 +298,16 @@ let siteUrl = (url='') => {
 									title: res.message,
 								})
 							}
+						}) //ajax
+						.done(function () {
+							$('.modal').modal('hide')
+							let $id, $parent = $('.card')
+							if ($parent.find('.tab-content').length) {
+								$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
+							} else {
+								$id = $parent.find('table.table').attr('id')
+							}
+							reloadTables(null, $id)
 						})
 					}
 				})
@@ -466,40 +503,17 @@ let siteUrl = (url='') => {
 
 				})
 
-				/* custom file input */
 				$(function () {
 					// input plugin
 					bsCustomFileInput.init()
 
-					// get file and preview image
-					$("#foto").on("change", function () {
-						var input = $(this)[0]
+					$(".images").on("change", function () {
+						var input = $(this)[0],
+							previewImage = $(this).parent().next().find('.preview-image')
 						if (input.files && input.files[0]) {
 							var reader = new FileReader()
 							reader.onload = function (e) {
-								$("#preview").attr("src", e.target.result).fadeIn("slow")
-							}
-							reader.readAsDataURL(input.files[0])
-						}
-					})
-
-					$("#foto-produk").on("change", function () {
-						var input = $(this)[0]
-						if (input.files && input.files[0]) {
-							var reader = new FileReader()
-							reader.onload = function (e) {
-								$("#preview-pro").attr("src", e.target.result).fadeIn("slow")
-							}
-							reader.readAsDataURL(input.files[0])
-						}
-					})
-
-					$(".foto-produk").on("change", function () {
-						var input = $(this)[0]
-						if (input.files && input.files[0]) {
-							var reader = new FileReader()
-							reader.onload = function (e) {
-								$(".preview-pro").attr("src", e.target.result).fadeIn("slow")
+								previewImage.attr("src", e.target.result).fadeIn("slow")
 							}
 							reader.readAsDataURL(input.files[0])
 						}
@@ -516,7 +530,13 @@ let siteUrl = (url='') => {
 
 		//reload datatables
 		$(document).on('click', '.reloadTable', function () {
-			reloadTables()
+			let $id, $parent = $(this).parents('.card')
+			if ($parent.find('.tab-content').length) {
+				$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
+			} else {
+				$id = $parent.find('table.table').attr('id')
+			}
+			reloadTables(null, $id)
 		})
 
 		/* LightBox */

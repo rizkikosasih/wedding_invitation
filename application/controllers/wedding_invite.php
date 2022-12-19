@@ -14,6 +14,7 @@ class wedding_invite extends CI_Controller {
                'dir_img' => $this->dir_img,
                'e' => $event,
                'love_story' => $this->m_event->get_all_story($event->id),
+               'gallery' => $this->m_event->get_all_gallery($event->id),
           ];
           $this->load->view('frontend/wedding_invite/index', $data);
      }
