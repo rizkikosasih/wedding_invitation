@@ -11,14 +11,15 @@
      <!-- Libraries Stylesheet -->
      <link href="<?= base_url('assets/plugins/owl.carousel/assets/owl.carousel.min.css') ?>" rel="stylesheet">
      <link href="<?= base_url('assets/plugins/lightbox/css/lightbox.min.css') ?>" rel="stylesheet">
-     <link rel="stylesheet" href="<?= base_url('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>">
-     <link rel="stylesheet" href="<?= base_url('assets/plugins/toastr/toastr.min.css') ?>">
+     <link rel="stylesheet" href="<?= base_url('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>" rel="stylesheet">
+     <link rel="stylesheet" href="<?= base_url('assets/plugins/toastr/toastr.min.css') ?>" rel="stylesheet">
+     <link rel="stylesheet" href="<?= base_url('assets/plugins/flipdown/flipdown.min.css') ?>" rel="stylesheet">
 
      <!-- Customized Bootstrap Stylesheet -->
      <link href="<?= base_url('assets/frontend/css/style.css') ?>" rel="stylesheet">
      <link href="<?= base_url('assets/frontend/css/custom.css') ?>" rel="stylesheet">
      <style>
-               .bg-gallery {
-                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->background_gallery") ?>), no-repeat center center;
-               }
+          .bg-gallery {
+               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->background_gallery") ?>), no-repeat center center;
+          }
      </style>

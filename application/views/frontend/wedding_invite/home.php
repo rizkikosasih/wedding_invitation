@@ -10,8 +10,7 @@
                                    <?= $e->alias_woman ?> & <?= $e->alias_man ?>
                               </h1>
                               <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
-                                   <h3 class="text-uppercase font-weight-normal text-white m-0" style="letter-spacing: 2px;">
-                                        Kami Akan Menikah
+                                   <h3 class="text-uppercase font-weight-normal text-white m-0 type-it" style="letter-spacing: 2px;" data-text="Kami Akan Menikah">
                                    </h3>
                               </div>
                          </div>

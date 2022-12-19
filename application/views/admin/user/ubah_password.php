@@ -13,7 +13,7 @@
 
                          <div class="card-body">
 
-                              <?= form_open('user/ubah_password',['id' => 'myForm']); ?>
+                              <?= form_open('admin/user/ubah_password',['id' => 'myForm']); ?>
 
                                    <div class="form-group animated slideInDown">
                                         <label>Password Lama</label>

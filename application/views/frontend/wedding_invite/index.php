@@ -53,15 +53,16 @@
           <div class="modal-dialog modal-fullscreen">
                <div class="modal-content">
                     <div class="modal-body">
-                         To be continue...
-                    </div>
-                    <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         <button type="button" class="btn btn-primary">Understood</button>
+                         <div class="col-12 text-center my-5">
+                              <h4>To be continue...</h4>
+                              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                         </div>
                     </div>
                </div>
           </div>
      </div>
+
+     <audio id="myAudio" src="<?= base_url("assets/public/music/christina-perri-a-thousand-years.mp3") ?>" preload="auto"></audio>
 
      <?php
           $this->load->view('frontend/wedding_invite/home');

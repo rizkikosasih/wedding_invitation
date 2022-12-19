@@ -13,6 +13,10 @@
      <!-- Sweetalert & Toast -->
      <script src="<?= base_url('assets/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
      <script src="<?= base_url('assets/plugins/toastr/toastr.min.js') ?>"></script>
+     <!-- Type It -->
+     <script src="<?= base_url('assets/plugins/typeit/index.js') ?>"></script>
+     <!-- Flipdown -->
+     <script src="<?= base_url('assets/plugins/flipdown/flipdown.min.js') ?>"></script>
 
      <!-- Template Javascript -->
      <script src="<?= base_url('assets/frontend/js/main.js') ?>"></script>

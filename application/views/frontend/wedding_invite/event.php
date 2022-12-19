@@ -5,7 +5,15 @@
                <h1 class="font-secondary display-4" data-aos="fade-up">Detail Acara</h1>
                <i class="far fa-heart text-dark"></i>
           </div>
-          <div class="row justify-content-center" data-aos="fade-up">
+          <?php
+               $time = explode(':', getDates('time_full', $e->reception_date));
+               $date = explode('-', getDates('date', $e->reception_date));
+               $timestampRec = strtotime(date('Y-m-d H:i:s', mktime($time[0], $time[1], $time[2], $date[1], $date[2], $date[0])));
+          ?>
+          <div class="row justify-content-center">
+               <div class="flipdown my-3" id="reception-flipdown" data-reception="<?= $timestampRec ?>"></div>
+          </div>
+          <div class="row justify-content-center mt-3">
                <div class="col-md-6 text-center">
                     <h5 class="font-weight-normal text-muted mb-3 pb-3">
                          Kegiatan ini Insya Allah akan dilaksanakan pada :

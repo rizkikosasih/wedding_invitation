@@ -116,6 +116,7 @@
         container: 'body'
     })
 
+    //Clipboard
     $(function () {
         const clipboard = new ClipboardJS('.btn-copy')
         clipboard.on('success', function (e) {
@@ -129,11 +130,7 @@
 
     //on load window
     $(window).on('load', function () {
-        $('#cover').modal({ backdrop: false, keyboard: false, show: true})
-        $('#cover').on('hidden.bs.modal', function () {
-            $('.navbar, .container-fluid').css('opacity', 1)
-        })
-
+        $('#cover').modal({backdrop: false, keyboard: false, show: true})
         if (!window.location.origin.match(/localhost/i)) {
             $('html, body').animate({
                 scrollTop: 0
@@ -142,6 +139,37 @@
                 console.clear()
             }, 3000)
         }
+    })
+
+    //Music
+    $(function () {
+        $('#cover').on('hidden.bs.modal', function () {
+            let myAudio = $('#myAudio')[0]
+            myAudio.play()
+            $('.navbar, .container-fluid').css('opacity', 1)
+        })
+    })
+
+    //Type It
+    $(function () {
+        /*** TypeIt ***/
+        const typeIt = new TypeIt('.type-it', {
+            speed: 100,
+            startDelay: 900,
+            strings: $('.type-it').data('text'),
+            breakLines: false,
+            waitUntilVisible: true,
+            loop: true
+        }).go()
+    })
+
+    // flipdown
+    $(function () {
+        let receptionDate = $('.flipdown').data('reception')
+        //initialize flipdown
+        const flipDown = new FlipDown(receptionDate, 'reception-flipdown', {
+            headings: ["Hari", "Jam", "Menit", "Detik"],
+        }).start()
     })
 
 })(jQuery)
