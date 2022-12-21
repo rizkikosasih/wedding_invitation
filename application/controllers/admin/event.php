@@ -66,8 +66,11 @@ class event extends CI_Controller {
           $image_man = $_FILES['image_man']['name'];
           $image_woman = $_FILES['image_woman']['name'];
           $cover = $_FILES['cover']['name'];
+          $cover_mobile = $_FILES['cover_mobile']['name'];
           $background_home = $_FILES['background_home']['name'];
+          $background_home_mobile = $_FILES['background_home_mobile']['name'];
           $background_gallery = $_FILES['background_gallery']['name'];
+          $background_gallery_mobile = $_FILES['background_gallery_mobile']['name'];
           $wedding_map = $this->input->post('wedding_map') ? htmlentities($this->input->post('wedding_map')) : $current->wedding_map;
           $pathProfile = "$this->dir_img/profile/";
           $pathEvent = "$this->dir_img/event/";
@@ -82,10 +85,10 @@ class event extends CI_Controller {
                     'file_name' => rand(1,99999) . "_" . $image_man,
                ];
                $this->load->library('upload', $config);
-               if( $current->image_man ){
-                    unlink(FCPATH . "$this->dir_img/profile/$current->image_man");
-               }
                if ( $this->upload->do_upload('image_man') ) {
+                    if ($current->image_man) {
+                         unlink(FCPATH . "$this->dir_img/profile/$current->image_man");
+                    }
                     $image_man = $this->upload->data('file_name');
                } else {
                     $image_man = '';
@@ -103,10 +106,10 @@ class event extends CI_Controller {
                     'file_name' => rand(1,99999) . "_" . $image_woman,
                ];
                $this->load->library('upload', $config);
-               if( $current->image_woman ){
-                    unlink(FCPATH . "$this->dir_img/profile/$current->image_woman");
-               }
                if ( $this->upload->do_upload('image_woman') ) {
+                    if ($current->image_woman) {
+                         unlink(FCPATH . "$this->dir_img/profile/$current->image_woman");
+                    }
                     $image_woman = $this->upload->data('file_name');
                } else {
                     $image_woman = '';
@@ -124,16 +127,49 @@ class event extends CI_Controller {
                     'file_name' => rand(1,99999) . "_" . $cover,
                ];
                $this->load->library('upload', $config);
-               if( $current->cover ){
-                    unlink(FCPATH . "$this->dir_img/event/$current->cover");
-               }
                if ( $this->upload->do_upload('cover') ) {
+                    if ($current->cover) {
+                         unlink(FCPATH . "$this->dir_img/event/$current->cover");
+                    }
                     $cover = $this->upload->data('file_name');
+                    // $config = [
+                    //      'image_library' => 'gd2',
+                    //      'source_image' => $pathEvent . $cover,
+                    //      'create_thumb' => false,
+                    //      'maintain_ratio' => false,
+                    //      'quality' => '100%',
+                    //      'width' => 768,
+                    //      'height' => 1280,
+                    //      'new_image' => 'potrait_' . $cover
+                    // ];
+                    // $this->load->library('image_lib', $config);
+                    // $this->image_lib->resize();
                } else {
                     $cover = '';
                }
           } else {
                $cover = $current->cover;
+          }
+
+          if ($cover_mobile) {
+               $config = [
+                    'allowed_types' => 'gif|jpg|png|jpeg',
+                    'upload_path' => $pathEvent,
+                    'remove_spaces' => true,
+                    'file_ext_tolower' => true,
+                    'file_name' => rand(1,99999) . "_" . $cover_mobile,
+               ];
+               $this->load->library('upload', $config);
+               if ( $this->upload->do_upload('cover_mobile') ) {
+                    if ($current->cover_mobile) {
+                         unlink(FCPATH . "$this->dir_img/event/$current->cover_mobile");
+                    }
+                    $cover_mobile = $this->upload->data('file_name');
+               } else {
+                    $cover_mobile = '';
+               }
+          } else {
+               $cover_mobile = $current->cover_mobile;
           }
 
           if ($background_home) {
@@ -145,16 +181,37 @@ class event extends CI_Controller {
                     'file_name' => rand(1,99999) . "_" . $background_home,
                ];
                $this->load->library('upload', $config);
-               if( $current->background_home ){
-                    unlink(FCPATH . "$this->dir_img/event/$current->background_home");
-               }
                if ( $this->upload->do_upload('background_home') ) {
+                    if ($current->background_home) {
+                         unlink(FCPATH . "$this->dir_img/event/$current->background_home");
+                    }
                     $background_home = $this->upload->data('file_name');
                } else {
                     $background_home = '';
                }
           } else {
                $background_home = $current->background_home;
+          }
+
+          if ($background_home_mobile) {
+               $config = [
+                    'allowed_types' => 'gif|jpg|png|jpeg',
+                    'upload_path' => $pathEvent,
+                    'remove_spaces' => true,
+                    'file_ext_tolower' => true,
+                    'file_name' => rand(1,99999) . "_" . $background_home_mobile,
+               ];
+               $this->load->library('upload', $config);
+               if ( $this->upload->do_upload('background_home_mobile') ) {
+                    if ($current->background_home_mobile) {
+                         unlink(FCPATH . "$this->dir_img/event/$current->background_home_mobile");
+                    }
+                    $background_home_mobile = $this->upload->data('file_name');
+               } else {
+                    $background_home_mobile = '';
+               }
+          } else {
+               $background_home_mobile = $current->background_home_mobile;
           }
 
           if ($background_gallery) {
@@ -166,16 +223,37 @@ class event extends CI_Controller {
                     'file_name' => rand(1,99999) . "_" . $background_gallery,
                ];
                $this->load->library('upload', $config);
-               if( $current->background_gallery ){
-                    unlink(FCPATH . "$this->dir_img/event/$current->background_gallery");
-               }
                if ( $this->upload->do_upload('background_gallery') ) {
+                    if ($current->background_gallery) {
+                         unlink(FCPATH . "$this->dir_img/event/$current->background_gallery");
+                    }
                     $background_gallery = $this->upload->data('file_name');
                } else {
                     $background_gallery = '';
                }
           } else {
                $background_gallery = $current->background_gallery;
+          }
+
+          if ($background_gallery) {
+               $config = [
+                    'allowed_types' => 'gif|jpg|png|jpeg',
+                    'upload_path' => $pathEvent,
+                    'remove_spaces' => true,
+                    'file_ext_tolower' => true,
+                    'file_name' => rand(1,99999) . "_" . $background_gallery_mobile,
+               ];
+               $this->load->library('upload', $config);
+               if ( $this->upload->do_upload('background_gallery_mobile') ) {
+                    if ($current->background_gallery_mobile) {
+                         unlink(FCPATH . "$this->dir_img/event/$current->background_gallery_mobile");
+                    }
+                    $background_gallery_mobile = $this->upload->data('file_name');
+               } else {
+                    $background_gallery_mobile = '';
+               }
+          } else {
+               $background_gallery_mobile = $current->background_gallery_mobile;
           }
 
           $data = [
@@ -199,6 +277,9 @@ class event extends CI_Controller {
                'cover' => $cover,
                'background_home' => $background_home,
                'background_gallery' => $background_gallery,
+               'cover_mobile' => $cover_mobile,
+               'background_home_mobile' => $background_home_mobile,
+               'background_gallery_mobile' => $background_gallery_mobile,
                'wedding_map' => $wedding_map,
           ];
           $affected_row = $this->m_master->update($this->table, ['id' => $id], $data);

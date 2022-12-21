@@ -19,7 +19,38 @@
      <link href="<?= base_url('assets/frontend/css/style.css') ?>" rel="stylesheet">
      <link href="<?= base_url('assets/frontend/css/custom.css') ?>" rel="stylesheet">
      <style>
+          .bg-home {
+               content: url(<?= base_url("$dir_img/event/$e->background_home") ?>) !important;
+               object-fit: cover !important;
+          }
           .bg-gallery {
-               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->background_gallery") ?>), no-repeat center center;
+               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->background_gallery") ?>) !important;
+               background-size: cover !important;
+               background-repeat: no-repeat !important;
+               object-fit: cover !important;
+          }
+          .bg-cover {
+               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->cover") ?>);
+               background-size: cover !important;
+               background-repeat: no-repeat !important;
+               object-fit: cover !important;
+          }
+          @media (max-width: 767px) {
+               .bg-home {
+                    content: url(<?= base_url("$dir_img/event/$e->background_home_mobile") ?>) !important;
+                    object-fit: cover !important;
+               }
+               .bg-gallery {
+                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->background_gallery_mobile") ?>) !important;
+                    background-size: cover !important;
+                    background-repeat: no-repeat !important;
+                    object-fit: cover !important;
+               }
+               .bg-cover {
+                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->cover_mobile") ?>);
+                    background-size: cover !important;
+                    background-repeat: no-repeat !important;
+                    object-fit: cover !important;
+               }
           }
      </style>

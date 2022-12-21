@@ -131,6 +131,7 @@
     //on load window
     $(window).on('load', function () {
         $('#cover').modal({backdrop: false, keyboard: false, show: true})
+        $('html').addClass('overflow-hidden')
         if (!window.location.origin.match(/localhost/i)) {
             $('html, body').animate({
                 scrollTop: 0
@@ -146,6 +147,7 @@
         $('#cover').on('hidden.bs.modal', function () {
             let myAudio = $('#myAudio')[0]
             myAudio.play()
+            $('html').removeClass('overflow-hidden')
             $('.navbar, .container-fluid').css('opacity', 1)
         })
     })

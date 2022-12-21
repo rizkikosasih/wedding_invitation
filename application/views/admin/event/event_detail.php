@@ -321,6 +321,86 @@
                     <label id="background_gallery-error" class="error" for="background_gallery" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
+          <div class="col-4 cover-mobile">
+               <div class="form-group ">
+                    <label for="cover-mobile">Cover Mobile</label>
+                    <div class="custom-file">
+                         <input type="file" class="custom-file-input images" name="cover_mobile">
+                         <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                              Choose image
+                         </label>
+                    </div>
+                    <div class="border text-center p-3">
+                         <a 
+                              href="<?= $e->cover_mobile ? base_url("$dir_img/event/$e->cover_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                              class="lightbox" 
+                              data-title="Cover Image"
+                         >
+                              <img 
+                                   src="<?= $e->cover_mobile ? base_url("$dir_img/event/$e->cover_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   class="img-fluid img-rounded preview-image" 
+                                   width="100" 
+                                   height="auto"
+                                   alt=""
+                              >
+                         </a>
+                    </div>
+                    <label id="cover_mobile-error" class="error" for="cover_mobile" style="display:none;">Kolom ini diperlukan.</label>
+               </div>
+          </div>
+          <div class="col-4 bg-home-mobile">
+               <div class="form-group">
+                    <label for="bg-home-mobile">Background Home Mobile</label>
+                    <div class="custom-file">
+                         <input type="file" class="custom-file-input images" name="background_home_mobile">
+                         <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                              Choose image
+                         </label>
+                    </div>
+                    <div class="border text-center p-3">
+                         <a 
+                              href="<?= $e->background_home ? base_url("$dir_img/event/$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
+                              class="lightbox" 
+                              data-title="Background Home Mobile"
+                         >
+                              <img 
+                                   src="<?= $e->background_home_mobile ? base_url("$dir_img/event/$e->background_home_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   class="img-fluid img-rounded preview-image" width="100" 
+                                   height="auto"
+                                   alt="" 
+                              >
+                         </a>
+                    </div>
+                    <label id="background_home_mobile-error" class="error" for="background_home_mobile" style="display:none;">Kolom ini diperlukan.</label>
+               </div>
+          </div>
+          <div class="col-4 bg-gallery-mobile">
+               <div class="form-group ">
+                    <label for="bg-gallery-mobile">Background Gallery Mobile</label>
+                    <div class="custom-file">
+                         <input type="file" class="custom-file-input images" name="background_gallery_mobile">
+                         <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                              Choose image
+                         </label>
+                    </div>
+                    <div class="border text-center p-3">
+                         <a 
+                              href="<?= $e->background_gallery_mobile ? base_url("$dir_img/event/$e->background_gallery_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                              class="lightbox" 
+                              data-title="Background Gallery"
+                         >
+                              <img 
+                                   src="<?= $e->background_gallery_mobile ? base_url("$dir_img/event/$e->background_gallery_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   class="img-fluid img-rounded preview-image" 
+                                   width="100" 
+                                   height="auto"
+                                   alt=""
+                              >
+                         </a>
+                    </div>
+                    <label id="background_gallery_mobile-error" class="error" for="background_gallery_mobile" style="display:none;">Kolom ini diperlukan.</label>
+               </div>
+          </div>
           <div class="col-12 d-flex gap-3">
                <button type="submit" class="btn btn-primary btn-block">
                     <i class="fas fa-save"></i><span class="ml-1">Save</span>

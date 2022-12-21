@@ -160,7 +160,7 @@
     }
 
     function fileName($text) {
-        return strtolower( str_replace(" ","_",$text) );
+        return strtolower(str_replace(" ", "_", $text));
     }
 
     function nama_tag($text=null) {

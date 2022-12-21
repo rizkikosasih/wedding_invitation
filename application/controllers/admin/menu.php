@@ -259,14 +259,14 @@ class menu extends CI_Controller {
      public function aktifasi() {
           $id = decode64($this->input->post('id'));
           $code = $this->input->post('code');
-          $nCode = $code == 1 ? 0 : 1;
+          $nCode = $code ? 0 : 1;
           $message = $code == 1 ? "Menu Berhasil Dinonaktifkan!" : "Menu Berhasil Diaktifkan!";
           $data = [
                'isActive' => $nCode
           ];
-          $this->m_master->update( $this->table, [ 
+          $this->m_master->update($this->table, [ 
                'id' => $id 
-          ], $data );
+          ], $data);
 
           $result = [
                "response" => 200,
@@ -288,9 +288,9 @@ class menu extends CI_Controller {
           $data = [
                'isLogin' => $nCode
           ];
-          $this->m_master->update( $this->table, [ 
+          $this->m_master->update($this->table, [ 
                'id' => $id 
-          ], $data );
+          ], $data);
 
           $result = [
                "response" => 200,

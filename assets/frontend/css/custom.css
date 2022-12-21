@@ -1,3 +1,7 @@
+html, body {
+	overflow-x: hidden !important;
+}
+
 [class*=fa-].timeline-icon {
      position: absolute;
      top: 50%;
@@ -537,4 +541,10 @@ hr.solid.bc-success {
      .gap-md-5 {
           gap: 6rem;
      }
+}
+
+.content-cover {
+	text-align: center;
+	color: #fff !important;
+	margin: 40vh auto;
 }

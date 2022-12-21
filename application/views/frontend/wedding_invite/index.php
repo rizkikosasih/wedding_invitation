@@ -51,10 +51,10 @@
      <!-- Modal -->
      <div class="modal fade" id="cover" tabindex="-1" aria-labelledby="coverLabel" aria-hidden="true">
           <div class="modal-dialog modal-fullscreen">
-               <div class="modal-content">
+               <div class="modal-content bg-cover">
                     <div class="modal-body">
-                         <div class="col-12 text-center my-5">
-                              <h4>To be continue...</h4>
+                         <div class="col-12 content-cover">
+                              <h4 class="text-light">To be continue...</h4>
                               <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                          </div>
                     </div>
@@ -62,7 +62,7 @@
           </div>
      </div>
 
-     <audio id="myAudio" src="<?= base_url("assets/public/music/christina-perri-a-thousand-years.mp3") ?>" preload="auto"></audio>
+     <audio id="myAudio" src="<?= base_url("assets/public/music/christina-perri-a-thousand-years.mp3") ?>" preload="auto" loop="true"></audio>
 
      <?php
           $this->load->view('frontend/wedding_invite/home');
