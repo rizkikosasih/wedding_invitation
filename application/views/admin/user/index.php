@@ -19,7 +19,7 @@
                                    </a>
                               </div>
                               <div class="card-tools">
-                                   <a href="javascript:void(0)" class='btn btn-sm btn-success ml-auto mr-2 title' title='Refresh Tables' onclick="return reloadTables()">
+                                   <a href="javascript:void(0)" class='btn btn-sm btn-success ml-auto mr-2 title reloadTable' title="Reload Table">
                                         <i class="fas fa-sync"></i>
                                    </a>
                               </div>

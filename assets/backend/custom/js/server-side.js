@@ -51,17 +51,22 @@
                          $.ajax({
                               method: 'post',
                               url: $(this).data('url'),
-                              data: {
-                                   id: $(this).data('id'),
-                                   code: $(this).data('code'),
-                              },
+                              data: {id: $(this).data('id'), code: $(this).data('code')},
                               success: function (res) {
-                                   reloadTables()
                                    var icon = res.response == 200 ? 'success' : 'error'
                                    sideToast.fire({
                                         icon: icon,
                                         title: res.message,
                                    })
+                              },
+                              complete: function () {
+                                   let $id, $parent = $('.card')
+                                   if ($parent.find('.tab-content').length) {
+                                   	$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
+                                   } else {
+                                   	$id = $parent.find('table.table').attr('id')
+                                   }
+                                   reloadTables(null, $id)
                               }
                          }) //end ajax
                     }
@@ -86,12 +91,20 @@
                                    code: $(this).data('code'),
                               },
                               success: function (res) {
-                                   reloadTables()
                                    var icon = res.response == 200 ? 'success' : 'error'
                                    sideToast.fire({
                                         icon: icon,
                                         title: res.message,
                                    })
+                              },
+                              complete: function () {
+                              	let $id, $parent = $('.card')
+                              	if ($parent.find('.tab-content').length) {
+                              		$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
+                              	} else {
+                              		$id = $parent.find('table.table').attr('id')
+                              	}
+                              	reloadTables(null, $id)
                               }
                          }) //end ajax
                     }
@@ -111,16 +124,22 @@
                          $.ajax({
                               method: 'post',
                               url: $(this).data('url'),
-                              data: {
-                                   id: $(this).data('id')
-                              },
-                              success: function(res){
-                                   reloadTables()
+                              data: {id: $(this).data('id')},
+                              success: function(res) {
                                    var icon = res.response == 200 ? 'success' : 'error'
                                    sideToast.fire({
                                         icon: icon,
                                         title: res.message,
                                    })
+                              },
+                              complete: function () {
+                              	let $id, $parent = $('.card')
+                              	if ($parent.find('.tab-content').length) {
+                              		$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
+                              	} else {
+                              		$id = $parent.find('table.table').attr('id')
+                              	}
+                              	reloadTables(null, $id)
                               }
                          })
                     }
