@@ -67,37 +67,6 @@
         return false
     })
 
-
-    // Gallery carousel
-    $(".gallery-carousel").owlCarousel({
-        autoplay: false,
-        smartSpeed: 1500,
-        dots: false,
-        loop: true,
-        nav : true,
-        navText : [
-            '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-        ],
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:2
-            },
-            768:{
-                items:3
-            },
-            992:{
-                items:4
-            },
-            1200:{
-                items:5
-            }
-        }
-    })
-
     //lightbox option
     lightbox.option({
         showImageNumberLabel: false,
@@ -172,6 +141,37 @@
         const flipDown = new FlipDown(receptionDate, 'reception-flipdown', {
             headings: ["Hari", "Jam", "Menit", "Detik"],
         }).start()
+    })
+
+    //swiper
+    $(function () {
+        const swiper = new Swiper('.swiper-desk', {
+            direction: 'horizontal',
+            loop: true,
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        })
+
+        const swiperCard = new Swiper('.swiper', {
+            effect: 'cards',
+            loop: true,
+            grabCursor: true,
+            centeredSlides: true,
+            centerInsufficientSlides: true,
+        })
     })
 
 })(jQuery)

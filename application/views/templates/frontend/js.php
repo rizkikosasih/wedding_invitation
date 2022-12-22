@@ -17,6 +17,8 @@
      <script src="<?= base_url('assets/plugins/typeit/index.js') ?>"></script>
      <!-- Flipdown -->
      <script src="<?= base_url('assets/plugins/flipdown/flipdown.min.js') ?>"></script>
+     <!-- Swiper -->
+     <script src="<?= base_url('assets/plugins/swiper/swiper-bundle.min.js') ?>"></script>
 
      <!-- Template Javascript -->
      <script src="<?= base_url('assets/frontend/js/main.js') ?>"></script>

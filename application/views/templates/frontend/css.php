@@ -5,6 +5,9 @@
      <!-- Font Awesome -->
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
 
+     <!-- Swiper -->
+     <link rel="stylesheet" href="<?= base_url('assets/plugins/swiper/swiper-bundle.min.css') ?>">
+
      <!-- AOS -->
      <link rel="stylesheet" href="<?= base_url('assets/plugins/aos/aos.css') ?>" rel="stylesheet">
 

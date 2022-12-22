@@ -548,3 +548,66 @@ hr.solid.bc-success {
 	color: #fff !important;
 	margin: 40vh auto;
 }
+
+.swiper-desk {
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	display: none;
+}
+
+.swiper-desk .swiper-slide {
+	background-position: center;
+	background-size: cover;
+	width: 300px;
+	height: 300px;
+}
+
+.swiper-desk .swiper-slide img {
+	display: block;
+	width: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+	position: relative;
+	width: 60px !important;
+	height: 60px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	color: #E47A2E !important;
+	background: #FFFFFF !important;
+	font-size: 30px !important;
+	left: 0;
+	top: 0;
+}
+
+.swiper {
+	width: 240px;
+	height: 320px;
+	margin-top: 11.5vh;
+}
+
+.swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 18px;
+	font-size: 22px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.swiper-slide .image-slide {
+	object-fit: cover !important;
+}
+
+@media (min-width: 576px) {
+	.swiper-desk {
+		display: block;
+	}
+	.swiper {
+		display: none;
+	}
+}
