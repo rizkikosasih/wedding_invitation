@@ -611,3 +611,9 @@ hr.solid.bc-success {
 		display: none;
 	}
 }
+
+@media (max-width: 575.98px) {
+	.swiper {
+		margin-top: 6vh;
+	}
+}
