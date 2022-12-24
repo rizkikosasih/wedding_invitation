@@ -51,7 +51,8 @@
      <!-- Modal -->
      <div class="modal fade" id="cover" tabindex="-1" aria-labelledby="coverLabel" aria-hidden="true">
           <div class="modal-dialog modal-fullscreen">
-               <div class="modal-content bg-cover">
+               <div class="modal-content">
+                    <img class="position-absolute w-100 h-100 bg-cover">
                     <div class="modal-body">
                          <div class="col-12 content-cover">
                               <h4 class="text-light">To be continue...</h4>

@@ -27,16 +27,13 @@
                object-fit: cover !important;
           }
           .bg-gallery {
-               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->background_gallery") ?>) !important;
-               background-size: cover !important;
-               background-repeat: no-repeat !important;
+               content: url(<?= base_url("$dir_img/event/$e->background_gallery") ?>) !important;
                object-fit: cover !important;
           }
           .bg-cover {
-               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->cover") ?>);
-               background-size: cover !important;
-               background-repeat: no-repeat !important;
+               content: url(<?= base_url("$dir_img/event/$e->cover") ?>) !important;
                object-fit: cover !important;
+               opacity: .9;
           }
           @media (max-width: 767px) {
                .bg-home {
@@ -44,16 +41,14 @@
                     object-fit: cover !important;
                }
                .bg-gallery {
-                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->background_gallery_mobile") ?>) !important;
-                    background-size: cover !important;
-                    background-repeat: no-repeat !important;
+                    content: url(<?= base_url("$dir_img/event/$e->background_gallery_mobile") ?>) !important;
                     object-fit: cover !important;
                }
                .bg-cover {
-                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(<?= base_url("$dir_img/event/$e->cover_mobile") ?>);
-                    background-size: cover !important;
-                    background-repeat: no-repeat !important;
+                    content: url(<?= base_url("$dir_img/event/$e->cover_mobile") ?>) !important;
+                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
                     object-fit: cover !important;
+                    opacity: .9;
                }
           }
      </style>
