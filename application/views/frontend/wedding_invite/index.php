@@ -13,7 +13,7 @@
      <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/public/images/favicon-16x16.png') ?>">
      <link rel="manifest" href="<?= base_url('assets/public/images/site.webmanifest') ?>">
 
-     <?php $this->load->view('templates/frontend/css.php') ?>
+     <?php $this->load->view('templates/frontend/css') ?>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
      <!-- Navbar Start -->
@@ -84,6 +84,7 @@
           $this->load->view('frontend/wedding_invite/map');
           $this->load->view('frontend/wedding_invite/gift');
           $this->load->view('frontend/wedding_invite/comment');
+          $this->load->view('frontend/wedding_invite/penutup');
           $this->load->view('frontend/wedding_invite/footer');
      ?>
 
