@@ -1,5 +1,5 @@
      <!-- Footer Start -->
-     <div class="main-footer"></div>
+     
      <!-- Footer End -->
 
      <!-- Scroll to Bottom -->
