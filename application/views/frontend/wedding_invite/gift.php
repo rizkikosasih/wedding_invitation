@@ -11,7 +11,7 @@
                </div>
           </div>
           <div class="row justify-content-center">
-               <div class="col-12 col-sm-8">
+               <div class="col-12 col-sm-8 col-md-6">
                     <div class="card rounded-xxl bg-primary text-light shadow border border-primary text-center my-3">
                          <div class="card-body">
                               <img src="<?= $e->image ? base_url("$dir_img/bank/$e->image") : base_url("$dir_img/no-image.jpg") ?>" alt="" class="img-fluid">
