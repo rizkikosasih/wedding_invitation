@@ -1,5 +1,7 @@
 (function ($) {
     "use strict"
+    let myAudio = $('#myAudio')[0], musicState = false
+
     /* sweetalert & toast */
     const Toast = Swal.mixin({
         toast: true,
@@ -12,11 +14,12 @@
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > 200) {
             $('.navbar').fadeIn('slow').css('display', 'flex')
+            $('.to-bottom').fadeOut('slow')
         } else {
             $('.navbar').fadeOut('slow').css('display', 'none')
+            $('.to-bottom').fadeIn('slow')
         }
     })
-
 
     // Smooth scrolling on the navbar links
     $(".navbar-nav a").on('click', function (event) {
@@ -44,7 +47,7 @@
     })
 
     // Portfolio isotope and filter
-    // var portfolioIsotope = $('.portfolio-container').isotope({
+    // let portfolioIsotope = $('.portfolio-container').isotope({
     //     itemSelector: '.portfolio-item',
     //     layoutMode: 'fitRows'
     // })
@@ -57,13 +60,23 @@
     // Back to top button
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > 200) {
-            $('.back-to-top').fadeIn('slow')
+            $('.back-to-top, .btn-music').fadeIn('slow')
         } else {
-            $('.back-to-top').fadeOut('slow')
+            $('.back-to-top, .btn-music').fadeOut('slow')
         }
     })
-    $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo')
+
+    $('.back-to-top').on('click', function () {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 1500, 'easeInOutExpo')
+        return false
+    })
+
+    $(document).on('click', '.to-bottom', function () {
+        $('html, body').animate({
+        	scrollTop: $('#about').offset().top
+        }, 1500, 'easeInOutExpo')
         return false
     })
 
@@ -114,10 +127,21 @@
     //Music
     $(function () {
         $('#cover').on('hidden.bs.modal', function () {
-            let myAudio = $('#myAudio')[0]
+            musicState = true
             myAudio.play()
             $('html').removeClass('overflow-hidden')
-            $('.navbar, .container-fluid').css('opacity', 1)
+            $('.navbar, .container-fluid, .back-to-top, .btn-music').css('opacity', 1)
+        })
+        $(document).on('click', '.btn-music', function () {
+            $(this).children().toggleClass('fa-play fa-pause')
+            if (musicState) {
+                musicState = false
+                myAudio.pause()
+            } else {
+                musicState = true
+                myAudio.play()
+            }
+            return false
         })
     })
 

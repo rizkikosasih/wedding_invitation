@@ -72,6 +72,7 @@
           $this->load->view('frontend/wedding_invite/event');
           $this->load->view('frontend/wedding_invite/gift');
           $this->load->view('frontend/wedding_invite/reservation');
+          $this->load->view('frontend/wedding_invite/footer');
      ?>
 
      <?php $this->load->view('templates/frontend/js.php') ?>
