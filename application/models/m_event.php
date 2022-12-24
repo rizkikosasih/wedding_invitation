@@ -11,8 +11,6 @@ class m_event extends CI_Model {
      public function get($where = null) {
           $this->db->select("$this->table.*, b.name, b.image");
           $this->db->join('bank b', "b.id = $this->table.bank_id", 'left');
-          $this->db->join('role_event re', "re.event_id = $this->table.id", 'left');
-          $this->db->join('user u', "u.id = re.user_id", 'left');
           if ($where) $this->db->where($where);
           return $this->db->get($this->table)->row();
      }
@@ -141,5 +139,20 @@ class m_event extends CI_Model {
           if ($where) $this->db->where($where);
           $this->db->order_by('name', 'asc');
           return $this->db->get('bank')->result();
+     }
+
+     public function get_comment($where = null, $limit = []) {
+          if ($where) $this->db->where($where);
+          $this->db->order_by('id', 'desc');
+          $this->db->where('event_id', 1);
+          // if ($limit) {
+          //      $start = $limit['start'];
+          //      $end = $limit['end'];
+          // } else {
+          //      $start = 0;
+          //      $end = 5;
+          // }
+          // $this->db->limit($end, $start);
+          return $this->db->get('comment')->result();
      }
 }

@@ -18,7 +18,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
      <!-- Navbar Start -->
      <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5" style="opacity: 0;">
-          <a href="index.html" class="navbar-brand d-block d-lg-none">
+          <a href="javascript:void(0)" class="navbar-brand d-block d-lg-none">
                <h1 class="font-secondary text-white text-capitalize mb-n2">
                     <?= $e->alias_woman ?> <span class="text-primary">&</span> <?= $e->alias_man ?>
                </h1>
@@ -33,16 +33,16 @@
                     <a href="#story" class="nav-item nav-link">Story</a>
                     <a href="#gallery" class="nav-item nav-link">Gallery</a>
                </div>
-               <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+               <a href="javascript:void(0)" class="navbar-brand mx-5 d-none d-lg-block">
                     <h1 class="font-secondary text-white text-capitalize mb-n2">
                          <?= $e->alias_woman ?> <span class="text-primary">&</span> <?= $e->alias_man ?>
                     </h1>
                </a>
                <div class="navbar-nav mr-auto py-0">
                     <a href="#event" class="nav-item nav-link">Event</a>
+                    <a href="#map" class="nav-item nav-link">Map</a>
                     <a href="#gift" class="nav-item nav-link">Gift</a>
-                    <a href="#rsvp" class="nav-item nav-link">RSVP</a>
-                    <a href="#contact" class="nav-item nav-link">Contact</a>
+                    <a href="#comment" class="nav-item nav-link">Wishes</a>
                </div>
           </div>
      </nav>
@@ -70,8 +70,9 @@
           $this->load->view('frontend/wedding_invite/story');
           $this->load->view('frontend/wedding_invite/gallery');
           $this->load->view('frontend/wedding_invite/event');
+          $this->load->view('frontend/wedding_invite/map');
           $this->load->view('frontend/wedding_invite/gift');
-          $this->load->view('frontend/wedding_invite/reservation');
+          $this->load->view('frontend/wedding_invite/comment');
           $this->load->view('frontend/wedding_invite/footer');
      ?>
 

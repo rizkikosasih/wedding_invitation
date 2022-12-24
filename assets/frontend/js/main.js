@@ -1,6 +1,16 @@
+const siteUrl = (url) => {
+    let index = window.location.origin.match(/localhost/i) ? 1 : 0,
+    	delimiter = index ? '/' : '',
+    	origin = window.location.origin + delimiter,
+    	pathname = window.location.pathname.split('/')[index],
+    	lastUrl = !url ? '' : '/' + url
+    return origin + pathname + lastUrl
+}
 (function ($) {
     "use strict"
     let myAudio = $('#myAudio')[0], musicState = false
+    const formComment = $('.form-comment'),
+    listComment = $('.list-comment')
 
     /* sweetalert & toast */
     const Toast = Swal.mixin({
@@ -103,9 +113,9 @@
         const clipboard = new ClipboardJS('.btn-copy')
         clipboard.on('success', function (e) {
             Toast.fire({
-            	icon: 'success',
-            	title: 'Nomor Rekening Berhasil Disalin !',
-            	height: 'auto'
+                icon: 'success',
+                title: 'Nomor Rekening Berhasil Disalin !',
+                height: 'auto'
             })
         })
     })
@@ -113,7 +123,7 @@
     //on load window
     $(window).on('load', function () {
         $('#cover').modal({backdrop: false, keyboard: false, show: true})
-        $('html').addClass('overflow-hidden')
+        $('html, body').toggleClass('overflow-hidden')
         if (!window.location.origin.match(/localhost/i)) {
             $('html, body').animate({
                 scrollTop: 0
@@ -124,13 +134,49 @@
         }
     })
 
-    //Music
+    //Music & Live Comment
     $(function () {
-        $('#cover').on('hidden.bs.modal', function () {
+        //Music
+        $(document).on('hidden.bs.modal', '#cover', function () {
             musicState = true
             myAudio.play()
-            $('html').removeClass('overflow-hidden')
+            $('html, body').toggleClass('overflow-hidden bg-custom')
             $('.navbar, .container-fluid, .back-to-top, .btn-music').css('opacity', 1)
+
+            setTimeout(() => {
+                setInterval(() => {
+                    let lastId = $('.card-comment.last').data('last') || 0
+                    $.ajax({
+                        cache: false,
+                        method: 'get',
+                        data: {
+                            lastId: lastId
+                        },
+                        url: siteUrl('wedding_invite/list_comment'),
+                        success: function (res) {
+                            if (res.data.length) {
+                                if (!$('.card-comment').length) listComment.html('')
+                                $('.card-comment.last').removeAttr('data-last').removeClass('last')
+                                $.each(res.data, (i, lc) => {
+                                    let attrCard = !i ? 'data-last="' + lc.id + '"' : ''
+                                    listComment.prepend(`
+                                    <div class="card my-3 font-small-3 border-0 card-comment ${!i ? 'last' : ''}" ${attrCard}>
+                                        <div class="card-header">
+                                            <div class="fw-bold">
+                                                <i class="far fa-user-circle mr-2"></i>${lc.name}
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            ${lc.message}
+                                        </div>
+                                    </div>
+                                `)
+                                })
+                            }
+                        }, //success
+                    })
+                }, 2000)
+            }, 1000)
         })
         $(document).on('click', '.btn-music', function () {
             $(this).children().toggleClass('fa-play fa-pause')
@@ -143,6 +189,53 @@
             }
             return false
         })
+
+        // Form Comment
+        if (formComment.length) {
+            $(document).on('submit', formComment, function () {
+                let name = $('#name').val(),
+                    message = $('#message').val()
+                if (name && message) {
+                    $.ajax({
+                        cache: false,
+                        method: formComment.attr('method'),
+                        data: formComment.serialize(),
+                        url: siteUrl('wedding_invite/add_comment'),
+                        success: function (result) {
+                            let icon = result.response === 200 ? 'success' : 'error'
+                            Toast.fire({
+                                icon: icon,
+                                title: result.message,
+                                height: 'auto'
+                            })
+                            listComment.html('')
+                            $.each(result.data, (i, lc) => {
+                                let attrCard = !i ? 'data-last="' + lc.id + '"' : ''
+                                listComment.append(`
+                                    <div class="card my-3 font-small-3 border-0 card-comment ${!i ? 'last' : ''}" ${attrCard} style="display: none;">
+                                        <div class="card-header">
+                                            <div class="fw-bold">
+                                                <i class="far fa-user-circle mr-2"></i>${lc.name}
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            ${lc.message}
+                                        </div>
+                                    </div>
+                                `)
+                            })
+                        }, //success
+                        complete: function () {
+                            formComment[0].reset()
+                            $('.card-comment').slideDown('slow')
+                        }
+                    })
+                } else {
+                    console.log('Name dan Message Tidak Boleh Kosong')
+                }
+                return false
+            })
+        }
     })
 
     //Type It

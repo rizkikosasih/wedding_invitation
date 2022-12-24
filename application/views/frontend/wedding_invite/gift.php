@@ -2,7 +2,7 @@
 <div class="container-fluid py-5" id="gift" style="opacity: 0;">
      <div class="container pt-5 pb-3">
           <div class="section-title position-relative text-center">
-               <h1 class="font-secondary display-4" data-aos="flip-right">Friend & Family</h1>
+               <h1 class="font-secondary display-4" data-aos="flip-right">Hadiah Pernikahan</h1>
                <i class="far fa-heart text-dark"></i>
           </div>
           <div class="row justify-content-center">

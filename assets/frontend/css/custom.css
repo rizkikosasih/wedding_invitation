@@ -8,6 +8,28 @@ html, body {
      left: 50%;
 }
 
+.bg-custom {
+	background-color: #FFE5F1;
+}
+
+.form-control {
+	border-radius: 6px;
+}
+
+.comment-content .list-comment,
+.comment-content .comment-form {
+	height: 300px;
+}
+
+.comment-content .list-comment {
+	overflow-y: auto;
+}
+
+.card-comment .card-header,
+.card-comment .card-body {
+	padding: .5rem !important;
+}
+
 .font-small-1 {
 	font-size: 0.7rem !important;
 }
