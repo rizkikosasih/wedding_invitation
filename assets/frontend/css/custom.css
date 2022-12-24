@@ -25,6 +25,10 @@ html, body {
 	overflow-y: auto;
 }
 
+.section-title h1 {
+	font-weight: 700 !important;
+}
+
 .card-comment .card-header,
 .card-comment .card-body {
 	padding: .5rem !important;

@@ -52,11 +52,21 @@
      <div class="modal fade" id="cover" tabindex="-1" aria-labelledby="coverLabel" aria-hidden="true">
           <div class="modal-dialog modal-fullscreen">
                <div class="modal-content">
-                    <img class="position-absolute w-100 h-100 bg-cover">
-                    <div class="modal-body">
-                         <div class="col-12 content-cover">
-                              <h4 class="text-light">To be continue...</h4>
-                              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                         <div class="carousel-inner">
+                              <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
+                                   <img class="position-absolute w-100 h-100 bg-cover">
+                                   <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                        <div class="p-3" style="max-width: 900px;">
+                                             <div class="modal-body">
+                                                  <div class="col-12 content-cover">
+                                                       <h4 class="text-light">To be continue...</h4>
+                                                       <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
                          </div>
                     </div>
                </div>

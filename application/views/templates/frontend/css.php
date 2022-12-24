@@ -28,12 +28,12 @@
           }
           .bg-gallery {
                content: url(<?= base_url("$dir_img/event/$e->background_gallery") ?>) !important;
+               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
                object-fit: cover !important;
           }
           .bg-cover {
                content: url(<?= base_url("$dir_img/event/$e->cover") ?>) !important;
                object-fit: cover !important;
-               opacity: .9;
           }
           @media (max-width: 767px) {
                .bg-home {
@@ -46,9 +46,7 @@
                }
                .bg-cover {
                     content: url(<?= base_url("$dir_img/event/$e->cover_mobile") ?>) !important;
-                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
                     object-fit: cover !important;
-                    opacity: .9;
                }
           }
      </style>
