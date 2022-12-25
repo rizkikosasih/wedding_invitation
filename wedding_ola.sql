@@ -881,6 +881,21 @@ DELETE FROM `statis_template`;
 /*!40000 ALTER TABLE `statis_template` DISABLE KEYS */;
 /*!40000 ALTER TABLE `statis_template` ENABLE KEYS */;
 
+-- Dumping structure for table wedding_ola.undangan_terkirim
+DROP TABLE IF EXISTS `undangan_terkirim`;
+CREATE TABLE IF NOT EXISTS `undangan_terkirim` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` tinytext NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `send` int(3) NOT NULL DEFAULT 0,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `phone` (`phone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table wedding_ola.undangan_terkirim: ~0 rows (approximately)
+DELETE FROM `undangan_terkirim`;
+
 -- Dumping structure for table wedding_ola.user
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
