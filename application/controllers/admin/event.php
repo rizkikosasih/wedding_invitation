@@ -718,6 +718,7 @@ class event extends CI_Controller {
                     ];
                }
           } else {
+               $event = $this->m_event->get(['event.id' => $id]);
                //check undangan grup
                $invite = $this->m_event->get_undangan(['event_id' => $id, 'name' => $name]);
                if (!$invite) {
