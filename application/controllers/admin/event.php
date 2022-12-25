@@ -723,7 +723,7 @@ class event extends CI_Controller {
                if (!$invite) {
                     $this->m_master->add($this->table_undangan_terkirim, [
                          'event_id' => $id,
-                         'phone' => $newPhone,
+                         'phone' => $phone,
                          'name' => $name,
                          'date_added' => hari_lengkap(),
                          'sent' => 1
