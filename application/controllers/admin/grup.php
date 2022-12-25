@@ -7,12 +7,7 @@ class grup extends CI_Controller {
 
      public function __construct() {
           parent::__construct();
-          $this->load->model([
-               'm_grup',
-               'm_user',
-               'm_menu',
-               'm_master',
-          ]);
+          $this->load->model(['m_grup', 'm_user', 'm_menu', 'm_master']);
           $this->url = 'admin/' . $this->uri->segment(2);
           cek_login();
      }

@@ -17,6 +17,11 @@ class m_event extends CI_Model {
           return $this->db->get($this->table)->row();
      }
 
+     public function get_undangan($where = null) {
+          if ($where) $this->db->where($where);
+          return $this->db->get('undangan_terkirim')->row();
+     }
+
      public function tabList () {
           return $this->db->get('list_tab')->result();
      }

@@ -22,10 +22,10 @@ function formatRupiah(angka, prefix) {
 }
 
 function reloadTables(v, element) {
-	let fullReload = !v ? false : true 
-	$('table#' + element || 'server_side').DataTable().ajax.reload(null, fullReload)
+	let fullReload = !v ? false : true,
+	el = !element ? 'server_side' : ''
+	$('table#' + el).DataTable().ajax.reload(null, fullReload)
 }
-
 /* current date YYYY/MM/DD */
 const currentDate = new Date()
 cDay = currentDate.getDate()
@@ -64,88 +64,8 @@ let siteUrl = (url='') => {
 	/* sweetalert & toast */
 
 	const dataTables = $('#dataTables'),
-	$modal = $('#myModal')
-
-	/* server side table */
-	// $(function () {
-	// 	/* love story */
-	// 	$('table#love-story').DataTable({
-	// 		"autoWidth": false,
-	// 		"pageLength": 10,
-	// 		"responsive": true,
-	// 		"processing": true,
-	// 		"serverSide": true,
-	// 		"order": [],
-	// 		"language": {
-	// 			"processing": (`
-	// 					<div class="spinner-loader">
-	// 						<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
-	// 						<div class="mt-1 font-small-1">Loading...</div>
-	// 					</div>
-	// 				`)
-	// 		},
-	// 		"ajax": {
-	// 			"url": $('table#love-story').data('url'),
-	// 			"type": "post"
-	// 		},
-	// 		"columnDefs": [{
-	// 			"target": [-1],
-	// 			"orderable": false
-	// 		}]
-	// 	})
-
-	// 	/* gallery */
-	// 	$('table#gallery').DataTable({
-	// 		"autoWidth": false,
-	// 		"pageLength": 10,
-	// 		"responsive": true,
-	// 		"processing": true,
-	// 		"serverSide": true,
-	// 		"order": [],
-	// 		"language": {
-	// 			"processing": (`
-	// 					<div class="spinner-loader">
-	// 						<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
-	// 						<div class="mt-1 font-small-1">Loading...</div>
-	// 					</div>
-	// 				`)
-	// 		},
-	// 		"ajax": {
-	// 			"url": $('table#gallery').data('url'),
-	// 			"type": "post"
-	// 		},
-	// 		"columnDefs": [{
-	// 			"target": [-1],
-	// 			"orderable": false
-	// 		}]
-	// 	})
-
-	// 	/* wishes */
-	// 	$('table#wishes').DataTable({
-	// 		"autoWidth": false,
-	// 		"pageLength": 10,
-	// 		"responsive": true,
-	// 		"processing": true,
-	// 		"serverSide": true,
-	// 		"order": [],
-	// 		"language": {
-	// 			"processing": (`
-	// 					<div class="spinner-loader">
-	// 						<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
-	// 						<div class="mt-1 font-small-1">Loading...</div>
-	// 					</div>
-	// 				`)
-	// 		},
-	// 		"ajax": {
-	// 			"url": $('table#wishes').data('url'),
-	// 			"type": "post"
-	// 		},
-	// 		"columnDefs": [{
-	// 			"target": [-1],
-	// 			"orderable": false
-	// 		}]
-	// 	})
-	// })
+	$modal = $('#myModal'),
+	sendWhatsapp = '.send-wa'
 
 	/* TinyMCE */
 	$(function () {
@@ -834,6 +754,100 @@ let siteUrl = (url='') => {
 					})
 				}
 			}
+		})
+	})
+
+	/* validate update template wa */
+	$(function () {
+		$('form.update_template_wa').validate({
+			submitHandler: function (form) {
+				let $this = $(form)
+				$.ajax({
+					url: $this.data('href'),
+					method: form.method,
+					data: new FormData(form),
+					contentType: false,
+					processData: false,
+					success: function (res) {
+						let icon = res.response == 200 ? 'success' : 'error'
+						Swal.mixin({
+							toast: true,
+							position: 'top-end',
+							showConfirmButton: false,
+							timer: 3000
+						}).fire({
+							icon: icon,
+							title: res.message,
+						})
+					}
+				})
+			}
+		})
+	})
+
+	/* validate send wa */
+	$(function () {
+		$('form.send_wa').validate({
+			submitHandler: function (form) {
+				let $this = $(form)
+				$.ajax({
+					url: $this.data('href'),
+					method: form.method,
+					data: new FormData(form),
+					contentType: false,
+					processData: false,
+					success: function (res) {
+						if (res.response === 200) {
+							$this[0].reset()
+							window.open(res.url, '_blank')
+						} else {
+							$this.find('#phone').focus()
+							Swal.mixin({
+								toast: true,
+								position: 'top-end',
+								showConfirmButton: false,
+								timer: 3000
+							}).fire({
+								icon: 'error',
+								title: res.message,
+							})
+						}
+					}
+				})
+			}
+		})
+	})
+
+	/* Send Whatsapp */
+	$(function () {
+		$(document).on('click', sendWhatsapp, function () {
+			let $this = $(this)
+			$.ajax({
+				cache: false,
+				method: 'post',
+				url: $this.data('url'),
+				data: {
+					phone: $this.data('phone'),
+					name: $this.data('name'),
+					id: $this.data('id')
+				},
+				success: function (res) {
+					if (res.response === 200) {
+						reloadTables()
+						window.open(res.url, '_blank')
+					} else {
+						Swal.mixin({
+							toast: true,
+							position: 'top-end',
+							showConfirmButton: false,
+							timer: 3000
+						}).fire({
+							icon: 'error',
+							title: res.message,
+						})
+					}
+				}
+			})
 		})
 	})
 

@@ -17,7 +17,8 @@
                                    name="template_wa" 
                                    placeholder="Template Pesan WA Tambahkan \r\n untuk baris baru..." 
                                    rows="10"
-                              ><?= html_entity_decode($e->template_wa) ?></textarea>
+                                   required
+                              ><?= html_entity_decode(str_replace('%0A', '\n',$e->template_wa)) ?></textarea>
                          </div>
                     </div>
                     <div class="col-12 d-flex gap-3">
@@ -40,18 +41,26 @@
                     <div class="col-12 nomor-tujuan">
                          <div class="form-group">
                               <label for="name">Nomor Tujuan</label>
-                              <input class="form-control" id="nomor_tujuan" name="nomor_tujuan" placeholder="Masukan Nomor Tujuan, Contoh: 85887183001" required>
+                              <input 
+                                   class="form-control isNumber" 
+                                   id="phone" 
+                                   name="phone" 
+                                   inputmode="numeric" 
+                                   pattern="[0-9]*" 
+                                   placeholder="Masukan Nomor Tujuan, Contoh: 85887183001" 
+                                   required
+                              >
                          </div>
                     </div>
                     <div class="col-12 nama-penerima">
                          <div class="form-group">
                               <label for="name">Nama Penerima</label>
-                              <input class="form-control" id="nama_penerima" name="nama_penerima" placeholder="Masukan Nama Penerima Undangan" required>
+                              <input class="form-control" id="name" name="name" placeholder="Masukan Nama Penerima Undangan" required>
                          </div>
                     </div>
                     <div class="col-12 d-flex gap-3">
-                         <button type="submit" class="btn btn-primary btn-block">
-                              <i class="far fa-whatsapp"></i><span class="ml-1">Send WA</span>
+                         <button type="submit" class="btn btn-success btn-block">
+                              <i class="fa-brands fa-whatsapp"></i><span class="ml-1">Send WA</span>
                          </button>
                     </div>
                </div>
@@ -59,7 +68,7 @@
      </div>
 </div>
 
-<!-- <a href="<?= "https://api.whatsapp.com/send?phone=$number&text=$message" ?>" target="_blank" title="click to open whatsapp chat">
+<!-- <a href="https://api.whatsapp.com/send?phone=$number&text=$message" target="_blank" title="click to open whatsapp chat">
      <button class="btn btn-success">
           <i class="fa fa-whatsapp"></i> Chat Now
      </button>

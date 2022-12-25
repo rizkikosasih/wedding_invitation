@@ -430,6 +430,22 @@
         return $dayList[$i];
     }
 
+    function newPhone($phone) {
+        $first = substr($phone, 0, 1);
+        $second = substr($phone, 0, 2);
+        if (!$first) return ltrim($phone, 0);
+        if ($second == 62) return $phone;
+        if ($first == 8) return 62 . $phone;
+        return null;
+    }
+
+    function remakeTemplate($default, $change, $text) {
+        for ($i = 0; $i < count($default); $i++): 
+            $text = str_replace($default[$i], $change[$i], $text);
+        endfor;
+        return $text;
+    }
+
     // function clear_latest_cache() {
     //     $ci =& get_instance();
     //     $ci->load->driver('cache');

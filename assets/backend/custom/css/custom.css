@@ -372,3 +372,9 @@ svg.font-large-5 {
 .gap-5 {
 	gap: 3rem !important
 }
+
+.swal2-container .swal2-popup.swal2-toast .swal2-title,
+.swal2-container .swal2-popup.swal2-toast .swal2-content {
+	margin-left: auto;
+	text-align: left;
+}

@@ -7,16 +7,12 @@ class event extends CI_Controller {
      private $table_story = 'love_story';
      private $table_gallery = 'gallery';
      private $table_comment = 'comment';
+     private $table_undangan_terkirim = 'undangan_terkirim';
      private $url;
 
      public function __construct() {
           parent::__construct();
-          $this->load->model([
-               'm_user',
-               'm_menu',
-               'm_master',
-               'm_event',
-          ]);
+          $this->load->model(['m_user', 'm_menu', 'm_master', 'm_event']);
           $this->url = 'admin/' . $this->uri->segment(2);
           cek_login();
      }
@@ -652,6 +648,103 @@ class event extends CI_Controller {
                'message' => "Wishes Berhasil Dihapus!",
                'affected_row' => $deleted,
           ];
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
+
+     public function update_template_wa() {
+          $id = decode64($this->input->post('id'));
+          $template_wa = htmlentities(str_replace('\n', '%0A', $this->input->post('template_wa')));
+          $data = ['template_wa' => $template_wa];
+          $affected_row = $this->m_master->update($this->table, ['id' => $id], $data);
+
+          $result = [
+               'response' => 200,
+               'message' => 'Template WA Berhasil Diupdate',
+               'affected_row' => $affected_row,
+          ];
+
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
+
+     public function send_wa() {
+          $id = decode64($this->input->post('id'));
+          $name = ucwords($this->input->post('name'));
+          $phone = $this->input->post('phone');
+          $newPhone = newPhone($phone);
+          $affected_row = 0;
+          $url = "https://api.whatsapp.com";
+          $link = base_url("wedding_invite/to/" . strtolower(str_replace(' ', '-', $name)));
+          $default = ["{link}", "{name}"];
+          $change = ["*$link*", "*$name*"];
+          if ($phone != 10) {
+               if (!$newPhone) {
+                    $result = [
+                         'response' => 404,
+                         'message' => 'Gagal Mengirim WA Nomor Tidak valid',
+                         'affected_row' => $affected_row, 
+                    ];
+               } else {
+                    $event = $this->m_event->get(['event.id' => $id]);
+                    //check undangan
+                    $invite = $this->m_event->get_undangan(['event_id' => $id, 'phone' => $newPhone]);
+                    if (!$invite) {
+                         $this->m_master->add($this->table_undangan_terkirim, [
+                              'event_id' => $id,
+                              'phone' => $newPhone,
+                              'name' => $name,
+                              'date_added' => hari_lengkap(),
+                              'sent' => 1
+                         ]);
+                    } else {
+                         $send = $invite->sent;
+                         $this->m_master->update($this->table_undangan_terkirim, ['id' => $invite->id], [
+                              'name' => $name,
+                              'sent' => ($send + 1)
+                         ]);
+                    }
+
+                    $text = remakeTemplate($default, $change, $event->template_wa);
+                    $result = [
+                         'response' => 200,
+                         'message' => "Undangan WA Berhasil Dikirim ke $name",
+                         'affected_row' => $affected_row,
+                         'url' => "$url/send?phone=$newPhone&text=$text"
+                    ];
+               }
+          } else {
+               //check undangan grup
+               $invite = $this->m_event->get_undangan(['event_id' => $id, 'name' => $name]);
+               if (!$invite) {
+                    $this->m_master->add($this->table_undangan_terkirim, [
+                         'event_id' => $id,
+                         'phone' => $newPhone,
+                         'name' => $name,
+                         'date_added' => hari_lengkap(),
+                         'sent' => 1
+                    ]);
+               } else {
+                    $send = $invite->sent;
+                    $this->m_master->update($this->table_undangan_terkirim, ['id' => $invite->id], [
+                         'name' => $name,
+                         'sent' => ($send + 1)
+                    ]);
+               }
+
+               $text = remakeTemplate($default, $change, $event->template_wa);
+               $result = [
+                    'response' => 200,
+                    'message' => "Undangan WA Berhasil Dikirim ke $name",
+                    'affected_row' => $affected_row,
+                    'url' => "$url/send?text=$text"
+               ];
+          }
+
           $this->output
           ->set_content_type('application/json')
           ->set_output(json_encode($result))

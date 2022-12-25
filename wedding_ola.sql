@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS `akses_menu` (
   `menu_id` int(11) NOT NULL,
   `grup_id` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=323 DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+) ENGINE=MyISAM AUTO_INCREMENT=325 DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
 
--- Dumping data for table wedding_ola.akses_menu: 20 rows
+-- Dumping data for table wedding_ola.akses_menu: 22 rows
 DELETE FROM `akses_menu`;
 /*!40000 ALTER TABLE `akses_menu` DISABLE KEYS */;
 INSERT INTO `akses_menu` (`id`, `menu_id`, `grup_id`) VALUES
@@ -46,7 +46,9 @@ INSERT INTO `akses_menu` (`id`, `menu_id`, `grup_id`) VALUES
 	(277, 1, 3),
 	(278, 1, 2),
 	(316, 18, 1),
-	(322, 22, 1);
+	(322, 22, 1),
+	(323, 23, 1),
+	(324, 23, 2);
 /*!40000 ALTER TABLE `akses_menu` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.bank
@@ -125,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `event` (
 DELETE FROM `event`;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
 INSERT INTO `event` (`id`, `bank_id`, `event_name`, `reception_date`, `wedding_date`, `reception_location`, `wedding_location`, `number_rekening`, `atas_nama`, `wedding_map`, `cover`, `cover_mobile`, `background_gallery`, `background_gallery_mobile`, `background_home`, `background_home_mobile`, `name_man`, `alias_man`, `desc_man`, `image_man`, `name_woman`, `alias_woman`, `desc_woman`, `image_woman`, `template_wa`, `date_added`, `date_modify`) VALUES
-	(1, 1, 'Wedding Ola & Atta', '2023-02-05 10:30:00', '2023-02-05 09:00:00', 'Jl. Sabangan No. 378', 'Jl. Sabangan No. 378', '1234567890', 'Ariola', '&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.769504343384!2d106.81222731435987!3d-6.1616166621031905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f67683b657bd%3A0xb9b974541a653ffd!2sJl.%20Petojo%20Utara%20III%20No.240%2C%20RT.17%2FRW.3%2C%20Petojo%20Utara%2C%20Kecamatan%20Gambir%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2010130!5e0!3m2!1sen!2sid!4v1671244826772!5m2!1sen!2sid&quot; width=&quot;1920&quot; height=&quot;1080&quot; style=&quot;border:0;&quot; allowfullscreen=&quot;true&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer-when-downgrade&quot;&gt;&lt;/iframe&gt;', '38500_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '96127_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', '16260_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '', '51277_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '51277_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', 'Janahtan Firdaus', 'Janahtan', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;', '83918_about-1.jpg', 'Riska Ariola', 'Ariola', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;test&lt;/span&gt;&lt;/p&gt;', '83918_about-2.jpg', '', '2022-12-17 12:36:26', '2022-12-25 09:01:45');
+	(1, 1, 'Wedding Ola & Atta', '2023-02-05 10:30:00', '2023-02-05 09:00:00', 'Jl. Sabangan No. 378', 'Jl. Sabangan No. 378', '1234567890', 'Ariola', '&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.769504343384!2d106.81222731435987!3d-6.1616166621031905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f67683b657bd%3A0xb9b974541a653ffd!2sJl.%20Petojo%20Utara%20III%20No.240%2C%20RT.17%2FRW.3%2C%20Petojo%20Utara%2C%20Kecamatan%20Gambir%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2010130!5e0!3m2!1sen!2sid!4v1671244826772!5m2!1sen!2sid&quot; width=&quot;1920&quot; height=&quot;1080&quot; style=&quot;border:0;&quot; allowfullscreen=&quot;true&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer-when-downgrade&quot;&gt;&lt;/iframe&gt;', '38500_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '96127_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', '16260_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '', '51277_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '51277_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', 'Janahtan Firdaus', 'Janahtan', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;', '83918_about-1.jpg', 'Riska Ariola', 'Ariola', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;test&lt;/span&gt;&lt;/p&gt;', '83918_about-2.jpg', 'Assalamualaikum Wr.Wb\r\n%0A\r\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i {name} untuk menghadiri acara kami.\r\n%0A\r\nBerikut link undangan kami, untuk info lengkap dari acara bisa kunjungi :\r\n%0A%0A\r\n{link}\r\n%0A%0A\r\nMerupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\r\n%0A%0A\r\nMohon maaf perihal undangan hanya di bagikan melalui pesan ini.\r\n%0A%0A\r\nDan karena suasana masih pandemi, diharapkan untuk tetap menggunakan masker dan datang pada jam yang telah ditentukan.\r\n%0A\r\nTerima kasih banyak perhatiannya.', '2022-12-17 12:36:26', '2022-12-25 13:12:07');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.gallery
@@ -270,9 +272,9 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `induk_id` int(11) NOT NULL,
   `isDelete` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
--- Dumping data for table wedding_ola.menu: 9 rows
+-- Dumping data for table wedding_ola.menu: 10 rows
 DELETE FROM `menu`;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 INSERT INTO `menu` (`id`, `nama_menu`, `icon`, `url`, `urutan`, `tipe`, `isActive`, `isLogin`, `induk_id`, `isDelete`) VALUES
@@ -284,7 +286,8 @@ INSERT INTO `menu` (`id`, `nama_menu`, `icon`, `url`, `urutan`, `tipe`, `isActiv
 	(15, 'Data Menu', 'fas fa-bars', 'menu', 3, 'b', 1, 1, 1, 0),
 	(17, 'Data User', 'fas fa-user', 'user', 2, 'b', 1, 1, 1, 0),
 	(18, 'Pelanggan', 'fas fa-user', 'pelanggan', 3, 'b', 0, 1, 2, 0),
-	(22, 'Event', 'far fa-calendar-alt', 'event', 4, 'b', 1, 1, 2, 0);
+	(22, 'Event', 'far fa-calendar-alt', 'event', 4, 'b', 1, 1, 2, 0),
+	(23, 'Undangan Terkirim', 'fas fa-envelope-circle-check', 'sent', 2, 'b', 1, 1, 2, 0);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.pelanggan
@@ -885,16 +888,19 @@ DELETE FROM `statis_template`;
 DROP TABLE IF EXISTS `undangan_terkirim`;
 CREATE TABLE IF NOT EXISTS `undangan_terkirim` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) NOT NULL DEFAULT 0,
   `name` tinytext NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `send` int(3) NOT NULL DEFAULT 0,
+  `sent` int(3) NOT NULL DEFAULT 0,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table wedding_ola.undangan_terkirim: ~0 rows (approximately)
+-- Dumping data for table wedding_ola.undangan_terkirim: ~1 rows (approximately)
 DELETE FROM `undangan_terkirim`;
+INSERT INTO `undangan_terkirim` (`id`, `event_id`, `name`, `phone`, `sent`, `date_added`) VALUES
+	(1, 1, 'Rizki Kosasih', '6285893146277', 1, '2022-12-25 17:53:56');
 
 -- Dumping structure for table wedding_ola.user
 DROP TABLE IF EXISTS `user`;
