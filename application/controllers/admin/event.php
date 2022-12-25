@@ -6,6 +6,7 @@ class event extends CI_Controller {
      private $table = 'event';
      private $table_story = 'love_story';
      private $table_gallery = 'gallery';
+     private $table_comment = 'comment';
      private $url;
 
      public function __construct() {
@@ -591,6 +592,64 @@ class event extends CI_Controller {
                'response' => 200,
                'status' => 'SUKSES',
                'message' => "Gallery Berhasil Dihapus!",
+               'affected_row' => $deleted,
+          ];
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
+
+     public function wishes($id) {
+          $event_id = decode64($id);
+          $result = $this->m_event->comment(['event_id' => $event_id]);
+          $data = [];
+          $nomor = $this->input->post('start');
+          foreach ($result as $row) {
+               $rows[] = [ 
+                    '<div class="text-center">'.++$nomor.'</div>', 
+                    '<div class="text-left">'.$row->name.'</div>', 
+                    html_entity_decode($row->message), 
+                    '<div class="text-right">'.date_indo(getDates('date', $row->date_added)).'</div>',
+                    '<div class="text-center">
+                         <div class="btn-group">
+                              <a 
+                                   href="javascript:void(0)" 
+                                   class="btn btn-xs btn-danger title delete-side" 
+                                   data-message="Yakin mau dihapus ?"
+                                   title="Hapus Data" 
+                                   data-url="'. base_url("$this->url/delete_wishes/") .'"
+                                   data-id="'.encode64($row->id).'"
+                              >
+                                   <i class="fas fa-trash"></i>
+                              </a> 
+                         </div>
+                    </div>'
+               ];
+
+               $data = $rows;
+          }
+
+          $output = [
+               "draw" => intval($this->input->post('draw')),
+               "recordsTotal" => intval($this->m_event->count_all_gallery()),
+               "recordsFiltered" => intval($this->m_event->count_gallery()),
+               "data" => $data,
+          ];
+
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($output))
+          ->set_status_header(200);
+     }
+
+     public function delete_wishes() {
+          $id = decode64($this->input->post('id'));
+          $deleted = $this->m_master->update($this->table_comment, ['id' => $id], ['isDelete' => 1]);
+          $result = [
+               'response' => 200,
+               'status' => 'SUKSES',
+               'message' => "Wishes Berhasil Dihapus!",
                'affected_row' => $deleted,
           ];
           $this->output

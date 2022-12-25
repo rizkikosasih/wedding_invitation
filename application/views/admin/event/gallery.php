@@ -19,7 +19,7 @@
           </div>
      </div>
 
-     <table id="gallery" class="table table-sm table-bordered table-striped" data-url="<?= base_url("$url/gallery/" . encode64($e->id)) ?>">
+     <table id="<?= $rname ?>" class="table table-sm table-bordered table-striped" data-url="<?= base_url("$url/gallery/" . encode64($e->id)) ?>">
           <!-- tampilan tabel header -->
           <thead>
                <tr class="text-center text-capitalize">

@@ -67,59 +67,85 @@ let siteUrl = (url='') => {
 	$modal = $('#myModal')
 
 	/* server side table */
-	$(function () {
-		/* love story */
-		$('table#get-story').DataTable({
-			"autoWidth": false,
-			"pageLength": 10,
-			"responsive": true,
-			"processing": true,
-			"serverSide": true,
-			"order": [],
-			"language": {
-				"processing": (`
-						<div class="spinner-loader">
-							<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
-							<div class="mt-1 font-small-1">Loading...</div>
-						</div>
-					`)
-			},
-			"ajax": {
-				"url": $('table#get-story').data('url'),
-				"type": "post"
-			},
-			"columnDefs": [{
-				"target": [-1],
-				"orderable": false
-			}]
-		})
+	// $(function () {
+	// 	/* love story */
+	// 	$('table#love-story').DataTable({
+	// 		"autoWidth": false,
+	// 		"pageLength": 10,
+	// 		"responsive": true,
+	// 		"processing": true,
+	// 		"serverSide": true,
+	// 		"order": [],
+	// 		"language": {
+	// 			"processing": (`
+	// 					<div class="spinner-loader">
+	// 						<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
+	// 						<div class="mt-1 font-small-1">Loading...</div>
+	// 					</div>
+	// 				`)
+	// 		},
+	// 		"ajax": {
+	// 			"url": $('table#love-story').data('url'),
+	// 			"type": "post"
+	// 		},
+	// 		"columnDefs": [{
+	// 			"target": [-1],
+	// 			"orderable": false
+	// 		}]
+	// 	})
 
-		/* galler */
-		$('table#gallery').DataTable({
-			"autoWidth": false,
-			"pageLength": 10,
-			"responsive": true,
-			"processing": true,
-			"serverSide": true,
-			"order": [],
-			"language": {
-				"processing": (`
-						<div class="spinner-loader">
-							<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
-							<div class="mt-1 font-small-1">Loading...</div>
-						</div>
-					`)
-			},
-			"ajax": {
-				"url": $('table#gallery').data('url'),
-				"type": "post"
-			},
-			"columnDefs": [{
-				"target": [-1],
-				"orderable": false
-			}]
-		})
-	})
+	// 	/* gallery */
+	// 	$('table#gallery').DataTable({
+	// 		"autoWidth": false,
+	// 		"pageLength": 10,
+	// 		"responsive": true,
+	// 		"processing": true,
+	// 		"serverSide": true,
+	// 		"order": [],
+	// 		"language": {
+	// 			"processing": (`
+	// 					<div class="spinner-loader">
+	// 						<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
+	// 						<div class="mt-1 font-small-1">Loading...</div>
+	// 					</div>
+	// 				`)
+	// 		},
+	// 		"ajax": {
+	// 			"url": $('table#gallery').data('url'),
+	// 			"type": "post"
+	// 		},
+	// 		"columnDefs": [{
+	// 			"target": [-1],
+	// 			"orderable": false
+	// 		}]
+	// 	})
+
+	// 	/* wishes */
+	// 	$('table#wishes').DataTable({
+	// 		"autoWidth": false,
+	// 		"pageLength": 10,
+	// 		"responsive": true,
+	// 		"processing": true,
+	// 		"serverSide": true,
+	// 		"order": [],
+	// 		"language": {
+	// 			"processing": (`
+	// 					<div class="spinner-loader">
+	// 						<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
+	// 						<div class="mt-1 font-small-1">Loading...</div>
+	// 					</div>
+	// 				`)
+	// 		},
+	// 		"ajax": {
+	// 			"url": $('table#wishes').data('url'),
+	// 			"type": "post"
+	// 		},
+	// 		"columnDefs": [{
+	// 			"target": [-1],
+	// 			"orderable": false
+	// 		}]
+	// 	})
+	// })
 
 	/* TinyMCE */
 	$(function () {
@@ -179,6 +205,44 @@ let siteUrl = (url='') => {
 		/* validasi */
 		$('form.myForm').validate({})
 		$('form#myForm').validate({})
+
+		/* server side datatables */
+		$(document).on('click', '.list-event .nav-link', function () {
+			let $this = $(this),
+			id = $this.attr('aria-controls'),
+			card = $this.parents('.card'),
+			sTable = card.find('table#' + id)
+			if (sTable.length) {
+				if (!card.find('#' + id + '_wrapper').length) {
+					sTable.DataTable({
+						"autoWidth": false,
+						"pageLength": 10,
+						"responsive": true,
+						"processing": true,
+						"serverSide": true,
+						"order": [],
+						"language": {
+							"processing": (`
+						<div class="spinner-loader">
+							<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
+							<div class="mt-1 font-small-1">Loading...</div>
+						</div>
+					`)
+						},
+						"ajax": {
+							"url": sTable.data('url'),
+							"type": "post"
+						},
+						"columnDefs": [{
+							"target": [-1],
+							"orderable": false
+						}]
+					})
+				} else {
+					reloadTables(null, id)
+				}
+			}
+		})
 
 		/* data tables */
 		dataTables.DataTable({

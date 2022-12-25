@@ -31,6 +31,7 @@
                                         $saveData = [
                                              'receptionDate' => getDates('date', $e->reception_date),
                                              'weddingDate' => getDates('date', $e->wedding_date),
+                                             'rname' => $rname,
                                         ];
                                    ?>
                                    <div 
@@ -43,12 +44,16 @@
                                              if ($lt->id == 1)://setting event 
                                                   $this->load->view('admin/event/event_detail', $saveData);
                                              elseif ($lt->id == 2):
-                                                  $this->load->view('admin/event/love_story');
+                                                  $this->load->view('admin/event/love_story', $saveData);
                                              elseif ($lt->id == 3):
-                                                  $this->load->view('admin/event/gallery');
+                                                  $this->load->view('admin/event/gallery', $saveData);
+                                             elseif ($lt->id == 4):
+                                                  $this->load->view('admin/event/wishes', $saveData);
+                                             elseif ($lt->id == 5):
+                                                  $this->load->view('admin/event/send_wa');
                                              else: 
                                                   echo '
-                                                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper dui molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo. Etiam odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque tincidunt nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit. Phasellus porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae lacus. Etiam ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a nibh cursus pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae lectus. Cras lacinia erat eget sapien porta consectetur.</div>';
+                                                  <div class="m-1 p-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper dui molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo. Etiam odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque tincidunt nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit. Phasellus porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae lacus. Etiam ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a nibh cursus pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae lectus. Cras lacinia erat eget sapien porta consectetur.</div>';
                                              endif;
                                         ?>
                                    </div>

@@ -5,8 +5,10 @@ class m_event extends CI_Model {
      private $table = "event";
      private $table_story = "love_story";
      private $table_gallery = "gallery";
+     private $table_comment = "comment";
      private $order_story = [null, 'title', null, 'sort', 'position', null];
      private $order_gallery = [null, null, null, null, null];
+     private $order_comment = [null, 'name', null, 'date_added', null];
 
      public function get($where = null) {
           $this->db->select("$this->table.*, b.name, b.image");
@@ -33,7 +35,7 @@ class m_event extends CI_Model {
                          $this->order_story[$this->input->post('order')['0']['column']], 
                          $this->input->post('order')['0']['dir'] 
                     );
-               }else{
+               } else {
                     $this->db->order_by('id','desc');
                }
           } else {
@@ -66,7 +68,7 @@ class m_event extends CI_Model {
           $this->db->where('isDelete', 0);
           return $this->db->get($this->table_story)->row();
      }
-     
+
      public function get_all_story($event_id, $sort=[]) {
           $this->db->where('event_id', $event_id);
           $this->db->where('isDelete', 0);
@@ -142,5 +144,47 @@ class m_event extends CI_Model {
           // }
           // $this->db->limit($end, $start);
           return $this->db->get('comment')->result();
+     }
+
+     private function _query_comment() {
+          $this->db->from($this->table_comment);
+          $this->db->where('isDelete', 0);
+          if ($this->input->post('search')['value']) {
+               $this->db->like('name', $this->input->post('search')['value']);
+               $this->db->or_like('message', $this->input->post('search')['value']);
+          }
+
+          if ($this->input->post('order')) {
+               if ($this->order[$this->input->post('order')['0']['column']] != null) {
+                    $this->db->order_by( 
+                         $this->order_comment[$this->input->post('order')['0']['column']], 
+                         $this->input->post('order')['0']['dir'] 
+                    );
+               } else {
+                    $this->db->order_by('id','desc');
+               }
+          } else {
+               $this->db->order_by('id','desc');
+          }
+     }
+
+     public function comment($where = null) {
+          $this->_query_comment();
+          if ($where) $this->db->where($where);
+          if ($this->input->post('length') != -1) $this->db->limit($this->input->post('length'), $this->input->post('start'));
+          $query = $this->db->get();
+          return $query->result();
+     }
+
+     public function count_comment() {
+          $this->_query_comment();
+          $query = $this->db->get();
+          return $query->num_rows();
+     }
+
+     public function count_all_comment() {
+          $this->db->from($this->table_comment);
+          $this->db->where('isDelete', 0);
+          return $this->db->count_all_results();
      }
 }

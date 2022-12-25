@@ -15,6 +15,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Dumping structure for table wedding_ola.akses_menu
+DROP TABLE IF EXISTS `akses_menu`;
 CREATE TABLE IF NOT EXISTS `akses_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(11) NOT NULL,
@@ -49,6 +50,7 @@ INSERT INTO `akses_menu` (`id`, `menu_id`, `grup_id`) VALUES
 /*!40000 ALTER TABLE `akses_menu` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.bank
+DROP TABLE IF EXISTS `bank`;
 CREATE TABLE IF NOT EXISTS `bank` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` tinytext NOT NULL,
@@ -66,23 +68,27 @@ INSERT INTO `bank` (`id`, `name`, `image`) VALUES
 /*!40000 ALTER TABLE `bank` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.comment
+DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL DEFAULT 0,
   `name` tinytext NOT NULL,
   `message` text NOT NULL,
   `date_added` datetime NOT NULL,
-  `isDelete` int(11) NOT NULL,
+  `isDelete` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `event_id` (`event_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table wedding_ola.comment: 0 rows
+-- Dumping data for table wedding_ola.comment: 1 rows
 DELETE FROM `comment`;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` (`id`, `event_id`, `name`, `message`, `date_added`, `isDelete`) VALUES
+	(1, 1, 'Test', 'test', '2022-12-25 10:04:54', 0);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.event
+DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bank_id` int(11) NOT NULL DEFAULT 0,
@@ -108,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `alias_woman` tinytext NOT NULL,
   `desc_woman` text NOT NULL,
   `image_woman` text NOT NULL,
+  `template_wa` text NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modify` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
@@ -117,11 +124,12 @@ CREATE TABLE IF NOT EXISTS `event` (
 -- Dumping data for table wedding_ola.event: 1 rows
 DELETE FROM `event`;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` (`id`, `bank_id`, `event_name`, `reception_date`, `wedding_date`, `reception_location`, `wedding_location`, `number_rekening`, `atas_nama`, `wedding_map`, `cover`, `cover_mobile`, `background_gallery`, `background_gallery_mobile`, `background_home`, `background_home_mobile`, `name_man`, `alias_man`, `desc_man`, `image_man`, `name_woman`, `alias_woman`, `desc_woman`, `image_woman`, `date_added`, `date_modify`) VALUES
-	(1, 1, 'Wedding Ola & Atta', '2023-02-05 10:30:00', '2023-02-05 09:00:00', 'Jl. Sabangan No. 378', 'Jl. Sabangan No. 378', '1234567890', 'Ariola', '&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.769504343384!2d106.81222731435987!3d-6.1616166621031905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f67683b657bd%3A0xb9b974541a653ffd!2sJl.%20Petojo%20Utara%20III%20No.240%2C%20RT.17%2FRW.3%2C%20Petojo%20Utara%2C%20Kecamatan%20Gambir%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2010130!5e0!3m2!1sen!2sid!4v1671244826772!5m2!1sen!2sid&quot; width=&quot;1920&quot; height=&quot;1080&quot; style=&quot;border:0;&quot; allowfullscreen=&quot;true&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer-when-downgrade&quot;&gt;&lt;/iframe&gt;', '38500_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '96127_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', '16260_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '54095_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', '51277_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '51277_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', 'Janahtan Firdaus', 'Janahtan', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;', '83918_about-1.jpg', 'Riska Ariola', 'Ariola', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;', '83918_about-2.jpg', '2022-12-17 12:36:26', '2022-12-20 23:52:17');
+INSERT INTO `event` (`id`, `bank_id`, `event_name`, `reception_date`, `wedding_date`, `reception_location`, `wedding_location`, `number_rekening`, `atas_nama`, `wedding_map`, `cover`, `cover_mobile`, `background_gallery`, `background_gallery_mobile`, `background_home`, `background_home_mobile`, `name_man`, `alias_man`, `desc_man`, `image_man`, `name_woman`, `alias_woman`, `desc_woman`, `image_woman`, `template_wa`, `date_added`, `date_modify`) VALUES
+	(1, 1, 'Wedding Ola & Atta', '2023-02-05 10:30:00', '2023-02-05 09:00:00', 'Jl. Sabangan No. 378', 'Jl. Sabangan No. 378', '1234567890', 'Ariola', '&lt;iframe src=&quot;https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.769504343384!2d106.81222731435987!3d-6.1616166621031905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f67683b657bd%3A0xb9b974541a653ffd!2sJl.%20Petojo%20Utara%20III%20No.240%2C%20RT.17%2FRW.3%2C%20Petojo%20Utara%2C%20Kecamatan%20Gambir%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2010130!5e0!3m2!1sen!2sid!4v1671244826772!5m2!1sen!2sid&quot; width=&quot;1920&quot; height=&quot;1080&quot; style=&quot;border:0;&quot; allowfullscreen=&quot;true&quot; loading=&quot;lazy&quot; referrerpolicy=&quot;no-referrer-when-downgrade&quot;&gt;&lt;/iframe&gt;', '38500_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '96127_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', '16260_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '', '51277_430C62B4-C4A0-4340-992D-B466068665CF.jpeg', '51277_430C62B4-C4A0-4340-992D-B466068665CF1.jpeg', 'Janahtan Firdaus', 'Janahtan', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;', '83918_about-1.jpg', 'Riska Ariola', 'Ariola', '&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;Lorem elitr magna stet rebum dolores sed. Est stet labore est lorem lorem at amet sea, eos tempor rebum, labore amet ipsum sea lorem, stet rebum eirmod amet. Kasd clita kasd stet amet est dolor elitr.&lt;/span&gt;&lt;/p&gt;\r\n&lt;p&gt;&lt;span style=&quot;color: #818491; font-family: Montserrat, sans-serif; font-size: 16px; text-align: right; background-color: #edf5f7;&quot;&gt;test&lt;/span&gt;&lt;/p&gt;', '83918_about-2.jpg', '', '2022-12-17 12:36:26', '2022-12-25 09:01:45');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.gallery
+DROP TABLE IF EXISTS `gallery`;
 CREATE TABLE IF NOT EXISTS `gallery` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL,
@@ -139,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `gallery` (
 DELETE FROM `gallery`;
 /*!40000 ALTER TABLE `gallery` DISABLE KEYS */;
 INSERT INTO `gallery` (`id`, `event_id`, `images`, `description`, `date_added`, `date_modify`, `isActive`, `isDelete`) VALUES
-	(1, 1, '90469_gallery-1.jpg', 'Gambar 1', '2022-12-18 11:27:12', '2022-12-18 05:18:35', 1, 0),
+	(1, 1, '90469_gallery-1.jpg', 'Gambar 1', '2022-12-18 11:27:12', '2022-12-25 03:10:45', 1, 1),
 	(2, 1, '10506_gallery-2.jpg', 'Gambar 2', '2022-12-18 11:43:43', '2022-12-18 04:43:43', 1, 0),
 	(3, 1, '79214_gallery-3.jpg', 'Gambar 3', '2022-12-18 23:59:26', '2022-12-18 16:59:26', 1, 0),
 	(4, 1, '11010_gallery-4.jpg', 'Gambar 4', '2022-12-18 23:59:42', '2022-12-18 16:59:42', 1, 0),
@@ -148,6 +156,7 @@ INSERT INTO `gallery` (`id`, `event_id`, `images`, `description`, `date_added`, 
 /*!40000 ALTER TABLE `gallery` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.grup
+DROP TABLE IF EXISTS `grup`;
 CREATE TABLE IF NOT EXISTS `grup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_grup` varchar(50) NOT NULL,
@@ -167,6 +176,7 @@ INSERT INTO `grup` (`id`, `nama_grup`, `deskripsi`) VALUES
 /*!40000 ALTER TABLE `grup` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.halaman_statis
+DROP TABLE IF EXISTS `halaman_statis`;
 CREATE TABLE IF NOT EXISTS `halaman_statis` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `section` varchar(128) NOT NULL,
@@ -200,25 +210,26 @@ INSERT INTO `halaman_statis` (`id`, `section`, `judul`, `isi`, `jenis`, `isImage
 /*!40000 ALTER TABLE `halaman_statis` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.list_tab
+DROP TABLE IF EXISTS `list_tab`;
 CREATE TABLE IF NOT EXISTS `list_tab` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table wedding_ola.list_tab: 6 rows
+-- Dumping data for table wedding_ola.list_tab: 5 rows
 DELETE FROM `list_tab`;
 /*!40000 ALTER TABLE `list_tab` DISABLE KEYS */;
 INSERT INTO `list_tab` (`id`, `name`) VALUES
 	(1, 'Event Detail'),
 	(2, 'Love Story'),
 	(3, 'Gallery'),
-	(4, 'Comment'),
-	(5, 'Reservation'),
-	(6, 'Statis Template');
+	(4, 'Wishes'),
+	(5, 'Send WA');
 /*!40000 ALTER TABLE `list_tab` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.love_story
+DROP TABLE IF EXISTS `love_story`;
 CREATE TABLE IF NOT EXISTS `love_story` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL,
@@ -246,6 +257,7 @@ INSERT INTO `love_story` (`id`, `event_id`, `title`, `body`, `date_added`, `date
 /*!40000 ALTER TABLE `love_story` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.menu
+DROP TABLE IF EXISTS `menu`;
 CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_menu` varchar(256) NOT NULL,
@@ -271,11 +283,12 @@ INSERT INTO `menu` (`id`, `nama_menu`, `icon`, `url`, `urutan`, `tipe`, `isActiv
 	(14, 'Halaman Statis', 'fas fa-columns', 'halaman_statis', 1, 'b', 1, 1, 1, 0),
 	(15, 'Data Menu', 'fas fa-bars', 'menu', 3, 'b', 1, 1, 1, 0),
 	(17, 'Data User', 'fas fa-user', 'user', 2, 'b', 1, 1, 1, 0),
-	(18, 'Pelanggan', 'fas fa-user', 'pelanggan', 3, 'b', 1, 1, 2, 0),
+	(18, 'Pelanggan', 'fas fa-user', 'pelanggan', 3, 'b', 0, 1, 2, 0),
 	(22, 'Event', 'far fa-calendar-alt', 'event', 4, 'b', 1, 1, 2, 0);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.pelanggan
+DROP TABLE IF EXISTS `pelanggan`;
 CREATE TABLE IF NOT EXISTS `pelanggan` (
   `id` int(9) unsigned NOT NULL AUTO_INCREMENT,
   `nama_depan` varchar(128) NOT NULL,
@@ -815,6 +828,7 @@ INSERT INTO `pelanggan` (`id`, `nama_depan`, `nama_belakang`, `alamat`, `no_hp`,
 /*!40000 ALTER TABLE `pelanggan` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.reservation
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE IF NOT EXISTS `reservation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL DEFAULT 0,
@@ -831,6 +845,7 @@ DELETE FROM `reservation`;
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.role_event
+DROP TABLE IF EXISTS `role_event`;
 CREATE TABLE IF NOT EXISTS `role_event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL DEFAULT 0,
@@ -848,6 +863,7 @@ INSERT INTO `role_event` (`id`, `event_id`, `user_id`) VALUES
 /*!40000 ALTER TABLE `role_event` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.statis_template
+DROP TABLE IF EXISTS `statis_template`;
 CREATE TABLE IF NOT EXISTS `statis_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL DEFAULT 0,
@@ -866,6 +882,7 @@ DELETE FROM `statis_template`;
 /*!40000 ALTER TABLE `statis_template` ENABLE KEYS */;
 
 -- Dumping structure for table wedding_ola.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
@@ -888,7 +905,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table wedding_ola.user: 5 rows
 DELETE FROM `user`;
