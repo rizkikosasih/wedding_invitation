@@ -9,6 +9,10 @@ class wedding_invite extends CI_Controller {
      }
 
      public function index () {
+          redirect('wedding_invite/to');
+     }
+
+     public function to($name='Unknown Name') {
           $event = $this->m_event->get(['event.id' => 1]);
           $data = [
                'dir_img' => $this->dir_img,
@@ -16,6 +20,7 @@ class wedding_invite extends CI_Controller {
                'love_story' => $this->m_event->get_all_story($event->id),
                'gallery' => $this->m_event->get_all_gallery($event->id),
                'comment' => $this->m_event->get_comment(['isDelete' => 0]),
+               'invitedName' => $name,
           ];
           $this->load->view('frontend/wedding_invite/index', $data);
      }

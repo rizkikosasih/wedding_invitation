@@ -1,15 +1,16 @@
-html, body {
+html,
+body {
 	overflow-x: hidden !important;
 }
 
 [class*=fa-].timeline-icon {
-     position: absolute;
-     top: 50%;
-     left: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 }
 
 .bg-custom {
-	background-color: #FFE5F1;
+	background-color: #FFE5F1 !important;
 }
 
 .form-control {
@@ -216,6 +217,14 @@ svg.font-large-5 {
 	font-weight: bolder !important
 }
 
+.text-xxs {
+	font-size: xx-small !important;
+}
+
+.text-xs {
+	font-size: x-small !important;
+}
+
 .text-small {
 	font-size: small !important;
 }
@@ -228,8 +237,16 @@ svg.font-large-5 {
 	font-size: large !important;
 }
 
+.text-xl {
+	font-size: x-large !important;
+}
+
+text.xxl {
+	font-size: xx-large !important;
+}
+
 .text-25 {
-	font-size: 2.5vw !important;
+	font-size: 2vw !important;
 }
 
 .text-shadow {
@@ -540,39 +557,46 @@ hr.solid.bc-success {
 }
 
 @media (max-width: 767.98px) {
-     .gap-md-0 {
-          gap: 0;
-     }
+	.gap-md-0 {
+		gap: 0;
+	}
 
-     .gap-md-1 {
-          gap: .5rem;
-     }
+	.gap-md-1 {
+		gap: .5rem;
+	}
 
-     .gap-md-2 {
-          gap: 1.5rem;
-     }
+	.gap-md-2 {
+		gap: 1.5rem;
+	}
 
-     .gap-md-3 {
-          gap: 2.5rem;
-     }
+	.gap-md-3 {
+		gap: 2.5rem;
+	}
 
-     .gap-md-3 {
-          gap: 3.5rem;
-     }
+	.gap-md-3 {
+		gap: 3.5rem;
+	}
 
-     .gap-md-4 {
-          gap: 4.5rem;
-     }
+	.gap-md-4 {
+		gap: 4.5rem;
+	}
 
-     .gap-md-5 {
-          gap: 6rem;
-     }
+	.gap-md-5 {
+		gap: 6rem;
+	}
 }
 
 .content-cover {
 	text-align: center;
-	color: #fff !important;
-	margin: 40vh auto;
+	margin: calc(2em * 6) auto 0;
+}
+
+.content-cover h1,
+.content-cover h2,
+.content-cover h3,
+.content-cover h4,
+.content-cover h5 {
+	color: var(--light) !important;
 }
 
 .swiper-desk {
@@ -633,6 +657,7 @@ hr.solid.bc-success {
 	.swiper-desk {
 		display: block;
 	}
+
 	.swiper {
 		display: none;
 	}
@@ -644,7 +669,8 @@ hr.solid.bc-success {
 	}
 }
 
-.back-to-top, .btn-music {
+.back-to-top,
+.btn-music {
 	border-radius: 1rem;
 }
 
@@ -653,13 +679,13 @@ hr.solid.bc-success {
 	display: none;
 	text-align: center;
 	right: 30px;
-	bottom: 12vh;
+	bottom: 7rem;
 	z-index: 11;
 	animation: pulse 1s infinite alternate;
 }
 
 .back-to-top {
-	bottom: 18vh;
+	bottom: 10rem;
 }
 
 @keyframes pulse {
@@ -676,5 +702,54 @@ hr.solid.bc-success {
 	100% {
 		transform: scale(0.95);
 		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+
+nav.navbar-top {
+	display: none !important;
+}
+
+.nav-responsive {
+	gap: 1.5rem;
+	flex-direction: row;
+}
+
+.nav-responsive a {
+	width: 38px;
+}
+
+.nav-responsive img {
+	width: 32px;
+}
+
+.nav-responsive .text {
+	font-size: 8px;
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+	.nav-responsive {
+		gap: 3rem;
+	}
+
+	.nav-responsive a {
+		width: 50px;
+	}
+
+	.nav-responsive img {
+		width: 32px;
+	}
+
+	.nav-responsive .text {
+		font-size: 10px;
+	}
+}
+
+@media (min-width: 992px) {
+	nav.navbar-top {
+		display: flex !important;
+	}
+
+	nav.navbar-bottom {
+		display: none !important;
 	}
 }

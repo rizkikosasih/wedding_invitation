@@ -28,7 +28,7 @@
           }
           .bg-gallery {
                content: url(<?= base_url("$dir_img/event/$e->background_gallery") ?>) !important;
-               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+               background: unset;
                object-fit: cover !important;
           }
           .bg-cover {
@@ -46,7 +46,8 @@
                }
                .bg-cover {
                     content: url(<?= base_url("$dir_img/event/$e->cover_mobile") ?>) !important;
-                    object-fit: cover !important;
+                    object-fit: contain !important;
+                    transform: scale(1.5);
                }
           }
      </style>

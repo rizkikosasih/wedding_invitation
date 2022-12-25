@@ -115,24 +115,12 @@ class m_event extends CI_Model {
           return $this->db->get($this->table_gallery)->result();
      }
 
-     public function getStatisTemplate($where = null) {
-          if ($where) $this->db->where($where);
-          $this->db->order_by('id', 'desc');
-          return $this->db->get('statis_template')->result();
-     }
-
      public function getComment($where = null, $start = null) {
           if ($where) $this->db->where($where);
           $this->db->order_by('id', 'desc');
           $starter = !$start ? 1 : $start;
           $this->db->limit($starter, 10);
           return $this->db->get('comment')->result();
-     }
-
-     public function getReservation($where = null) {
-          if ($where) $this->db->where($where);
-          $this->db->order_by('id', 'desc');
-          return $this->db->get('reservation')->result();
      }
 
      public function get_all_bank($where = null) {

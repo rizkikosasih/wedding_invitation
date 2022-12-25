@@ -238,6 +238,9 @@ const siteUrl = (url) => {
         }
     })
 
+    //for develope only
+    // $('.navbar, .container-fluid, .back-to-top, .btn-music').css('opacity', 1)
+
     //Type It
     $(function () {
         /*** TypeIt ***/

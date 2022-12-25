@@ -1,12 +1,12 @@
 <!-- Gallery Start -->
-<div class="container-fluid py-5 mx-0 px-0" id="gallery" style="opacity: 0;">
+<div class="container-fluid m-0 p-0" id="gallery" style="opacity: 0;">
      <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
           <div class="carousel-inner">
-               <div class="carousel-item position-relative active" style="height: 100vh; min-height: 400px;">
+               <div class="carousel-item position-relative active" style="min-height: 800px;">
                     <img class="position-absolute w-100 h-100 bg-gallery">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                          <div class="p-3" style="max-width: 900px;">
-                              <div class="section-title position-relative text-center pt-5">
+                              <div class="section-title position-relative text-center">
                                    <h1 class="font-secondary display-4 text-white" data-aos="zoom-in">Galeri Foto Kami</h1>
                                    <i class="far fa-heart text-white"></i>
                               </div>
