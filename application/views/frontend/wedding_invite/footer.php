@@ -45,7 +45,7 @@
                     <div class="d-flex flex-column align-items-center gap-2">
                          <img src="<?= base_url('assets/public/icons/wishes.png') ?>" alt="">
                          <div class="text">
-                              harapan
+                              doa
                          </div>
                     </div>
                </a>

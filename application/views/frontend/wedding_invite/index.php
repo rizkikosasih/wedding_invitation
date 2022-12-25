@@ -43,7 +43,7 @@
                     <a href="#event" class="nav-item nav-link">acara</a>
                     <a href="#map" class="nav-item nav-link">lokasi</a>
                     <a href="#gift" class="nav-item nav-link">hadiah</a>
-                    <a href="#comment" class="nav-item nav-link">harapan</a>
+                    <a href="#comment" class="nav-item nav-link">doa</a>
                </div>
           </div>
      </nav>

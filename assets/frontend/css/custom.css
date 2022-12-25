@@ -753,3 +753,9 @@ nav.navbar-top {
 		display: none !important;
 	}
 }
+
+@media (min-width: 360px) and (max-width: 374px) {
+	.nav-responsive [href*=comment] {
+		display: none !important;
+	}
+}
