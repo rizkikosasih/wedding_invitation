@@ -15,7 +15,7 @@
                                    class="form-control" 
                                    id="template_wa" 
                                    name="template_wa" 
-                                   placeholder="Template Pesan WA Tambahkan \r\n untuk baris baru..." 
+                                   placeholder="Template Pesan WA Tambahkan \n untuk baris baru..." 
                                    rows="10"
                                    required
                               ><?= html_entity_decode(str_replace('%0A', '\n',$e->template_wa)) ?></textarea>

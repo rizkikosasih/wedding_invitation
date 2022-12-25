@@ -62,9 +62,9 @@
                               complete: function () {
                                    let $id, $parent = $('.card')
                                    if ($parent.find('.tab-content').length) {
-                                   	$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
+                                        $id = $parent.find('.tab-pane.active').find('table').attr('id')
                                    } else {
-                                   	$id = $parent.find('table.table').attr('id')
+                                        $id = $parent.find('table').attr('id')
                                    }
                                    reloadTables(null, $id)
                               }
@@ -98,13 +98,13 @@
                                    })
                               },
                               complete: function () {
-                              	let $id, $parent = $('.card')
-                              	if ($parent.find('.tab-content').length) {
-                              		$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
-                              	} else {
-                              		$id = $parent.find('table.table').attr('id')
-                              	}
-                              	reloadTables(null, $id)
+                                   let $id, $parent = $('.card')
+                                   if ($parent.find('.tab-content').length) {
+                                        $id = $parent.find('.tab-pane.active').find('table').attr('id')
+                                   } else {
+                                        $id = $parent.find('table').attr('id')
+                                   }
+                                   reloadTables(null, $id)
                               }
                          }) //end ajax
                     }
@@ -133,13 +133,13 @@
                                    })
                               },
                               complete: function () {
-                              	let $id, $parent = $('.card')
-                              	if ($parent.find('.tab-content').length) {
-                              		$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
-                              	} else {
-                              		$id = $parent.find('table.table').attr('id')
-                              	}
-                              	reloadTables(null, $id)
+                                   let $id, $parent = $('.card')
+                                   if ($parent.find('.tab-content').length) {
+                                        $id = $parent.find('.tab-pane.active').find('table').attr('id')
+                                   } else {
+                                        $id = $parent.find('table').attr('id')
+                                   }
+                                   reloadTables(null, $id)
                               }
                          })
                     }

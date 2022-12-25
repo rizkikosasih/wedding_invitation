@@ -23,8 +23,8 @@ function formatRupiah(angka, prefix) {
 
 function reloadTables(v, element) {
 	let fullReload = !v ? false : true,
-	el = !element ? 'server_side' : ''
-	$('table#' + el).DataTable().ajax.reload(null, fullReload)
+	el = !element ? 'server_side' : element
+	$('table#' + el || 'server_side').DataTable().ajax.reload(null, fullReload)
 }
 /* current date YYYY/MM/DD */
 const currentDate = new Date()
@@ -287,9 +287,9 @@ let siteUrl = (url='') => {
 							$('.modal').modal('hide')
 							let $id, $parent = $('.card')
 							if ($parent.find('.tab-content').length) {
-								$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
+								$id = $parent.find('.tab-pane.active').find('table').attr('id')
 							} else {
-								$id = $parent.find('table.table').attr('id')
+								$id = $parent.find('table').attr('id')
 							}
 							reloadTables(null, $id)
 						})
