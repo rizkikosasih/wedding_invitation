@@ -5,6 +5,11 @@
                <h1 class="font-secondary display-4" data-aos="flip-down">Pengantin Pria & Wanita</h1>
                <i class="far fa-heart text-dark"></i>
           </div>
+          <div class="row mb-3 mx-0 justify-content-center">
+               <div class="col-sm-8 text-center">
+                    <?= html_entity_decode(statis('f', 'kata-pengantar')) ?>
+               </div>
+          </div>
           <div class="row m-0 mb-4 mb-md-0 pb-2 pb-md-0 flex-wrap-reverse">
                <div class="col-md-6 p-0 text-center text-md-right">
                     <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">

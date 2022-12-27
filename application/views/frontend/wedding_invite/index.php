@@ -16,7 +16,7 @@
      <?php $this->load->view('templates/frontend/css') ?>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
-     <audio id="myAudio" src="<?= base_url("assets/public/music/christina-perri-a-thousand-years.mp3") ?>" preload="auto" loop="true"></audio>
+     <audio id="myAudio" src="<?= base_url("assets/public/music/bg-music.mp3") ?>" preload="auto" loop="true"></audio>
      <!-- Navbar Start -->
      <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5 navbar-top " style="opacity: 0;">
           <a href="javascript:void(0)" class="navbar-brand d-block d-lg-none">

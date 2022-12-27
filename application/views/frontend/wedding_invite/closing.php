@@ -5,7 +5,7 @@
             <i class="far fa-heart text-white"></i>
         </div>
         <div class="row justify-content-center">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                     Merupakan sebuah kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan do'a restu kepada kedua mempelai
             </div>
         </div>

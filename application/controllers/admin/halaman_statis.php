@@ -95,7 +95,7 @@ class halaman_statis extends CI_Controller {
                     ';
                     $class_isi = "text-center";
                } else {
-                    $isi = deskripsi($row->isi,100);
+                    $isi = deskripsi(html_entity_decode($row->isi),100);
                     $class_isi = "text-left";
                }
 
@@ -195,7 +195,7 @@ class halaman_statis extends CI_Controller {
                'jenis' => $this->input->post('jenis'),
                'isi' => $isi,
                'isImage' => $this->input->post('isImage'),
-               'date_created' => hari_lengkap(),
+               'date_added' => hari_lengkap(),
           ];
 
           if (!$error) {

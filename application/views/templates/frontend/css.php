@@ -46,8 +46,8 @@
                }
                .bg-cover {
                     content: url(<?= base_url("$dir_img/event/$e->cover_mobile") ?>) !important;
-                    object-fit: contain !important;
-                    transform: scale(1.5);
+                    object-fit: cover !important;
+                    /* transform: scale(1.5); */
                }
           }
      </style>
