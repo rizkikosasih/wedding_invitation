@@ -16,7 +16,7 @@
                               class="col-md-6 text-center <?= !$ls->position ? 'text-md-right' : 'text-md-left' ?>" 
                               data-aos="<?= !$ls->position ? 'fade-down-right' : 'fade-down-left' ?>"
                          >
-                              <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 ml-md-3">
+                              <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4 <?= $ls->position ? 'ml-md-3' : 'mr-md-3' ?>">
                                    <h4 class="mb-2"><?= $ls->title ?></h4>
                                    <div class="m-0">
                                         <?= html_entity_decode($ls->body) ?>
