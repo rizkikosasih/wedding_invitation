@@ -54,7 +54,7 @@
      <!-- Footer End -->
 
      <!-- Scroll to Bottom -->
-     <a href="javascript:void(0)" class="to-bottom">
+     <a href="javascript:void(0)" class="to-bottom d-none">
           <i class="fa fa-2x fa-angle-down text-white scroll-to-bottom"></i>
      </a>
 

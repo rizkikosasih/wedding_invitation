@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-dark">
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
      <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
      <meta http-equiv="Pragma" content="no-cache">
      <meta http-equiv="Expires" content="0">
-     <title>Ariola & Janahtan</title>
+     <title><?= $e->alias_woman ?> & <?= $e->alias_man ?></title>
      <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('assets/public/images/apple-touch-icon.png') ?>">
      <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('assets/public/images/favicon-32x32.png') ?>">
      <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/public/images/favicon-16x16.png') ?>">
@@ -15,8 +15,14 @@
 
      <?php $this->load->view('templates/frontend/css') ?>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="51">
+<body data-spy="scroll" data-target=".navbar" data-offset="51" class="bg-dark">
      <audio id="myAudio" src="<?= base_url("assets/public/music/bg-music.mp3") ?>" preload="auto" loop="true"></audio>
+     <div class="preload">
+          <div class="lds-heart">
+               <div></div>
+          </div>
+     </div>
+
      <!-- Navbar Start -->
      <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5 navbar-top " style="opacity: 0;">
           <a href="javascript:void(0)" class="navbar-brand d-block d-lg-none">

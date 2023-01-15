@@ -154,7 +154,8 @@ const siteUrl = (url) => {
         $(document).on('hidden.bs.modal', '#cover', function () {
             musicState = true
             myAudio.play()
-            $('html, body').toggleClass('overflow-hidden bg-custom')
+            $('.to-bottom').removeClass('d-none')
+            $('html, body').toggleClass('overflow-hidden bg-dark bg-custom')
             $('.navbar, .container-fluid, .back-to-top, .btn-music').css('opacity', 1)
 
             setTimeout(() => {
