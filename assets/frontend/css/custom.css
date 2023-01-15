@@ -801,6 +801,7 @@ nav.navbar-top {
 	}
 }
 
-/* .wedding-map {
-	height: 280px;
-} */
+.avatar-image {
+	width: 75%;
+	height: auto;
+}

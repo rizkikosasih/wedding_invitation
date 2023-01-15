@@ -22,14 +22,14 @@
                </div>
                <div class="col-md-6 p-0">
                     <div class="py-5 text-center">
-                         <img class="img-fluid rounded-circle shadow" src="<?= base_url("$dir_img/profile/$e->image_man") ?>">
+                         <img class="avatar-image rounded-circle shadow" src="<?= base_url("$dir_img/profile/$e->image_man") ?>">
                     </div>
                </div>
           </div>
           <div class="row m-0">
                <div class="col-md-6 p-0">
                     <div class="py-5 text-center">
-                         <img class="img-fluid rounded-circle shadow" src="<?= base_url("$dir_img/profile/$e->image_woman") ?>">
+                         <img class="avatar-image rounded-circle shadow" src="<?= base_url("$dir_img/profile/$e->image_woman") ?>">
                     </div>
                </div>
                <div class="col-md-6 p-0 text-center text-md-left">
