@@ -35,11 +35,19 @@ const siteUrl = (url) => {
     $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault()
-            let scrollTop = ''
-            if ($(this).attr('href').match(/home/i)) {
-                scrollTop = 0
+            let scrollTop = '', width = $(window).width()
+            if (width <= 576) {
+                if ($(this).attr('href').match(/home/i)) {
+                    scrollTop = 0
+                } else {
+                    scrollTop = $(this.hash).offset().top + 70
+                }
             } else {
-                scrollTop = $(this.hash).offset().top + 75
+                if ($(this).attr('href').match(/home/i)) {
+                    scrollTop = 0
+                } else {
+                    scrollTop = $(this.hash).offset().top -45
+                }
             }
 
             $('html, body').animate({
@@ -271,10 +279,9 @@ const siteUrl = (url) => {
 
     //swiper
     $(function () {
-        const swiper = new Swiper('.swiper-desk', {
-            direction: 'horizontal',
-            loop: false,
-            effect: 'coverflow',
+        let optionDesk = {
+            effect: "coverflow",
+            loop: true,
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
@@ -286,13 +293,22 @@ const siteUrl = (url) => {
                 slideShadows: true,
             },
             pagination: {
+                el: ".swiper-pagination",
+            },
+        },
+        optionCard = {
+            loop: true,
+            effect: 'cards',
+            resizeReInit: true,
+            grabCursor: true,
+            centeredSlides: true,
+            centerInsufficientSlides: true,
+            pagination: {
                 el: '.swiper-pagination'
-            }
-            // navigation: {
-            //     nextEl: '.swiper-button-next',
-            //     prevEl: '.swiper-button-prev',
-            // },
-        })
+            },
+        }
+        let swiper = new Swiper('#swiper-desk', optionDesk)
+        let swiperCard = new Swiper('#swiper-cards', optionCard)
     })
 
 })(jQuery)

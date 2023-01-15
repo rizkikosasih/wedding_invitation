@@ -788,6 +788,23 @@ class event extends CI_Controller {
           ->set_status_header(200);
      }
 
+     public function active_gallery() {
+          $id = decode64($this->input->post('id'));
+          $isActive = $this->input->post('code') ? 0 : 1;
+          $message = $this->input->post('code') ? 'Dinonaktifkan' : 'Diaktifkan';
+          $updated = $this->m_master->update($this->table_gallery, ['id' => $id], ['isActive' => $isActive]);
+          $result = [
+               'response' => 200,
+               'status' => 'SUKSES',
+               'message' => "Gallery Berhasil $message",
+               'affected_row' => $updated,
+          ];
+          $this->output
+          ->set_content_type('application/json')
+          ->set_output(json_encode($result))
+          ->set_status_header(200);
+     }
+
      public function wishes($id) {
           $event_id = decode64($id);
           $result = $this->m_event->comment(['event_id' => $event_id]);

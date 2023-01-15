@@ -33,14 +33,14 @@
                          </div>
                     </div>
                </a>
-               <a href="#map" class="nav-item nav-link">
+               <!-- <a href="#map" class="nav-item nav-link">
                     <div class="d-flex flex-column align-items-center gap-2">
                          <img src="<?= base_url('assets/public/icons/map.png') ?>" alt="">
                          <div class="text">
                               lokasi
                          </div>
                     </div>
-               </a>
+               </a> -->
                <a href="#comment" class="nav-item nav-link">
                     <div class="d-flex flex-column align-items-center gap-2">
                          <img src="<?= base_url('assets/public/icons/wishes.png') ?>" alt="">

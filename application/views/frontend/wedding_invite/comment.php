@@ -9,12 +9,12 @@
                <div class="col-12 col-sm-6 mb-3 mb-sm-0 comment-form">
                     <form action="javascript:void(0)" method="post" class="form-comment">
                          <div class="form-group">
-                              <label>Nama</label>
+                              <label class="fw-bold">Nama</label>
                               <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Nama Anda">
                          </div>
 
                          <div class="form-group">
-                              <label>Pesan</label>
+                              <label class="fw-bold">Pesan</label>
                               <textarea name="message" id="message" cols="5" rows="3" class="form-control" placeholder="Berikan Ucapan & Doa Restu"></textarea>
                          </div>
 
