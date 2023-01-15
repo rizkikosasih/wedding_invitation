@@ -56,7 +56,7 @@
           $this->load->view('frontend/wedding_invite/story');
           $this->load->view('frontend/wedding_invite/gallery');
           $this->load->view('frontend/wedding_invite/event');
-          $this->load->view('frontend/wedding_invite/map');
+          // $this->load->view('frontend/wedding_invite/map');
           $this->load->view('frontend/wedding_invite/gift');
           $this->load->view('frontend/wedding_invite/comment');
           $this->load->view('frontend/wedding_invite/closing');

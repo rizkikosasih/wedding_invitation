@@ -53,6 +53,9 @@ let siteUrl = (url='') => {
 
 (function (window, document, $) {
 	"use strict"
+	$(document).ajaxStop(function () {
+		$('.tooltip').remove()
+	})
 
 	/* sweetalert & toast */
 	const Toast = Swal.mixin({
@@ -509,7 +512,15 @@ let siteUrl = (url='') => {
 		// To initialize tooltip with body container
 		$(document).tooltip({
 			selector: '.title',
-			container: 'body'
+			container: 'body',
+			html: true,
+			placement: function (context, source) {
+				let position = $(source).position();
+				if (position.left > 515) return "left"
+				if (position.left < 515) return "right"
+				if (position.top < 110) return "bottom"
+				return "top"
+			}
 		})
 
 		//reload datatables

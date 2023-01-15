@@ -17,37 +17,53 @@
      <link rel="stylesheet" href="<?= base_url('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') ?>" rel="stylesheet">
      <link rel="stylesheet" href="<?= base_url('assets/plugins/toastr/toastr.min.css') ?>" rel="stylesheet">
      <link rel="stylesheet" href="<?= base_url('assets/plugins/flipdown/flipdown.min.css') ?>" rel="stylesheet">
+     <link rel="stylesheet" href="<?= base_url('assets/plugins/lightboxed/lightboxed.css') ?>" rel="stylesheet">
 
      <!-- Customized Bootstrap Stylesheet -->
      <link href="<?= base_url('assets/frontend/css/style.css') ?>" rel="stylesheet">
      <link href="<?= base_url('assets/frontend/css/custom.css') ?>" rel="stylesheet">
      <style>
+          .container-fluid:not(#home) {
+               background-image: url(<?= base_url('assets/public/images/bg-custom.png') ?>);
+               /* background-attachment: fixed; */
+               background-repeat: no-repeat;
+               background-position: center;
+               background-size: cover;
+          }
+          #home .carousel-inner {
+               border-bottom-left-radius: 50% 10%;
+               border-bottom-right-radius: 50% 10%;
+          }
           .bg-home {
-               content: url(<?= base_url("$dir_img/event/$e->background_home") ?>) !important;
+               content: url(<?= base_url("$dir_img/event/x1920_$e->background_home") ?>) !important;
                object-fit: cover !important;
           }
           .bg-gallery {
-               content: url(<?= base_url("$dir_img/event/$e->background_gallery") ?>) !important;
-               background: unset;
-               object-fit: cover !important;
+               /* object-fit: cover !important; */
+               background-image: url(<?= base_url("$dir_img/event/x1920_$e->background_gallery") ?>) !important; 
+               background-attachment: fixed;
+               background-position: center;
+               background-repeat: no-repeat;
+               background-size: cover;
           }
           .bg-cover {
-               content: url(<?= base_url("$dir_img/event/$e->cover") ?>) !important;
+               content: url(<?= base_url("$dir_img/event/x1920_$e->cover") ?>) !important;
                object-fit: cover !important;
           }
           @media (max-width: 767px) {
+               .container-fluid:not(#home) {
+                    background-image: url(<?= base_url('assets/public/images/bg-custom-mobile.png') ?>);
+               }
                .bg-home {
-                    content: url(<?= base_url("$dir_img/event/$e->background_home_mobile") ?>) !important;
+                    content: url(<?= base_url("$dir_img/event/x1920_$e->background_home_mobile") ?>) !important;
                     object-fit: cover !important;
                }
                .bg-gallery {
-                    content: url(<?= base_url("$dir_img/event/$e->background_gallery_mobile") ?>) !important;
+                    background-image: url(<?= base_url("$dir_img/event/x1920_$e->background_gallery_mobile") ?>) !important;
                     object-fit: cover !important;
                }
                .bg-cover {
-                    content: url(<?= base_url("$dir_img/event/$e->cover_mobile") ?>) !important;
-                    object-fit: cover !important;
-                    /* transform: scale(1.5); */
+                    content: url(<?= base_url("$dir_img/event/x1920_$e->cover_mobile") ?>) !important;
                }
           }
      </style>

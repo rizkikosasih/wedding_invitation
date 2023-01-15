@@ -20,13 +20,17 @@
                          </h3>
                     </div>
                </div>
-               <div class="col-md-6 p-0" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="<?= base_url("$dir_img/profile/$e->image_man") ?>" style="object-fit: cover;">
+               <div class="col-md-6 p-0">
+                    <div class="py-5 text-center">
+                         <img class="img-fluid rounded-circle shadow" src="<?= base_url("$dir_img/profile/$e->image_man") ?>">
+                    </div>
                </div>
           </div>
           <div class="row m-0">
-               <div class="col-md-6 p-0" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="<?= base_url("$dir_img/profile/$e->image_woman") ?>" style="object-fit: cover;">
+               <div class="col-md-6 p-0">
+                    <div class="py-5 text-center">
+                         <img class="img-fluid rounded-circle shadow" src="<?= base_url("$dir_img/profile/$e->image_woman") ?>">
+                    </div>
                </div>
                <div class="col-md-6 p-0 text-center text-md-left">
                     <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">

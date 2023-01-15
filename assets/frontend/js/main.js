@@ -35,9 +35,15 @@ const siteUrl = (url) => {
     $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault()
+            let scrollTop = ''
+            if ($(this).attr('href').match(/home/i)) {
+                scrollTop = 0
+            } else {
+                scrollTop = $(this.hash).offset().top + 75
+            }
 
             $('html, body').animate({
-                scrollTop: $(this.hash).offset().top - 45
+                scrollTop: scrollTop
             }, 1500, 'easeInOutExpo')
 
             if ($(this).parents('.navbar-nav').length) {
@@ -85,7 +91,7 @@ const siteUrl = (url) => {
 
     $(document).on('click', '.to-bottom', function () {
         $('html, body').animate({
-        	scrollTop: $('#about').offset().top
+        	scrollTop: $('#about').offset().top + 75
         }, 1500, 'easeInOutExpo')
         return false
     })
@@ -267,7 +273,7 @@ const siteUrl = (url) => {
     $(function () {
         const swiper = new Swiper('.swiper-desk', {
             direction: 'horizontal',
-            loop: true,
+            loop: false,
             effect: 'coverflow',
             grabCursor: true,
             centeredSlides: true,
@@ -279,18 +285,13 @@ const siteUrl = (url) => {
                 modifier: 1,
                 slideShadows: true,
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        })
-
-        const swiperCard = new Swiper('.swiper', {
-            effect: 'cards',
-            loop: true,
-            grabCursor: true,
-            centeredSlides: true,
-            centerInsufficientSlides: true,
+            pagination: {
+                el: '.swiper-pagination'
+            }
+            // navigation: {
+            //     nextEl: '.swiper-button-next',
+            //     prevEl: '.swiper-button-prev',
+            // },
         })
     })
 

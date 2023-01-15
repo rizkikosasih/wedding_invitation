@@ -19,7 +19,7 @@
                          </div>
 
                          <div class="form-group">
-                              <button type="submit" class="btn btn-primary" style="border-radius: 2rem;">Submit</button>
+                              <button type="submit" class="btn btn-primary btn-block" style="border-radius: 2rem;">Submit</button>
                          </div>
                     </form>
                </div>
@@ -36,8 +36,8 @@
                     ?>
                          <div <?= $attrCard ?> class="card my-3 font-small-3 border-0 card-comment <?= $classCard ?>">
                               <div class="card-header">
-                                   <div class="fw-bold">
-                                        <i class="far fa-user-circle mr-2"></i><?= $c->name ?>
+                                   <div class="d-flex flex-row align-items-center gap-2 fw-bold">
+                                        <div class="avatar bg-primary"><?= initialName($c->name) ?></div><?= $c->name ?>
                                    </div>
                               </div>
                               <div class="card-body">

@@ -118,6 +118,7 @@ class m_event extends CI_Model {
 
      public function get_all_gallery($event_id) {
           $this->db->where('event_id', $event_id);
+          $this->db->where('isDelete', 0);
           $this->db->order_by('id', 'desc');
           return $this->db->get($this->table_gallery)->result();
      }

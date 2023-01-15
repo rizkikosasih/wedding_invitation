@@ -8,6 +8,8 @@ class event extends CI_Controller {
      private $table_gallery = 'gallery';
      private $table_comment = 'comment';
      private $table_undangan_terkirim = 'undangan_terkirim';
+     private $image_size = [300, 1920];
+     private $image_name = ['x300_', 'x1920_'];
      private $url;
 
      public function __construct() {
@@ -71,6 +73,11 @@ class event extends CI_Controller {
           $wedding_map = $this->input->post('wedding_map') ? htmlentities($this->input->post('wedding_map')) : $current->wedding_map;
           $pathProfile = "$this->dir_img/profile/";
           $pathEvent = "$this->dir_img/event/";
+          $image_config = [
+               'name' => ['x300_', 'x1920_'],
+               'size' => [300, 1920],
+          ];
+          $image_lib = $this->load->library('image_lib');
 
           //cek image
           if ($image_man) {
@@ -84,9 +91,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('image_man') ) {
                     if ($current->image_man) {
-                         unlink(FCPATH . "$this->dir_img/profile/$current->image_man");
+                         if (file_exists("$this->dir_img/profile/$current->image_man")) {
+                              unlink(FCPATH . "$this->dir_img/profile/$current->image_man");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/profile/" . $image_config['name'][$i] . $current->image_man)) {
+                                   unlink(FCPATH . "$this->dir_img/profile/" . $image_config['name'][$i] . $current->image_man);
+                              }
+                         }
                     }
                     $image_man = $this->upload->data('file_name');
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/profile/$image_man",
+                              'new_image' => "$this->dir_img/profile/" . $image_config['name'][$i] . $image_man,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $image_man = '';
                }
@@ -105,9 +132,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('image_woman') ) {
                     if ($current->image_woman) {
-                         unlink(FCPATH . "$this->dir_img/profile/$current->image_woman");
+                         if (file_exists("$this->dir_img/profile/$current->image_woman")) {
+                              unlink(FCPATH . "$this->dir_img/profile/$current->image_woman");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/profile/" . $image_config['name'][$i] . $current->image_woman)) {
+                                   unlink(FCPATH . "$this->dir_img/profile/" . $image_config['name'][$i] . $current->image_woman);
+                              }
+                         }
                     }
                     $image_woman = $this->upload->data('file_name');
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/profile/$image_woman",
+                              'new_image' => "$this->dir_img/profile/" . $image_config['name'][$i] . $image_woman,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $image_woman = '';
                }
@@ -126,21 +173,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('cover') ) {
                     if ($current->cover) {
-                         unlink(FCPATH . "$this->dir_img/event/$current->cover");
+                         if (file_exists("$this->dir_img/event/$current->cover")) {
+                              unlink(FCPATH . "$this->dir_img/event/$current->cover");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/event/" . $image_config['name'][$i] . $current->cover)) {
+                                   unlink(FCPATH . "$this->dir_img/event/" . $image_config['name'][$i] . $current->cover);
+                              }
+                         }
                     }
                     $cover = $this->upload->data('file_name');
-                    // $config = [
-                    //      'image_library' => 'gd2',
-                    //      'source_image' => $pathEvent . $cover,
-                    //      'create_thumb' => false,
-                    //      'maintain_ratio' => false,
-                    //      'quality' => '100%',
-                    //      'width' => 768,
-                    //      'height' => 1280,
-                    //      'new_image' => 'potrait_' . $cover
-                    // ];
-                    // $this->load->library('image_lib', $config);
-                    // $this->image_lib->resize();
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/event/$cover",
+                              'new_image' => "$this->dir_img/event/" . $image_config['name'][$i] . $cover,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $cover = '';
                }
@@ -159,9 +214,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('cover_mobile') ) {
                     if ($current->cover_mobile) {
-                         unlink(FCPATH . "$this->dir_img/event/$current->cover_mobile");
+                         if (file_exists("$this->dir_img/event/$current->cover_mobile")) {
+                              unlink(FCPATH . "$this->dir_img/event/$current->cover_mobile");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/event/" . $image_config['name'][$i] . $current->cover_mobile)) {
+                                   unlink(FCPATH . "$this->dir_img/event/" . $image_config['name'][$i] . $current->cover_mobile);
+                              }
+                         }
                     }
                     $cover_mobile = $this->upload->data('file_name');
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/event/$cover_mobile",
+                              'new_image' => "$this->dir_img/event/" . $image_config['name'][$i] . $cover_mobile,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $cover_mobile = '';
                }
@@ -180,9 +255,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_home') ) {
                     if ($current->background_home) {
-                         unlink(FCPATH . "$this->dir_img/event/$current->background_home");
+                         if (file_exists("$this->dir_img/event/$current->background_home")) {
+                              unlink(FCPATH . "$this->dir_img/event/$current->background_home");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/event/" . $image_config['name'][$i] . $current->background_home)) {
+                                   unlink(FCPATH . "$this->dir_img/event/" . $image_config['name'][$i] . $current->background_home);
+                              }
+                         }
                     }
                     $background_home = $this->upload->data('file_name');
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/event/$background_home",
+                              'new_image' => "$this->dir_img/event/" . $image_config['name'][$i] . $background_home,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $background_home = '';
                }
@@ -201,9 +296,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_home_mobile') ) {
                     if ($current->background_home_mobile) {
-                         unlink(FCPATH . "$this->dir_img/event/$current->background_home_mobile");
+                         if (file_exists("$this->dir_img/event/$current->background_home_mobile")) {
+                              unlink(FCPATH . "$this->dir_img/event/$current->background_home_mobile");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/event/" . $image_config['name'][$i] . $current->background_home_mobile)) {
+                                   unlink(FCPATH . "$this->dir_img/event/" . $image_config['name'][$i] . $current->background_home_mobile);
+                              }
+                         }
                     }
                     $background_home_mobile = $this->upload->data('file_name');
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/event/$background_home_mobile",
+                              'new_image' => "$this->dir_img/event/" . $image_config['name'][$i] . $background_home_mobile,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $background_home_mobile = '';
                }
@@ -222,9 +337,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_gallery') ) {
                     if ($current->background_gallery) {
-                         unlink(FCPATH . "$this->dir_img/event/$current->background_gallery");
+                         if (file_exists("$this->dir_img/event/$current->background_gallery")) {
+                              unlink(FCPATH . "$this->dir_img/event/$current->background_gallery");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/event/" . $image_config['name'][$i] . $current->background_gallery)) {
+                                   unlink(FCPATH . "$this->dir_img/event/" . $image_config['name'][$i] . $current->background_gallery);
+                              }
+                         }
                     }
                     $background_gallery = $this->upload->data('file_name');
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/event/$background_gallery",
+                              'new_image' => "$this->dir_img/event/" . $image_config['name'][$i] . $background_gallery,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $background_gallery = '';
                }
@@ -232,7 +367,7 @@ class event extends CI_Controller {
                $background_gallery = $current->background_gallery;
           }
 
-          if ($background_gallery) {
+          if ($background_gallery_mobile) {
                $config = [
                     'allowed_types' => 'gif|jpg|png|jpeg',
                     'upload_path' => $pathEvent,
@@ -243,9 +378,29 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_gallery_mobile') ) {
                     if ($current->background_gallery_mobile) {
-                         unlink(FCPATH . "$this->dir_img/event/$current->background_gallery_mobile");
+                         if (file_exists("$this->dir_img/event/$current->background_gallery_mobile")) {
+                              unlink(FCPATH . "$this->dir_img/event/$current->background_gallery_mobile");
+                         }
+                         for ($i = 0; $i < count($image_config['name']); $i++) {
+                              if (file_exists("$this->dir_img/event/" . $image_config['name'][$i] . $current->background_gallery_mobile)) {
+                                   unlink(FCPATH . "$this->dir_img/event/" . $image_config['name'][$i] . $current->background_gallery_mobile);
+                              }
+                         }
                     }
                     $background_gallery_mobile = $this->upload->data('file_name');
+                    for ($i = 0; $i < count($image_config['size']); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/event/$background_gallery_mobile",
+                              'new_image' => "$this->dir_img/event/" . $image_config['name'][$i] . $background_gallery_mobile,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_config['size'][$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $background_gallery_mobile = '';
                }
@@ -421,8 +576,8 @@ class event extends CI_Controller {
                $rows[] = [ 
                     '<div class="text-center">'.++$nomor.'</div>', 
                     '<div class="text-center">
-                         <a class="lightbox title" href="'.base_url("$this->dir_img/gallery/$row->images").'" data-title="Image Gallery">
-                              <img src="'.base_url("$this->dir_img/gallery/$row->images").'" class="img-rounded" alt="" width="100" height="100">
+                         <a class="lightbox title" href="'.base_url("$this->dir_img/gallery/x1920_$row->images").'" data-title="Image Gallery">
+                              <img src="'.base_url("$this->dir_img/gallery/x300_$row->images").'" class="img-rounded" alt="" width="100" height="auto">
                          </a>
                     </div>', 
                     html_entity_decode($row->description), 
@@ -485,6 +640,8 @@ class event extends CI_Controller {
      public function add_gallery() {
           $event_id = decode64($this->input->post('event_id'));
           $images = $_FILES['images']['name'];
+          $image_size = [300, 1920];
+          $image_name = ['x300_', 'x1920_'];
           if ($images) {
                $config = [
                     'allowed_types' => 'gif|jpg|png|jpeg',
@@ -496,6 +653,20 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('images') ) {
                     $images = $this->upload->data('file_name');
+                    $this->load->library('image_lib');
+                    for ($i = 0; $i < count($image_size); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/gallery/$images",
+                              'new_image' => "$this->dir_img/gallery/" . $image_name[$i] . $images,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_size[$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                } else {
                     $images = '';
                } 
@@ -532,6 +703,8 @@ class event extends CI_Controller {
           $event_id = decode64($this->input->post('event_id'));
           $images = $_FILES['images']['name'];
           $current = $this->m_event->get_gallery($id);
+          $image_size = [300, 1920];
+          $image_name = ['x300_', 'x1920_'];
           if ($images) {
                $config = [
                     'allowed_types' => 'gif|jpg|png|jpeg',
@@ -543,12 +716,31 @@ class event extends CI_Controller {
                $this->load->library('upload', $config);
                if( $current->images ){
                     unlink(FCPATH . "$this->dir_img/gallery/$current->images");
+                    for ($i = 0; $i < count($image_name); $i++) {
+                         if (file_exists("$this->dir_img/gallery/" . $image_name[$i] . $current->images)) {
+                              unlink(FCPATH . "$this->dir_img/gallery/" . $image_name[$i] . $current->images);
+                         }
+                    }
                }
                if ( $this->upload->do_upload('images') ) {
                     $images = $this->upload->data('file_name');
+                    $this->load->library('image_lib');
+                    for ($i = 0; $i < count($image_size); $i++) {
+                         $gd[$i] = array(
+                              'image_library' => 'gd2',
+                              'source_image' => "$this->dir_img/gallery/$images",
+                              'new_image' => "$this->dir_img/gallery/" . $image_name[$i] . $images,
+                              'maintain_ratio' => TRUE,
+                              'width' => $image_size[$i],
+                         );
+
+                         $this->image_lib->clear();
+                         $this->image_lib->initialize($gd[$i]);
+                         $this->image_lib->resize();
+                    }
                     $response = 200;
                     $status = 'SUKSES';
-                    $message = "Gallery Berhasil Ditambahkan...";
+                    $message = "Gallery Berhasil Diubah...";
                } else {
                     $images = '';
                     $response = 500;
@@ -558,7 +750,7 @@ class event extends CI_Controller {
           } else {
                $response = 200;
                $status = 'SUKSES';
-               $message = 'Gallery Berhasil Ditambahkan';
+               $message = 'Gallery Berhasil Diubah';
                $images = $current->images;
           } 
 

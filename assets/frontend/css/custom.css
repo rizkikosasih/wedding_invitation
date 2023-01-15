@@ -10,7 +10,25 @@ body {
 }
 
 .bg-custom {
-	background-color: #ECE8DD !important;
+	background-color: #FFF5E4 !important;
+}
+
+.bg-light-primary {
+	background-color: #FCF9BE;
+}
+
+.container-fluid#event .bg-light-primary {
+	height: 450px !important;
+}
+
+.avatar {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	font-size: .7rem;
 }
 
 .form-control {
@@ -603,7 +621,7 @@ hr.solid.bc-success {
 	width: 100%;
 	padding-top: 50px;
 	padding-bottom: 50px;
-	display: none;
+	/* display: none; */
 }
 
 .swiper-desk .swiper-slide {
@@ -615,7 +633,8 @@ hr.solid.bc-success {
 
 .swiper-desk .swiper-slide img {
 	display: block;
-	width: 100%;
+	width: 300px;
+	height: 300px;
 }
 
 .swiper-button-next,
@@ -633,27 +652,16 @@ hr.solid.bc-success {
 	top: 0;
 }
 
-.swiper {
-	width: 240px;
-	height: 320px;
-	margin-top: 11.5vh;
+.swiper-desk .swiper-pagination {
+	bottom: 20px;
 }
 
-.swiper-slide {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 18px;
-	font-size: 22px;
-	font-weight: bold;
-	color: #fff;
+.carousel-gallery .carousel-caption {
+	top: -12%;
+	bottom: -2%;
 }
 
-.swiper-slide .image-slide {
-	object-fit: cover !important;
-}
-
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
 	.swiper-desk {
 		display: block;
 	}
@@ -661,7 +669,7 @@ hr.solid.bc-success {
 	.swiper {
 		display: none;
 	}
-}
+} */
 
 @media (max-width: 575.98px) {
 	.swiper {
@@ -703,6 +711,10 @@ hr.solid.bc-success {
 		transform: scale(0.95);
 		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
 	}
+}
+
+.navbar-bottom .navbar-nav .nav-link {
+	padding: 0px 0;
 }
 
 nav.navbar-top {
@@ -759,3 +771,7 @@ nav.navbar-top {
 		display: none !important;
 	}
 }
+
+/* .wedding-map {
+	height: 280px;
+} */

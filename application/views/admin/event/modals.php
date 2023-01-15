@@ -55,12 +55,12 @@
           </div>
           <div class="border text-center p-3">
                <a 
-                    href="<?= $this_gallery->images ? base_url("$dir_img/event/$this_gallery->images") : base_url("$dir_img/no-image.jpg") ?>" 
+                    href="<?= $this_gallery->images ? base_url("$dir_img/event/x1920_$this_gallery->images") : base_url("$dir_img/no-image.jpg") ?>" 
                     class="lightbox" 
                     data-title="Images"
                >
                     <img 
-                         src="<?= $this_gallery->images ? base_url("$dir_img/gallery/$this_gallery->images") : base_url("$dir_img/no-image.jpg") ?>" 
+                         src="<?= $this_gallery->images ? base_url("$dir_img/gallery/x300_$this_gallery->images") : base_url("$dir_img/no-image.jpg") ?>" 
                          class="img-fluid img-rounded preview-image" 
                          width="100" 
                          height="auto"

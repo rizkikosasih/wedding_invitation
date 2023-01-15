@@ -154,12 +154,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->image_man ? base_url("$dir_img/profile/$e->image_man") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->image_man ? base_url("$dir_img/profile/x1920_$e->image_man") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Image (Pria)"
                          >
                               <img 
-                                   src="<?= $e->image_man ? base_url("$dir_img/profile/$e->image_man") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->image_man ? base_url("$dir_img/profile/x300_$e->image_man") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" 
                                    width="100" 
                                    height="auto" 
@@ -181,12 +181,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->image_woman ? base_url("$dir_img/profile/$e->image_woman") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->image_woman ? base_url("$dir_img/profile/x1920_$e->image_woman") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Image (Wanita)"
                          >
                               <img 
-                                   src="<?= $e->image_woman ? base_url("$dir_img/profile/$e->image_woman") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->image_woman ? base_url("$dir_img/profile/x300_$e->image_woman") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" 
                                    width="100" 
                                    height="auto" 
@@ -241,7 +241,7 @@
                     >
                </div>
           </div>
-          <div class="col-4 cover">
+          <div class="col-6 col-md-4 cover">
                <div class="form-group ">
                     <label for="cover">Cover</label>
                     <div class="custom-file">
@@ -252,12 +252,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->cover ? base_url("$dir_img/event/$e->cover") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->cover ? base_url("$dir_img/event/x1920_$e->cover") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Cover Image"
                          >
                               <img 
-                                   src="<?= $e->cover ? base_url("$dir_img/event/$e->cover") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->cover ? base_url("$dir_img/event/x300_$e->cover") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" 
                                    width="100" 
                                    height="auto"
@@ -268,7 +268,7 @@
                     <label id="cover-error" class="error" for="cover" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-4 bg-home">
+          <div class="col-6 col-md-4 bg-home">
                <div class="form-group">
                     <label for="bg-home">Background Home</label>
                     <div class="custom-file">
@@ -279,12 +279,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->background_home ? base_url("$dir_img/event/$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->background_home ? base_url("$dir_img/event/x1920_$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Background Home"
                          >
                               <img 
-                                   src="<?= $e->background_home ? base_url("$dir_img/event/$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->background_home ? base_url("$dir_img/event/x300_$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" width="100" 
                                    height="auto"
                                    alt="" 
@@ -294,7 +294,7 @@
                     <label id="background_home-error" class="error" for="background_home" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-4 bg-gallery">
+          <div class="col-6 col-md-4 bg-gallery">
                <div class="form-group ">
                     <label for="bg-gallery">Background Gallery</label>
                     <div class="custom-file">
@@ -305,12 +305,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->background_gallery ? base_url("$dir_img/event/$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->background_gallery ? base_url("$dir_img/event/x1920_$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Background Gallery"
                          >
                               <img 
-                                   src="<?= $e->background_gallery ? base_url("$dir_img/event/$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->background_gallery ? base_url("$dir_img/event/x300_$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" 
                                    width="100" 
                                    height="auto"
@@ -321,7 +321,7 @@
                     <label id="background_gallery-error" class="error" for="background_gallery" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-4 cover-mobile">
+          <div class="col-6 col-md-4 cover-mobile">
                <div class="form-group ">
                     <label for="cover-mobile">Cover Mobile</label>
                     <div class="custom-file">
@@ -332,12 +332,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->cover_mobile ? base_url("$dir_img/event/$e->cover_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->cover_mobile ? base_url("$dir_img/event/x1920_$e->cover_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Cover Image"
                          >
                               <img 
-                                   src="<?= $e->cover_mobile ? base_url("$dir_img/event/$e->cover_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->cover_mobile ? base_url("$dir_img/event/x300_$e->cover_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" 
                                    width="100" 
                                    height="auto"
@@ -348,7 +348,7 @@
                     <label id="cover_mobile-error" class="error" for="cover_mobile" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-4 bg-home-mobile">
+          <div class="col-6 col-md-4 bg-home-mobile">
                <div class="form-group">
                     <label for="bg-home-mobile">Background Home Mobile</label>
                     <div class="custom-file">
@@ -359,12 +359,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->background_home ? base_url("$dir_img/event/$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->background_home ? base_url("$dir_img/event/x1920_$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Background Home Mobile"
                          >
                               <img 
-                                   src="<?= $e->background_home_mobile ? base_url("$dir_img/event/$e->background_home_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->background_home_mobile ? base_url("$dir_img/event/x300_$e->background_home_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" width="100" 
                                    height="auto"
                                    alt="" 
@@ -374,7 +374,7 @@
                     <label id="background_home_mobile-error" class="error" for="background_home_mobile" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-4 bg-gallery-mobile">
+          <div class="col-6 col-md-4 bg-gallery-mobile">
                <div class="form-group ">
                     <label for="bg-gallery-mobile">Background Gallery Mobile</label>
                     <div class="custom-file">
@@ -385,12 +385,12 @@
                     </div>
                     <div class="border text-center p-3">
                          <a 
-                              href="<?= $e->background_gallery_mobile ? base_url("$dir_img/event/$e->background_gallery_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                              href="<?= $e->background_gallery_mobile ? base_url("$dir_img/event/x1920_$e->background_gallery_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
                               class="lightbox" 
                               data-title="Background Gallery"
                          >
                               <img 
-                                   src="<?= $e->background_gallery_mobile ? base_url("$dir_img/event/$e->background_gallery_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   src="<?= $e->background_gallery_mobile ? base_url("$dir_img/event/x300_$e->background_gallery_mobile") : base_url("$dir_img/no-image.jpg") ?>" 
                                    class="img-fluid img-rounded preview-image" 
                                    width="100" 
                                    height="auto"

@@ -21,7 +21,7 @@
                </div>
           </div>
           <div class="row justify-content-center">
-               <div class="col-md-5 border border-primary rounded">
+               <div class="col-md-5 border border-primary bg-light-primary rounded">
                     <div class="text-center">
                          <h1 class="text-center my-3">Akad Nikah</h1>
                          <div class="header my-3">
@@ -34,12 +34,12 @@
                                    <i class="far fa-heart text-dark"></i>
                               </div>
                          </div>
-                         <div class="mb-2"><?= html_entity_decode($e->wedding_location) ?></div>
-                         <div class="mb-3"><?= getDates('time', $e->wedding_date) ?> WIB - Selesai</div>
+                         <div class="mb-2 fw-bold"><?= html_entity_decode($e->wedding_location) ?></div>
+                         <div class="mb-3 fw-bold"><?= getDates('time', $e->wedding_date) ?> WIB - Selesai</div>
                     </div>
                </div>
                <div class="mx-3 my-5"></div>
-               <div class="col-md-5 border border-primary rounded">
+               <div class="col-md-5 border border-primary bg-light-primary rounded">
                     <div class="text-center">
                          <h1 class="my-3">Resepsi</h1>
                          <div class="header my-3">
@@ -52,8 +52,9 @@
                                    <i class="far fa-heart text-dark"></i>
                               </div>
                          </div>
-                         <div class="mb-2"><?= html_entity_decode($e->reception_location) ?></div>
-                         <div class="mb-3"><?= getDates('time', $e->reception_date) ?> WIB - Selesai</div>
+                         <div class="mb-2 fw-bold"><?= html_entity_decode($e->reception_location) ?></div>
+                         <div class="mb-3 fw-bold"><?= getDates('time', $e->reception_date) ?> WIB - Selesai</div>
+                         <a href="<?= $e->wedding_map ?>" class="btn btn-primary" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Open Map</a>
                     </div>
                </div>
           </div>
