@@ -1,10 +1,10 @@
 <?php  
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
       
-    if ( ! function_exists('tgl_indo'))
-    {
-        function date_indo($tgl)
-        {
+    if (!function_exists('date_indo')) {
+        function date_indo($tgl) {
+            $expDate = explode(' ', $tgl);
+            $tgl = $expDate[0];
             $ubah = gmdate($tgl, time()+60*60*8);
             $pecah = explode("-",$ubah);
             $tanggal = $pecah[2];
@@ -13,58 +13,53 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             return $tanggal.' '.$bulan.' '.$tahun;
         }
     }
-      
-    if ( ! function_exists('bulan'))
-    {
-        function bulan($bln)
-        {
-            switch ($bln)
-            {
+
+    if (!function_exists('bulan')) {
+        function bulan($bln) {
+            switch ($bln) {
                 case 1:
                     return "Januari";
-                    break;
+                break;
                 case 2:
                     return "Februari";
-                    break;
+                break;
                 case 3:
                     return "Maret";
-                    break;
+                break;
                 case 4:
                     return "April";
-                    break;
+                break;
                 case 5:
                     return "Mei";
-                    break;
+                break;
                 case 6:
                     return "Juni";
-                    break;
+                break;
                 case 7:
                     return "Juli";
-                    break;
+                break;
                 case 8:
                     return "Agustus";
-                    break;
+                break;
                 case 9:
                     return "September";
-                    break;
+                break;
                 case 10:
                     return "Oktober";
-                    break;
+                break;
                 case 11:
                     return "November";
-                    break;
+                break;
                 case 12:
                     return "Desember";
-                    break;
+                break;
             }
         }
     }
  
     //Format Shortdate
-    if ( ! function_exists('shortdate_indo'))
-    {
-        function shortdate_indo($tgl)
-        {
+    if (!function_exists('shortdate_indo')) {
+        function shortdate_indo($tgl) {
             $ubah = gmdate($tgl, time()+60*60*8);
             $pecah = explode("-",$ubah);
             $tanggal = $pecah[2];
@@ -73,58 +68,53 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             return $tanggal.'/'.$bulan.'/'.$tahun;
         }
     }
-      
-    if ( ! function_exists('short_bulan'))
-    {
-        function short_bulan($bln)
-        {
-            switch ($bln)
-            {
+
+    if (!function_exists('short_bulan')) {
+        function short_bulan($bln) {
+            switch ($bln) {
                 case 1:
                     return "01";
-                    break;
+                break;
                 case 2:
                     return "02";
-                    break;
+                break;
                 case 3:
                     return "03";
-                    break;
+                break;
                 case 4:
                     return "04";
-                    break;
+                break;
                 case 5:
                     return "05";
-                    break;
+                break;
                 case 6:
                     return "06";
-                    break;
+                break;
                 case 7:
                     return "07";
-                    break;
+                break;
                 case 8:
                     return "08";
-                    break;
+                break;
                 case 9:
                     return "09";
-                    break;
+                break;
                 case 10:
                     return "10";
-                    break;
+                break;
                 case 11:
                     return "11";
-                    break;
+                break;
                 case 12:
                     return "12";
-                    break;
+                break;
             }
         }
     }
  
     //Format Medium date
-    if ( ! function_exists('mediumdate_indo'))
-    {
-        function mediumdate_indo($tgl)
-        {
+    if (!function_exists('mediumdate_indo')) {
+        function mediumdate_indo($tgl) {
             $ubah = gmdate($tgl, time()+60*60*8);
             $pecah = explode("-",$ubah);
             $tanggal = $pecah[2];
@@ -133,58 +123,53 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             return $tanggal.' '.$bulan.' '.$tahun;
         }
     }
-      
-    if ( ! function_exists('medium_bulan'))
-    {
-        function medium_bulan($bln)
-        {
-            switch ($bln)
-            {
+
+    if (!function_exists('medium_bulan')) {
+        function medium_bulan($bln) {
+            switch ($bln) {
                 case 1:
                     return "Jan";
-                    break;
+                break;
                 case 2:
                     return "Feb";
-                    break;
+                break;
                 case 3:
                     return "Mar";
-                    break;
+                break;
                 case 4:
                     return "Apr";
-                    break;
+                break;
                 case 5:
                     return "Mei";
-                    break;
+                break;
                 case 6:
                     return "Jun";
-                    break;
+                break;
                 case 7:
                     return "Jul";
-                    break;
+                break;
                 case 8:
                     return "Ags";
-                    break;
+                break;
                 case 9:
                     return "Sep";
-                    break;
+                break;
                 case 10:
                     return "Okt";
-                    break;
+                break;
                 case 11:
                     return "Nov";
-                    break;
+                break;
                 case 12:
                     return "Des";
-                    break;
+                break;
             }
         }
     }
      
     //Long date indo Format
-    if ( ! function_exists('longdate_indo'))
-    {
-        function longdate_indo($tanggal)
-        {
+    if (!function_exists('longdate_indo')) {
+        function longdate_indo($tanggal) {
             $ubah = gmdate($tanggal, time()+60*60*8);
             $pecah = explode("-",$ubah);
             $tgl = $pecah[2];
@@ -193,67 +178,82 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $bulan = bulan($pecah[1]);
 
             $hari = [
-                1 =>    'Senin',
-				'Selasa',
-				'Rabu',
-				'Kamis',
-				'Jumat',
-				'Sabtu',
-				'Minggu'
+                1 => 'Senin',
+                'Selasa',
+                'Rabu',
+                'Kamis',
+                'Jumat',
+                'Sabtu',
+                'Minggu'
             ];
 
-            $num = date('N',strtotime($tanggal));
-
+            $num = date('N', strtotime($tanggal));
             $nama_hari = $hari[$num];
-            
             return $nama_hari . ', ' . $tgl . ' ' . $bulan . ' ' . $thn;
         }
     }
 
     //bulan romawi
-    if ( ! function_exists('romawi_bulan'))
-    {
-        function romawi_bulan($bln)
-        {
-            switch ($bln)
-            {
+    if (!function_exists('romawi_bulan')) {
+        function romawi_bulan($bln) {
+            switch ($bln) {
                 case 1:
                     return "I";
-                    break;
+                break;
                 case 2:
                     return "II";
-                    break;
+                break;
                 case 3:
                     return "III";
-                    break;
+                break;
                 case 4:
                     return "IV";
-                    break;
+                break;
                 case 5:
                     return "V";
-                    break;
+                break;
                 case 6:
                     return "VI";
-                    break;
+                break;
                 case 7:
                     return "VII";
-                    break;
+                break;
                 case 8:
                     return "VIII";
-                    break;
+                break;
                 case 9:
                     return "IX";
-                    break;
+                break;
                 case 10:
                     return "X";
-                    break;
+                break;
                 case 11:
                     return "XI";
-                    break;
+                break;
                 case 12:
                     return "XII";
-                    break;
+                break;
             }
         }
     }
 
+    if (!function_exists('day_indo')) {
+        function day_indo($date) { 
+            $expDate = explode(' ', $date);
+            $tanggal = $expDate[0];
+            $ubah = gmdate($tanggal, time()+60*60*8);
+            $pecah = explode("-", $ubah);
+            $hari = [
+                1 => 'Senin',
+                'Selasa',
+                'Rabu',
+                'Kamis',
+                'Jumat',
+                'Sabtu',
+                'Minggu'
+            ];
+            $num = date('N', strtotime($tanggal));
+            $nama_hari = $hari[$num];
+            return $nama_hari;
+        }
+    }

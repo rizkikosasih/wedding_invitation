@@ -443,7 +443,8 @@
         for ($i = 0; $i < count($default); $i++): 
             $text = str_replace($default[$i], $change[$i], $text);
         endfor;
-        return $text;
+        $output = str_replace('&amp;', '%26', $text);
+        return $output;
     }
 
     function initialName($name) {

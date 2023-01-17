@@ -7,6 +7,9 @@
      <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
      <meta http-equiv="Pragma" content="no-cache">
      <meta http-equiv="Expires" content="0">
+     <meta property="og:title" content="<?= $e->alias_woman ?> & <?= $e->alias_man ?>">
+     <meta property="og:description" content="<?= day_indo($e->reception_date) . ", " . date_indo($e->reception_date) ?>">
+     <meta property="og:image" content="<?= base_url("$dir_img/event/x1920_$e->cover") ?>">
      <title><?= $e->alias_woman ?> & <?= $e->alias_man ?></title>
      <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('assets/public/images/apple-touch-icon.png') ?>">
      <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('assets/public/images/favicon-32x32.png') ?>">

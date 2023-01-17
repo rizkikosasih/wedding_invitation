@@ -160,32 +160,18 @@ const siteUrl = (url) => {
 
             setTimeout(() => {
                 setInterval(() => {
-                    let lastId = $('.card-comment.last').data('last') || 0
+                    let lastId = $('.comment-box.last').data('last') || 0
                     $.ajax({
                         cache: false,
                         method: 'get',
-                        data: {
-                            lastId: lastId
-                        },
+                        data: {lastId: lastId},
                         url: siteUrl('wedding_invite/list_comment'),
                         success: function (res) {
                             if (res.data.length) {
-                                if (!$('.card-comment').length) listComment.html('')
-                                $('.card-comment.last').removeAttr('data-last').removeClass('last')
-                                $.each(res.data, (i, lc) => {
-                                    let attrCard = !i ? 'data-last="' + lc.id + '"' : ''
-                                    listComment.prepend(`
-                                    <div class="card my-3 font-small-3 border-0 card-comment ${!i ? 'last' : ''}" ${attrCard}>
-                                        <div class="card-header">
-                                            <div class="fw-bold">
-                                                <i class="far fa-user-circle mr-2"></i>${lc.name}
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            ${lc.message}
-                                        </div>
-                                    </div>
-                                `)
+                                if ($('.empty-comment').length) listComment.html('')
+                                $('.comment-box.last').removeAttr('data-last').removeClass('last')
+                                $.each(res.data, (i, lc) => { 
+                                    listComment.prepend(lc)
                                 })
                             }
                         }, //success
@@ -225,24 +211,12 @@ const siteUrl = (url) => {
                             })
                             listComment.html('')
                             $.each(result.data, (i, lc) => {
-                                let attrCard = !i ? 'data-last="' + lc.id + '"' : ''
-                                listComment.append(`
-                                    <div class="card my-3 font-small-3 border-0 card-comment ${!i ? 'last' : ''}" ${attrCard} style="display: none;">
-                                        <div class="card-header">
-                                            <div class="fw-bold">
-                                                <i class="far fa-user-circle mr-2"></i>${lc.name}
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            ${lc.message}
-                                        </div>
-                                    </div>
-                                `)
+                                listComment.append(lc)
                             })
                         }, //success
                         complete: function () {
                             formComment[0].reset()
-                            $('.card-comment').slideDown('slow')
+                            $('.comment-box').slideDown('slow')
                         }
                     })
                 } else {

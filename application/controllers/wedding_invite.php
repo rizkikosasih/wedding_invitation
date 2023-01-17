@@ -14,13 +14,14 @@ class wedding_invite extends CI_Controller {
 
      public function to($name='Unknown Name') {
           $event = $this->m_event->get(['event.id' => 1]);
+          $invitedName = str_replace(['-', '+', '%20'], ' ', $name);
           $data = [
                'dir_img' => $this->dir_img,
                'e' => $event,
                'love_story' => $this->m_event->get_all_story($event->id),
                'gallery' => $this->m_event->get_all_gallery($event->id),
                'comment' => $this->m_event->get_comment(['isDelete' => 0]),
-               'invitedName' => $name,
+               'invitedName' => $invitedName,
           ];
           $this->load->view('frontend/wedding_invite/index', $data);
      }
@@ -37,12 +38,25 @@ class wedding_invite extends CI_Controller {
           $this->m_master->add('comment', $data);
           $comment = $this->m_event->get_comment(['isDelete' => 0]);
           $newComment = [];
-          foreach ($comment as $c) {
+          foreach ($comment as $i => $c) {
+               $commentClass = !$i ? 'last' : '';
+               $commentAttr = !$i ? "data-last='$c->id'" : "";
                $newComment[] = [
-                    'id' => $c->id,
-                    'name' => $c->name,
-                    'message' => html_entity_decode($c->message),
-                    'date_added' => $c->date_added,
+                    '<div class="d-flex flex-row comment-box '.$commentClass.'" '.$commentAttr.'>
+                         <div class="avatar bg-primary primary-text">
+                              '. initialName($c->name) .'
+                         </div>
+                         <div class="dialogbox w-100">
+                              <div class="body">
+                                   <span class="tip tip-left"></span>
+                                   <div class="message">
+                                        <div class="fw-bold">'. $c->name .'</div>
+                                        <hr class="solid bc-primary my-1">
+                                        <span>'. html_entity_decode($c->message) .'</span>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>'
                ];
           }
           $result = [
@@ -60,14 +74,31 @@ class wedding_invite extends CI_Controller {
      public function list_comment() {
           $comment = $this->m_event->get_comment(['isDelete' => 0]);
           $lastId = !$_GET['lastId'] ? 0 : $_GET['lastId'];
+          $newComment = [];
           if ($comment[0]->id != $lastId) {
-               $newComment = $this->m_event->get_comment([
-                    'isDelete' => 0,
-                    'id >' => $lastId,
-               ]);
-          } else {
-               $newComment = [];
-          }
+               $comments = $this->m_event->get_comment(['isDelete' => 0, 'id >' => $lastId]);
+               foreach ($comments as $i => $c) {
+                    $commentClass = !$i ? 'last' : '';
+                    $commentAttr = !$i ? "data-last='$c->id'" : "";
+                    $newComment[] = [
+                         '<div class="d-flex flex-row comment-box '.$commentClass.'" '.$commentAttr.'>
+                              <div class="avatar bg-primary primary-text">
+                                   '. initialName($c->name) .'
+                              </div>
+                              <div class="dialogbox w-100">
+                                   <div class="body">
+                                        <span class="tip tip-left"></span>
+                                        <div class="message">
+                                             <div class="fw-bold">'. $c->name .'</div>
+                                             <hr class="solid bc-primary my-1">
+                                             <span>'. html_entity_decode($c->message) .'</span>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>'
+                    ];
+               }
+          } 
           $result = [
                'response' => 200,
                'status' => 'SUKSES',
