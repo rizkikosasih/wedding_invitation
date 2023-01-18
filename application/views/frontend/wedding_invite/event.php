@@ -53,7 +53,7 @@
                               </div>
                          </div>
                          <div class="mb-2 fw-bold"><?= html_entity_decode($e->reception_location) ?></div>
-                         <div class="mb-3 fw-bold"><?= getDates('time', $e->reception_date) ?> WIB - Selesai</div>
+                         <div class="mb-3 fw-bold"><?= getDates('time', $e->reception_date) ?> - 17:00 WIB</div>
                          <a href="<?= $e->wedding_map ?>" class="btn btn-primary" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Open Map</a>
                     </div>
                </div>

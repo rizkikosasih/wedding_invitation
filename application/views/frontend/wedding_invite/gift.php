@@ -14,7 +14,7 @@
                <div class="col-12 col-sm-8 col-md-6">
                     <div class="card rounded-xxl bg-primary text-light shadow border border-primary text-center my-3">
                          <div class="card-body">
-                              <img src="<?= $e->image ? base_url("$dir_img/bank/$e->image") : base_url("$dir_img/no-image.jpg") ?>" alt="" width=300>
+                              <img src="<?= $e->image ? base_url("$dir_img/bank/$e->image") : base_url("$dir_img/no-image.jpg") ?>" alt="" width=250>
                               <div class="card-text fs-3 font-weight-bold my-3">
                                    <div><?= $e->number_rekening ?></div>
                                    <div>a/n <?= $e->atas_nama ?></div>

@@ -1,5 +1,5 @@
 <div class="row m-1 p-1">
-     <div class="col-6">
+     <div class="col-12 col-md-6 mb-3 mb-md-0">
           <form 
                class="form form-vertical update_template_wa" 
                method="post" 
@@ -29,7 +29,7 @@
                </div>
           </form>
      </div>
-     <div class="col-6">
+     <div class="col-12 col-md-6">
           <form 
                action="javascript:void(0)" 
                data-href="<?= base_url('admin/event/send_wa') ?>" 

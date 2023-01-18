@@ -2,7 +2,7 @@
     <div class="container text-center py-5">
         <div class="section-title position-relative text-center">
             <h1 class="font-secondary display-3">Kami Yang Berbahagia</h1>
-            <i class="far fa-heart text-white"></i>
+            <i class="far fa-heart text-dark"></i>
         </div>
         <div class="content-footer mb-5">
             <div class="row justify-content-center">

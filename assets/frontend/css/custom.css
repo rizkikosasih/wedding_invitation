@@ -942,3 +942,13 @@ nav.navbar-top {
 	line-height: 1.5;
 	color: var(--bg-hover-primary);
 }
+
+.home-name {
+	margin-bottom: 9rem !important;
+}
+
+@media (min-width: 768px) {
+	.home-name {
+		margin-bottom: 1.5rem !important;
+	}
+}

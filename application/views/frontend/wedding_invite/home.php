@@ -6,7 +6,7 @@
                     <img class="position-absolute w-100 h-100 bg-home">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                          <div class="p-3" style="max-width: 900px;">
-                              <h1 class="display-1 font-secondary text-white text-capitalize mt-n3 mb-md-4">
+                              <h1 class="display-1 font-secondary text-white text-capitalize mt-n3 home-name">
                                    <?= $e->alias_woman ?> & <?= $e->alias_man ?>
                               </h1>
                               <div class="d-inline-block border-top border-bottom border-light py-3 px-4">
