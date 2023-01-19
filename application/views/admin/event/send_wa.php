@@ -1,5 +1,5 @@
-<div class="row m-1 p-1">
-     <div class="col-12 col-md-6 mb-3 mb-md-0">
+<div class="row flex-wrap-reverse m-1 p-1">
+     <div class="col-12 col-md-6 mt-3 mt-md-0">
           <form 
                class="form form-vertical update_template_wa" 
                method="post" 
@@ -19,6 +19,9 @@
                                    rows="10"
                                    required
                               ><?= html_entity_decode(str_replace('%0A', '\n',$e->template_wa)) ?></textarea>
+                              <label class="text-muted">
+                                   <div class="fw-bold">* Baris Baru Gunakan \n</div>
+                              </label>
                          </div>
                     </div>
                     <div class="col-12 d-flex gap-3">
@@ -40,7 +43,10 @@
                <div class="row">
                     <div class="col-12 nomor-tujuan">
                          <div class="form-group">
-                              <label for="name">Nomor Tujuan</label>
+                              <label for="name">
+                                   Nomor Tujuan 
+                                   <div class="text-muted">Contoh: 085887183001</div>
+                              </label>
                               <input 
                                    class="form-control isNumber" 
                                    id="phone" 
