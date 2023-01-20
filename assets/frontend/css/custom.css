@@ -18,7 +18,7 @@ body {
 }
 
 .primary-text {
-	color: var(--bg-hover-primary) I !important;
+	color: var(--bg-hover-primary) !important;
 }
 
 .container-fluid#event .bg-light-primary {
@@ -32,8 +32,13 @@ body {
 	justify-content: center;
 	align-items: center;
 	border-radius: 50%;
-	font-size: 1rem;
-	font-weight: 700;
+	font-size: .9rem;
+	font-weight: 600;
+}
+
+.avatar-comment {
+	background-color: var(--gray-dark);
+	color: var(--light)
 }
 
 .form-control {
@@ -925,7 +930,7 @@ nav.navbar-top {
 
 .dialogbox .body {
 	position: relative;
-	max-width: 300px;
+	width: 95%;
 	height: auto;
 	margin: 20px 10px;
 	padding: 5px;

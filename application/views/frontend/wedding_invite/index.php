@@ -16,21 +16,21 @@
      <meta property="og:type" content="article">
      <meta property="og:title" content="<?= $e->alias_woman ?> &amp; <?= $e->alias_man ?>">
      <meta property="og:description" content="<?= day_indo($e->reception_date) . ", " . date_indo($e->reception_date) ?>">
-     <meta property="og:image" content="<?= base_url("$dir_img/preview-squares.jpg?_timestamp=" . time()) ?>">
+     <meta property="og:image" sizes="450x450" content="<?= base_url("$dir_img/event/x1920_$e->background_gallery?_timestamp=$timest") ?>">
      <meta property="og:image:type" content="image/jpg">
      <meta property="og:image:width" content="450">
      <meta property="og:image:height" content="450">
      <meta name="version" content="1.1.0">
      <title><?= $e->alias_woman ?> & <?= $e->alias_man ?></title>
-     <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('assets/public/images/apple-touch-icon.png?_timestamp=' . time()) ?>">
-     <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url('assets/public/images/favicon-32x32.png?_timestamp=' . time()) ?>">
-     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/public/images/favicon-16x16.png?_timestamp=' . time()) ?>">
-     <link rel="manifest" href="<?= base_url('assets/public/images/site.webmanifest?_timestamp=' . time()) ?>">
+     <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url("assets/public/images/apple-touch-icon.png?_timestamp=$timest") ?>">
+     <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url("assets/public/images/favicon-32x32.png?_timestamp=$timest") ?>">
+     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url("assets/public/images/favicon-16x16.png?_timestamp=$timest") ?>">
+     <link rel="manifest" href="<?= base_url("assets/public/images/site.webmanifest?_timestamp=$timest") ?>">
 
      <?php $this->load->view('templates/frontend/css') ?>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="51" class="bg-dark">
-     <audio id="myAudio" src="<?= base_url("assets/public/music/bg-music.mp3?_timestamp=" . time()) ?>" preload="auto" loop="true"></audio>
+     <audio id="myAudio" src="<?= base_url("assets/public/music/bg-music.mp3?_timestamp=$timest") ?>" preload="auto" loop="true"></audio>
      <div class="preload">
           <div class="lds-heart">
                <div></div>

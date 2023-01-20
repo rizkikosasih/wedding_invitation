@@ -16,12 +16,13 @@ class wedding_invite extends CI_Controller {
           $event = $this->m_event->get(['event.id' => 1]);
           $invitedName = str_replace(['-', '+', '%20'], ' ', $name);
           $data = [
-               'dir_img' => $this->dir_img,
-               'e' => $event,
-               'love_story' => $this->m_event->get_all_story($event->id),
-               'gallery' => $this->m_event->get_all_gallery($event->id),
-               'comment' => $this->m_event->get_comment(['isDelete' => 0]),
-               'invitedName' => $invitedName,
+               'dir_img' => $this->dir_img, 
+               'e' => $event, 
+               'love_story' => $this->m_event->get_all_story($event->id), 
+               'gallery' => $this->m_event->get_all_gallery($event->id), 
+               'comment' => $this->m_event->get_comment(['isDelete' => 0]), 
+               'invitedName' => $invitedName, 
+               'timest' => time()
           ];
           $this->load->view('frontend/wedding_invite/index', $data);
      }
@@ -42,8 +43,8 @@ class wedding_invite extends CI_Controller {
                $commentClass = !$i ? 'last' : '';
                $commentAttr = !$i ? "data-last='$c->id'" : "";
                $newComment[] = [
-                    '<div class="d-flex flex-row comment-box '.$commentClass.'" '.$commentAttr.'>
-                         <div class="avatar bg-primary primary-text">
+                    '<div class="d-flex flex-row align-items-baseline comment-box '.$commentClass.'" '.$commentAttr.'>
+                         <div class="avatar avatar-comment">
                               '. initialName($c->name) .'
                          </div>
                          <div class="dialogbox w-100">
@@ -81,8 +82,8 @@ class wedding_invite extends CI_Controller {
                     $commentClass = !$i ? 'last' : '';
                     $commentAttr = !$i ? "data-last='$c->id'" : "";
                     $newComment[] = [
-                         '<div class="d-flex flex-row comment-box '.$commentClass.'" '.$commentAttr.'>
-                              <div class="avatar bg-primary primary-text">
+                         '<div class="d-flex flex-row align-items-baseline comment-box '.$commentClass.'" '.$commentAttr.'>
+                              <div class="avatar avatar-comment">
                                    '. initialName($c->name) .'
                               </div>
                               <div class="dialogbox w-100">

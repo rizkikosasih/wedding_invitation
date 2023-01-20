@@ -9,12 +9,12 @@
                <div class="col-12 col-sm-6 mb-3 mb-sm-0 comment-form">
                     <form action="javascript:void(0)" method="post" class="form-comment">
                          <div class="form-group">
-                              <label class="fw-bold text-dark">Nama</label>
+                              <label class="fw-bold text-dark d-block text-center text-md-left">Nama</label>
                               <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Nama Anda">
                          </div>
 
                          <div class="form-group">
-                              <label class="fw-bold text-dark">Pesan</label>
+                              <label class="fw-bold text-dark d-block text-center text-md-left">Pesan</label>
                               <textarea name="message" id="message" cols="5" rows="3" class="form-control" placeholder="Berikan Ucapan & Doa Restu"></textarea>
                          </div>
 
@@ -26,12 +26,12 @@
                <div class="col-12 col-sm-6 list-comment">
                     <?php if (!$comment): ?>
                          <div class="text-center empty-comment" style="margin-top: 5rem;">
-                              <div class="fs-4 primary-text">Kirimkan Ucapan Sekarang</div>
+                              <div class="fs-4 fw-bold text-dark">Kirimkan Ucapan Sekarang</div>
                          </div>
                     <?php endif; ?>
                     <?php foreach ($comment as $i => $c): ?>
                          <div class="d-flex flex-row align-items-baseline comment-box <?= !$i ? 'last' : '' ?>" <?= !$i ? "data-last='$c->id'" : "" ?>>
-                              <div class="avatar bg-primary primary-text">
+                              <div class="avatar avatar-comment">
                                    <?= initialName($c->name) ?>
                               </div>
                               <div class="dialogbox w-100">

@@ -6,10 +6,7 @@ class auth extends CI_Controller  {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model([
-            'm_user',
-            'm_master'
-        ]);
+        $this->load->model(['m_user', 'm_master']);
     }
 
     public function blocked() {
@@ -34,24 +31,16 @@ class auth extends CI_Controller  {
     private function _login() {
         $username = $this->input->post('username', true);
         $password = md5($this->input->post('password', true));
-        $query = $this->m_user->get(
-            array(
-                'username' => $username,
-                'password' => $password,
-            ),
-            array(
-                'email' => $username
-            )
-        );
+        $query = $this->m_user->get(array('username' => $username, 'password' => $password), array('email' => $username));
         $row = $query->row();
 
         if ( !isset($row) ) {
             $this->session->set_flashdata('message', 'gagal/Username atau Password tidak ditemukan!');
-            // redirect('admin/auth');
-            echo "error username/password";
+            redirect('admin/auth');
+            // echo "error username/password";
         } elseif($row->aktif == 'N') {
             $this->session->set_flashdata('message', 'gagal/Login gagal akun tidak aktif!');
-            // redirect('admin/auth');
+            redirect('admin/auth');
         } else {
             $newdata = [
                 'id' => $row->id,
@@ -66,22 +55,14 @@ class auth extends CI_Controller  {
 
     public function logout() {
         $id = $this->session->userdata('id');
-        $this->m_master->update(
-            $this->table,
-            array(
-                'id' => $id
-            ),
-            array(
-                'last_login' => hari_lengkap()
-            )
-        );
-        $data = array('id','username','password','level');
+        $this->m_master->update($this->table, ['id' => $id], ['last_login' => hari_lengkap()]);
+        $data = array('id', 'username', 'password', 'level');
         $this->session->unset_userdata($data);
         $this->session->set_flashdata('message', 'sukses/Anda Berhasil Logout!');
         redirect('admin/auth');
     }
 
-    private function _sendEmail( $token, $type, $email, $nama ) {
+    private function _sendEmail($token, $type, $email, $nama) {
         if ($type == 'verify') {
             $data = [
                 'nama' => $nama,
@@ -150,7 +131,7 @@ class auth extends CI_Controller  {
         }
     } 
 
-    public function verifikasi( $token = 'kosong' ) {
+    public function verifikasi($token = 'kosong') {
         $user = $this->m_user->get(array(
             'token' => $token,
             'token_id' => 1,
@@ -238,7 +219,7 @@ class auth extends CI_Controller  {
         }
     }
 
-    public function reset_password( $token = 'kosong' ) {
+    public function reset_password($token = 'kosong') {
         $user = $this->m_user->get([
             'token' => $token,
             'token_id' => 2,

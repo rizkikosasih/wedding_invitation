@@ -24,7 +24,7 @@
      <link href="<?= base_url('assets/frontend/css/custom.css') ?>" rel="stylesheet">
      <style>
           .container-fluid:not(#home) {
-               background-image: url(<?= base_url('assets/public/images/bg-custom.png') ?>);
+               background-image: url(<?= base_url("assets/public/images/bg-custom.png?_timestamp=$timest") ?>);
                /* background-attachment: fixed; */
                background-repeat: no-repeat;
                background-position: center;
@@ -35,35 +35,35 @@
                border-bottom-right-radius: 50% 10%;
           }
           .bg-home {
-               content: url(<?= base_url("$dir_img/event/x1920_$e->background_home") ?>) !important;
+               content: url(<?= base_url("$dir_img/event/x1920_$e->background_home?_timestamp=$timest") ?>) !important;
                object-fit: cover !important;
           }
           .bg-gallery {
                /* object-fit: cover !important; */
-               background-image: url(<?= base_url("$dir_img/event/x1920_$e->background_gallery") ?>) !important; 
+               background-image: url(<?= base_url("$dir_img/event/x1920_$e->background_gallery?_timestamp=$timest") ?>) !important; 
                background-attachment: fixed;
                background-position: center;
                background-repeat: no-repeat;
                background-size: cover;
           }
           .bg-cover {
-               content: url(<?= base_url("$dir_img/event/x1920_$e->cover") ?>) !important;
+               content: url(<?= base_url("$dir_img/event/x1920_$e->cover?_timestamp=$timest") ?>) !important;
                object-fit: cover !important;
           }
           @media (max-width: 767px) {
                .container-fluid:not(#home) {
-                    background-image: url(<?= base_url('assets/public/images/bg-custom-mobile.png') ?>);
+                    background-image: url(<?= base_url("assets/public/images/bg-custom-mobile.png?_timestamp=$timest") ?>);
                }
                .bg-home {
-                    content: url(<?= base_url("$dir_img/event/x1920_$e->background_home_mobile") ?>) !important;
+                    content: url(<?= base_url("$dir_img/event/x1920_$e->background_home_mobile?_timestamp=$timest") ?>) !important;
                     object-fit: cover !important;
                }
                .bg-gallery {
-                    background-image: url(<?= base_url("$dir_img/event/x1920_$e->background_gallery_mobile") ?>) !important;
-                    object-fit: cover !important;
+                    background-image: url(<?= base_url("$dir_img/event/x1920_$e->background_gallery_mobile?_timestamp=$timest") ?>) !important;
+                    /* object-fit: cover !important; */
                }
                .bg-cover {
-                    content: url(<?= base_url("$dir_img/event/x1920_$e->cover_mobile") ?>) !important;
+                    content: url(<?= base_url("$dir_img/event/x1920_$e->cover_mobile?_timestamp=$timest") ?>) !important;
                }
           }
      </style>

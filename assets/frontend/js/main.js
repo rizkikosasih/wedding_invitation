@@ -6,6 +6,30 @@ const siteUrl = (url) => {
     	lastUrl = !url ? '' : '/' + url
     return origin + pathname + lastUrl
 }
+
+const initialName = (name) => {
+	let $initials = name.match(/\b\w/g) || []
+	return $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase()
+}
+
+const randColor = () => {
+	let stateNum = Math.floor(Math.random() * 6) + 1,
+		states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'],
+		$state = states[stateNum],
+		$colorClass = (`bg-light-${$state}`)
+	return $colorClass
+}
+
+const randChar = (length = 10) => {
+	let result = ''
+	let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+	let charactersLength = characters.length
+	for (let i = 0; i < length; i++) {
+		result += characters.charAt(Math.floor(Math.random() * charactersLength))
+	}
+	return result
+}
+
 (function ($) {
     "use strict"
     let myAudio = $('#myAudio')[0], musicState = false
@@ -20,7 +44,7 @@ const siteUrl = (url) => {
         timer: 4000
     })
 
-    // Navbar on scrolling
+    //Navbar on scrolling
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > 200) {
             $('.navbar').fadeIn('slow').css('display', 'flex')
@@ -31,7 +55,7 @@ const siteUrl = (url) => {
         }
     })
 
-    // Smooth scrolling on the navbar links
+    //Smooth scrolling on the navbar links
     $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault()
@@ -61,7 +85,7 @@ const siteUrl = (url) => {
         }
     })
 
-    // Scroll to Bottom
+    //Scroll to Bottom
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > 100) {
             $('.scroll-to-bottom').fadeOut('slow')
@@ -158,27 +182,28 @@ const siteUrl = (url) => {
             $('html, body').toggleClass('overflow-hidden bg-dark bg-custom')
             $('.navbar, .container-fluid, .back-to-top, .btn-music').css('opacity', 1)
 
-            setTimeout(() => {
-                setInterval(() => {
-                    let lastId = $('.comment-box.last').data('last') || 0
-                    $.ajax({
-                        cache: false,
-                        method: 'get',
-                        data: {lastId: lastId},
-                        url: siteUrl('wedding_invite/list_comment'),
-                        success: function (res) {
-                            if (res.data.length) {
-                                if ($('.empty-comment').length) listComment.html('')
-                                $('.comment-box.last').removeAttr('data-last').removeClass('last')
-                                $.each(res.data, (i, lc) => { 
-                                    listComment.prepend(lc)
-                                })
-                            }
-                        }, //success
-                    })
-                }, 2000)
-            }, 1000)
+            // setTimeout(() => {
+            //     setInterval(() => {
+            //         let lastId = $('.comment-box.last').data('last') || 0
+            //         $.ajax({
+            //             cache: false,
+            //             method: 'get',
+            //             data: {lastId: lastId},
+            //             url: siteUrl('wedding_invite/list_comment'),
+            //             success: function (res) {
+            //                 if (res.data.length) {
+            //                     if ($('.empty-comment').length) listComment.html('')
+            //                     $('.comment-box.last').removeAttr('data-last').removeClass('last')
+            //                     $.each(res.data, (i, lc) => { 
+            //                         listComment.prepend(lc)
+            //                     })
+            //                 }
+            //             }, //success
+            //         })
+            //     }, 3000)
+            // }, 1000)
         })
+
         $(document).on('click', '.btn-music', function () {
             $(this).children().toggleClass('fa-play fa-pause')
             if (musicState) {
@@ -216,10 +241,15 @@ const siteUrl = (url) => {
                         }, //success
                         complete: function () {
                             formComment[0].reset()
-                            $('.comment-box').slideDown('slow')
+                            listComment.slideDown('slow')
                         }
                     })
                 } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Nama / Pesan tidak boleh kosong',
+                        height: 'auto'
+                    })
                     console.log('Name dan Message Tidak Boleh Kosong')
                 }
                 return false
@@ -243,7 +273,7 @@ const siteUrl = (url) => {
         }).go()
     })
 
-    // flipdown
+    //flipdown
     $(function () {
         let receptionDate = $('.flipdown').data('reception')
         //initialize flipdown
