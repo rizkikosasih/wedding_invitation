@@ -21,9 +21,9 @@ body {
 	color: var(--bg-hover-primary) !important;
 }
 
-.container-fluid#event .bg-light-primary {
-	height: 450px !important;
-}
+/* .container-fluid#event .bg-light-primary {
+	height: 60vh !important;
+} */
 
 .avatar {
 	width: 32px;

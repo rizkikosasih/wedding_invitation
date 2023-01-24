@@ -11,7 +11,7 @@
                </div>
           </div>
           <div class="row justify-content-center">
-               <div class="col-6">
+               <div class="col-12 col-md-8 col-xl-6">
                     <div class="card rounded-xxl bg-primary text-light shadow border border-primary text-center my-3">
                          <div class="card-body">
                               <div class="image-bank">
@@ -32,7 +32,7 @@
                          </div>
                     </div>
                </div>
-               <div class="col-6">
+               <div class="col-12 col-md-8 col-xl-6">
                     <div class="card rounded-xxl bg-primary text-light shadow border border-primary text-center my-3">
                          <div class="card-body">
                               <div class='image-bank'>

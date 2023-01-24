@@ -9,6 +9,11 @@
                $time = explode(':', getDates('time_full', $e->reception_date));
                $date = explode('-', getDates('date', $e->reception_date));
                $timestampRec = strtotime(date('Y-m-d H:i:s', mktime($time[0], $time[1], $time[2], $date[1], $date[2], $date[0])));
+               $lengthW = strlen(strip_tags($e->wedding_location)); 
+               $lengthR = strlen(strip_tags($e->reception_location)); 
+               $length = $lengthR > $lengthW ? $lengthR : $lengthW; 
+               $height = $length > 100 ? round(($length / 1.5), 2) : 80; 
+               $heightcss = 'style="height :'.$height.'vh;"';
           ?>
           <div class="row justify-content-center">
                <div class="flipdown my-3" id="reception-flipdown" data-reception="<?= $timestampRec ?>"></div>
@@ -21,15 +26,15 @@
                </div>
           </div>
           <div class="row justify-content-center">
-               <div class="col-md-5 border border-primary bg-light-primary rounded">
+               <div <?= $heightcss ?> class="col-md-5 border border-primary bg-light-primary rounded">
                     <div class="text-center">
                          <h1 class="text-center my-3">Akad Nikah</h1>
                          <div class="header my-3">
                               <div class="section-title position-relative text-center mb-3">
                                    <i class="far fa-heart text-dark"></i>
                               </div>
-                              <h1 class="font-secondary display-5"><?= nameDate($e->reception_date) ?></h1>
-                              <h1 class="font-secondary display-5"><?= date_indo(getDates('date', $e->reception_date)) ?></h1>
+                              <h1 class="font-secondary display-5"><?= nameDate($e->wedding_date) ?></h1>
+                              <h1 class="font-secondary display-5"><?= date_indo(getDates('date', $e->wedding_date)) ?></h1>
                               <div class="section-title position-relative text-center">
                                    <i class="far fa-heart text-dark"></i>
                               </div>
@@ -39,7 +44,7 @@
                     </div>
                </div>
                <div class="mx-3 my-5"></div>
-               <div class="col-md-5 border border-primary bg-light-primary rounded">
+               <div <?= $heightcss ?> class="col-md-5 border border-primary bg-light-primary rounded">
                     <div class="text-center">
                          <h1 class="my-3">Resepsi</h1>
                          <div class="header my-3">
