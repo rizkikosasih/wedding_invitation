@@ -21,7 +21,7 @@
 
      <!-- Customized Bootstrap Stylesheet -->
      <link href="<?= base_url('assets/frontend/css/style.css') ?>" rel="stylesheet">
-     <link href="<?= base_url('assets/frontend/css/custom.css') ?>" rel="stylesheet">
+     <link href="<?= base_url("assets/frontend/css/custom.css??_timestamp=$timest") ?>" rel="stylesheet">
      <style>
           .container-fluid:not(#home) {
                background-image: url(<?= base_url("assets/public/images/bg-custom.png?_timestamp=$timest") ?>);

@@ -27,4 +27,4 @@
      <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') ?>">
      <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') ?>">
      <!-- Custom CSS -->
-     <link rel="stylesheet" href="<?= base_url('assets/backend/custom/css/custom.css') ?>">
+     <link rel="stylesheet" href="<?= base_url("assets/backend/custom/css/custom.css?_timestamp=" . time()) ?>">

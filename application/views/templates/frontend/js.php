@@ -23,4 +23,4 @@
      <script src="<?= base_url('assets/plugins/lightboxed/lightboxed.js') ?>"></script>
 
      <!-- Template Javascript -->
-     <script src="<?= base_url('assets/frontend/js/main.js') ?>"></script>
+     <script src="<?= base_url("assets/frontend/js/main.js?_timestamp=$timest") ?>"></script>

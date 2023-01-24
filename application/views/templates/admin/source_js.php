@@ -55,5 +55,5 @@
      <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.print.min.js') ?>"></script>
      <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') ?>"></script>
      <!-- Custom JS -->
-     <script src="<?= base_url('assets/backend/custom/js/index.js') ?>"></script>
-     <script src="<?= base_url('assets/backend/custom/js/server-side.js') ?>"></script>
+     <script src="<?= base_url("assets/backend/custom/js/index.js?_timestamp=" . time()) ?>"></script>
+     <script src="<?= base_url("assets/backend/custom/js/server-side.js?_timestamp=" . time()) ?>"></script>
