@@ -197,7 +197,7 @@
                     <label id="image_woman-error" class="error" for="image_woman" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-6 wedding-map">
+          <div class="col-12 wedding-map">
                <div class="form-group">
                     <label for="bank">Wedding Map</label>
                     <textarea name="wedding_map" class="form-control" id="wedding_map" placeholder="Map Location From Google" rows="5"><?= html_entity_decode($e->wedding_map) ?></textarea>
@@ -205,43 +205,73 @@
           </div>
           <div class="col-6 select-bank">
                <div class="form-group">
-                    <label for="bank">Bank For Gift</label>
-                    <select name="bank_id" id="bank" class="form-control bank" required>
+                    <label for="bank">Bank For Gift 1</label>
+                    <select name="bank_id" id="bank" class="form-control" required>
                          <option <?= !$e->bank_id ? 'selected="selected"' : '' ?> value="">Select an option</option>
                          <?php foreach ($list_bank as $i => $b): ?>
                               <option <?= $e->bank_id == $b->id ? 'selected="selected"' : '' ?> value="<?= $b->id ?>"><?= $b->name ?></option>
                          <?php endforeach; ?>
                     </select>
-                    <label id="bank_id-error" class="error" for="bank_id" style="display: none;">Kolom ini diperlukan.</label>
+                    <label id="bank_id2-error" class="error" for="bank_id2" style="display: none;">Kolom ini diperlukan.</label>
                </div>
-          </div>
-          <div class="col-6 an">
                <div class="form-group">
-                    <label for="an">Atas Nama</label>
+                    <label for="an">Atas Nama 1</label>
                     <input 
                          type="text" 
                          class="form-control" 
                          id="atas_nama" 
                          name="atas_nama"
-                         placeholder="Atas Nama Rekening"
+                         placeholder="Atas Nama Rekening 1"
                          value="<?= $e->atas_nama ?>"
                     >
                </div>
-          </div>
-          <div class="col-6 no-rek">
                <div class="form-group">
-                    <label for="no-rek">No Rekening</label>
+                    <label for="no-rek">No Rekening 1</label>
                     <input 
                          type="text" 
                          class="form-control" 
                          id="number_rekening" 
                          name="number_rekening" 
-                         placeholder="No Rekening"
+                         placeholder="No Rekening 1"
                          value="<?= $e->number_rekening ?>"
                     >
                </div>
-          </div>
-          <div class="col-6 col-md-4 cover">
+          </div> 
+          <div class="col-6 select-bank2">
+               <div class="form-group">
+                    <label for="bank">Bank For Gift 2</label>
+                    <select name="bank_id2" id="bank2" class="form-control" required>
+                         <option <?= !$e->bank_id2 ? 'selected="selected"' : '' ?> value="">Select an option</option>
+                         <?php foreach ($list_bank as $i => $b): ?>
+                              <option <?= $e->bank_id2 == $b->id ? 'selected="selected"' : '' ?> value="<?= $b->id ?>"><?= $b->name ?></option>
+                         <?php endforeach; ?>
+                    </select>
+                    <label id="bank_id-error" class="error" for="bank_id" style="display: none;">Kolom ini diperlukan.</label>
+               </div>
+               <div class="form-group">
+                    <label for="an2">Atas Nama 2</label>
+                    <input 
+                         type="text" 
+                         class="form-control" 
+                         id="atas_nama2" 
+                         name="atas_nama2"
+                         placeholder="Atas Nama Rekening 2"
+                         value="<?= $e->atas_nama2 ?>"
+                    >
+               </div>
+               <div class="form-group">
+                    <label for="no-rek2">No Rekening 2</label>
+                    <input 
+                         type="text" 
+                         class="form-control" 
+                         id="number_rekening2" 
+                         name="number_rekening2" 
+                         placeholder="No Rekening 2"
+                         value="<?= $e->number_rekening2 ?>"
+                    >
+               </div>
+          </div> 
+          <div class="col-6 cover">
                <div class="form-group ">
                     <label for="cover">Cover</label>
                     <div class="custom-file">
@@ -268,60 +298,7 @@
                     <label id="cover-error" class="error" for="cover" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-6 col-md-4 bg-home">
-               <div class="form-group">
-                    <label for="bg-home">Background Home</label>
-                    <div class="custom-file">
-                         <input type="file" class="custom-file-input images" name="background_home">
-                         <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
-                              Choose image
-                         </label>
-                    </div>
-                    <div class="border text-center p-3">
-                         <a 
-                              href="<?= $e->background_home ? base_url("$dir_img/event/x1920_$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
-                              class="lightbox" 
-                              data-title="Background Home"
-                         >
-                              <img 
-                                   src="<?= $e->background_home ? base_url("$dir_img/event/x300_$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
-                                   class="img-fluid img-rounded preview-image" width="100" 
-                                   height="auto"
-                                   alt="" 
-                              >
-                         </a>
-                    </div>
-                    <label id="background_home-error" class="error" for="background_home" style="display:none;">Kolom ini diperlukan.</label>
-               </div>
-          </div>
-          <div class="col-6 col-md-4 bg-gallery">
-               <div class="form-group ">
-                    <label for="bg-gallery">Background Gallery</label>
-                    <div class="custom-file">
-                         <input type="file" class="custom-file-input images" name="background_gallery">
-                         <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
-                              Choose image
-                         </label>
-                    </div>
-                    <div class="border text-center p-3">
-                         <a 
-                              href="<?= $e->background_gallery ? base_url("$dir_img/event/x1920_$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
-                              class="lightbox" 
-                              data-title="Background Gallery"
-                         >
-                              <img 
-                                   src="<?= $e->background_gallery ? base_url("$dir_img/event/x300_$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
-                                   class="img-fluid img-rounded preview-image" 
-                                   width="100" 
-                                   height="auto"
-                                   alt=""
-                              >
-                         </a>
-                    </div>
-                    <label id="background_gallery-error" class="error" for="background_gallery" style="display:none;">Kolom ini diperlukan.</label>
-               </div>
-          </div>
-          <div class="col-6 col-md-4 cover-mobile">
+          <div class="col-6 cover-mobile">
                <div class="form-group ">
                     <label for="cover-mobile">Cover Mobile</label>
                     <div class="custom-file">
@@ -348,7 +325,33 @@
                     <label id="cover_mobile-error" class="error" for="cover_mobile" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-6 col-md-4 bg-home-mobile">
+          <div class="col-6 bg-home">
+               <div class="form-group">
+                    <label for="bg-home">Background Home</label>
+                    <div class="custom-file">
+                         <input type="file" class="custom-file-input images" name="background_home">
+                         <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                              Choose image
+                         </label>
+                    </div>
+                    <div class="border text-center p-3">
+                         <a 
+                              href="<?= $e->background_home ? base_url("$dir_img/event/x1920_$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
+                              class="lightbox" 
+                              data-title="Background Home"
+                         >
+                              <img 
+                                   src="<?= $e->background_home ? base_url("$dir_img/event/x300_$e->background_home") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   class="img-fluid img-rounded preview-image" width="100" 
+                                   height="auto"
+                                   alt="" 
+                              >
+                         </a>
+                    </div>
+                    <label id="background_home-error" class="error" for="background_home" style="display:none;">Kolom ini diperlukan.</label>
+               </div>
+          </div>
+          <div class="col-6 bg-home-mobile">
                <div class="form-group">
                     <label for="bg-home-mobile">Background Home Mobile</label>
                     <div class="custom-file">
@@ -374,7 +377,34 @@
                     <label id="background_home_mobile-error" class="error" for="background_home_mobile" style="display:none;">Kolom ini diperlukan.</label>
                </div>
           </div>
-          <div class="col-6 col-md-4 bg-gallery-mobile">
+          <div class="col-6 bg-gallery">
+               <div class="form-group ">
+                    <label for="bg-gallery">Background Gallery</label>
+                    <div class="custom-file">
+                         <input type="file" class="custom-file-input images" name="background_gallery">
+                         <label class="custom-file-label" for="inputGroupFile" aria-describedby="inputGroupFileAddon">
+                              Choose image
+                         </label>
+                    </div>
+                    <div class="border text-center p-3">
+                         <a 
+                              href="<?= $e->background_gallery ? base_url("$dir_img/event/x1920_$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
+                              class="lightbox" 
+                              data-title="Background Gallery"
+                         >
+                              <img 
+                                   src="<?= $e->background_gallery ? base_url("$dir_img/event/x300_$e->background_gallery") : base_url("$dir_img/no-image.jpg") ?>" 
+                                   class="img-fluid img-rounded preview-image" 
+                                   width="100" 
+                                   height="auto"
+                                   alt=""
+                              >
+                         </a>
+                    </div>
+                    <label id="background_gallery-error" class="error" for="background_gallery" style="display:none;">Kolom ini diperlukan.</label>
+               </div>
+          </div>
+          <div class="col-6 bg-gallery-mobile">
                <div class="form-group ">
                     <label for="bg-gallery-mobile">Background Gallery Mobile</label>
                     <div class="custom-file">

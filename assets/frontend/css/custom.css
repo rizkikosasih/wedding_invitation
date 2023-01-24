@@ -957,3 +957,15 @@ nav.navbar-top {
 		margin-bottom: 1.5rem !important;
 	}
 }
+
+.image-bank { 
+	position: relative;
+	width: auto;
+	height: 125px;
+}
+
+.image-bank img {
+	object-fit: cover !important;
+	width: auto;
+	height: 100px;
+}

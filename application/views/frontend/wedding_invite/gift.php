@@ -11,10 +11,12 @@
                </div>
           </div>
           <div class="row justify-content-center">
-               <div class="col-12 col-sm-8 col-md-6">
+               <div class="col-6">
                     <div class="card rounded-xxl bg-primary text-light shadow border border-primary text-center my-3">
                          <div class="card-body">
-                              <img src="<?= $e->image ? base_url("$dir_img/bank/$e->image") : base_url("$dir_img/no-image.jpg") ?>" alt="" width=250>
+                              <div class="image-bank">
+                                   <img src="<?= $e->image ? base_url("$dir_img/bank/$e->image") : base_url("$dir_img/no-image.jpg") ?>" alt="">
+                              </div>
                               <div class="card-text fs-3 font-weight-bold my-3">
                                    <div><?= $e->number_rekening ?></div>
                                    <div>a/n <?= $e->atas_nama ?></div>
@@ -23,6 +25,27 @@
                                    type="button" 
                                    class="btn btn-light text-primary rounded-xl fs-4 btn-copy title" 
                                    data-clipboard-text="<?= $e->number_rekening ?>" 
+                                   title="Salin Nomor Rekening"
+                              >
+                                   <i class="fas fa-copy mr-2"></i>Salin
+                              </button>
+                         </div>
+                    </div>
+               </div>
+               <div class="col-6">
+                    <div class="card rounded-xxl bg-primary text-light shadow border border-primary text-center my-3">
+                         <div class="card-body">
+                              <div class='image-bank'>
+                                   <img src="<?= $e->image2 ? base_url("$dir_img/bank/$e->image2") : base_url("$dir_img/no-image.jpg") ?>" alt="">
+                              </div>
+                              <div class="card-text fs-3 font-weight-bold my-3">
+                                   <div><?= $e->number_rekening2 ?></div>
+                                   <div>a/n <?= $e->atas_nama2 ?></div>
+                              </div>
+                              <button 
+                                   type="button" 
+                                   class="btn btn-light text-primary rounded-xl fs-4 btn-copy title" 
+                                   data-clipboard-text="<?= $e->number_rekening2 ?>" 
                                    title="Salin Nomor Rekening"
                               >
                                    <i class="fas fa-copy mr-2"></i>Salin

@@ -11,8 +11,9 @@ class m_event extends CI_Model {
      private $order_comment = [null, 'name', null, 'date_added', null];
 
      public function get($where = null) {
-          $this->db->select("$this->table.*, b.name, b.image");
+          $this->db->select("$this->table.*, b.name, b.image, bs.name name2, bs.image as image2");
           $this->db->join('bank b', "b.id = $this->table.bank_id", 'left');
+          $this->db->join('bank bs', "bs.id = $this->table.bank_id2", 'left');
           if ($where) $this->db->where($where);
           return $this->db->get($this->table)->row();
      }

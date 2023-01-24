@@ -727,8 +727,15 @@ let siteUrl = (url='') => {
 
 	/* validate update event */
 	$(function () {
-		let selectBank = tail.select('.bank', {
+		let selectBank = tail.select('#bank', {
 			classNames: 'select-bank',
+			search: true,
+			placeholder: 'Select an option',
+			width: '100%',
+			multiple: false,
+		}),
+		selectBank2 = tail.select('#bank2', {
+			classNames: 'select-bank2',
 			search: true,
 			placeholder: 'Select an option',
 			width: '100%',
@@ -737,13 +744,14 @@ let siteUrl = (url='') => {
 
 		$('form.update_event').validate({
 			submitHandler: function (form) {
-				let $this = $(form), bankVal = selectBank.options.selected[0].value
-				if (!bankVal) {
-					$('#bank_id-error').show().html('Kolom ini diperlukan').prev().focus()
+				let $this = $(form), bankVal = selectBank.options.selected[0].value, bankVal2 = selectBank2.options.selected[0].value
+				if (!bankVal || !bankVal2) {
+					if (!bankVal) $('#bank_id-error').show().html('Kolom ini diperlukan').prev().focus()
+					if (!bankVal2) $('#bank_id2-error').show().html('Kolom ini diperlukan').prev().focus()
 				} else {
 					$.ajax({
 						url: $this.data('href'),
-						method: form.method,
+						method: $this.attr('method'),
 						data: new FormData(form),
 						contentType: false,
 						processData: false,

@@ -1,0 +1,30 @@
+Detail Login cPanel
+Domain	: www.ariola-janahtan.my.id
+cPanel Username	: ariolaja
+cPanel Password	: 2V:6dGZqk0G[q1
+Control Panel URL	: http://novara.id.domainesia.com/cpanel
+Alternatif	: http://ariola-janahtan.my.id/cpanel
+Mohon pastikan tidak ada karakter spasi di belakang username/password ketika melakukan copy-paste.
+
+Informasi Server
+Server Name	: Jakarta - Novara
+Server IP	: 103.147.154.173
+SSH Port	: 64000
+MySQL Server	: localhost
+
+Untuk memulai menggunakan layanan hosting dari DomaiNesia, Anda perlu mengarahkan nameserver domain anda ke:
+
+Nameserver 1	: ns1.domainesia.net (103.147.154.34) 
+Nameserver 2	: ns2.domainesia.net (213.52.129.108)
+
+Informasi Akses FTP
+FTP Server	: novara.id.domainesia.com
+FTP Server IP	: 103.147.154.173
+FTP Port	: 21
+SFTP Port	: 64000 (hanya hosting Super ke atas)
+
+Database
+hostname : 103.147.154.173
+name	 : ariolaja_wedding
+username : ariolaja_admin
+password : x2;zM5ln0z}j
