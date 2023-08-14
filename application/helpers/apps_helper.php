@@ -433,7 +433,7 @@
     function newPhone($phone) {
         $first = substr($phone, 0, 1);
         $second = substr($phone, 0, 2);
-        if (!$first) return ltrim($phone, 0);
+        if (!$first) return 62 . ltrim($phone, 0);
         if ($second == 62) return $phone;
         if ($first == 8) return 62 . $phone;
         return null;

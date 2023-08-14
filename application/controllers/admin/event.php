@@ -17,6 +17,7 @@ class event extends CI_Controller {
           $this->load->model(['m_user', 'm_menu', 'm_master', 'm_event']);
           $this->url = 'admin/' . $this->uri->segment(2);
           cek_login();
+          error_reporting(E_ERROR | E_STRICT | E_PARSE);
      }
 
      public function index() {
@@ -86,7 +87,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathProfile,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $image_man,
+                    'file_name' => rand(1,99999) . "_avatar_man." . pathinfo($image_man, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('image_man') ) {
@@ -127,7 +128,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathProfile,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $image_woman,
+                    'file_name' => rand(1,99999) . "_avatar_woman." . pathinfo($image_woman, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('image_woman') ) {
@@ -168,7 +169,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathEvent,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $cover,
+                    'file_name' => rand(1,99999) . "_bg_cover." . pathinfo($cover, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('cover') ) {
@@ -209,7 +210,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathEvent,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $cover_mobile,
+                    'file_name' => rand(1,99999) . "_bg_cover_mobile." . pathinfo($cover_mobile, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('cover_mobile') ) {
@@ -250,7 +251,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathEvent,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $background_home,
+                    'file_name' => rand(1,99999) . "_bg_home." . pathinfo($background_home, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_home') ) {
@@ -291,7 +292,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathEvent,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $background_home_mobile,
+                    'file_name' => rand(1,99999) . "_bg_home_mobile." . pathinfo($background_home_mobile, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_home_mobile') ) {
@@ -332,7 +333,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathEvent,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $background_gallery,
+                    'file_name' => rand(1,99999) . "_bg_gallery." . pathinfo($background_gallery, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_gallery') ) {
@@ -373,7 +374,7 @@ class event extends CI_Controller {
                     'upload_path' => $pathEvent,
                     'remove_spaces' => true,
                     'file_ext_tolower' => true,
-                    'file_name' => rand(1,99999) . "_" . $background_gallery_mobile,
+                    'file_name' => rand(1,99999) . "_bg_gallery_mobile." . pathinfo($background_gallery_mobile, PATHINFO_EXTENSION),
                ];
                $this->load->library('upload', $config);
                if ( $this->upload->do_upload('background_gallery_mobile') ) {
@@ -885,75 +886,118 @@ class event extends CI_Controller {
      }
 
      public function send_wa() {
+          $user_id = $this->session->userdata('id');
           $id = decode64($this->input->post('id'));
           $name = rtrim(ucwords($this->input->post('name')));
           $phone = $this->input->post('phone');
           $newPhone = newPhone($phone);
           $affected_row = 0;
-          $url = "https://api.whatsapp.com";
-          $link = base_url("wedding_invite/to/" . strtolower(str_replace(' ', "-", $name)));
+          $url = "https://wa.me";
+          $link = $_SERVER['SERVER_NAME'] != "localhost" ? base_url("/wedding_invite/to/" . strtolower(str_replace(' ', "-", $name))) : "https://ariola-janahtan.my.id/wedding_invite/to/" . strtolower(str_replace(' ', "-", $name));
           $default = ["{link}", "{name}"];
           $change = ["*$link*", "*$name*"];
-          if ($phone != 10) {
-               if (!$newPhone) {
-                    $response = 404;
-                    $message = 'Gagal Mengirim WA Nomor Tidak Valid';
-                    $affected_row = $affected_row;
-                    $lastUrl = null;
+          // if ($user_id != 4) {
+               if ($phone != 10) {
+                    if (!$newPhone) {
+                         $code = 404;
+                         $message = 'Gagal Mengirim WA Nomor Tidak Valid';
+                         $affected_row = $affected_row;
+                         $lastUrl = null;
+                    } else {
+                         $event = $this->m_event->get(['event.id' => $id]);
+                         $text = remakeTemplate($default, $change, $event->template_wa);
+                         //check undangan
+                         $invite = $this->m_event->get_undangan(['event_id' => $id, 'phone' => $newPhone]);
+                         if (!$invite) { 
+                              $affected_row = $this->m_master->add($this->table_undangan_terkirim, [
+                                   'event_id' => $id,
+                                   'phone' => $newPhone,
+                                   'name' => $name,
+                                   'date_added' => hari_lengkap(),
+                                   'sent' => 1
+                              ]);
+                         } else { 
+                              $send = $invite->sent;
+                              $affected_row = $this->m_master->update($this->table_undangan_terkirim, ['id' => $invite->id], [
+                                   'name' => $name,
+                                   'sent' => ($send + 1)
+                              ]);
+                         } 
+                         $code = 200;
+                         $message = "Undangan WA Berhasil Dikirim ke $name";
+                         $lastUrl = "$url/$newPhone/?text=$text";
+                    }
                } else {
                     $event = $this->m_event->get(['event.id' => $id]);
                     $text = remakeTemplate($default, $change, $event->template_wa);
-                    //check undangan
-                    $invite = $this->m_event->get_undangan(['event_id' => $id, 'phone' => $newPhone]);
+                    //check undangan grup
+                    $invite = $this->m_event->get_undangan(['event_id' => $id, 'name' => $name]);
                     if (!$invite) {
-                         $affected_row = $this->m_master->add($this->table_undangan_terkirim, [
+                         $data = [
                               'event_id' => $id,
-                              'phone' => $newPhone,
+                              'phone' => $phone,
                               'name' => $name,
                               'date_added' => hari_lengkap(),
                               'sent' => 1
-                         ]);
+                         ];
+                         $affected_row = $this->m_master->add($this->table_undangan_terkirim, $data);
                     } else {
-                         $send = $invite->sent;
-                         $affected_row = $this->m_master->update($this->table_undangan_terkirim, ['id' => $invite->id], [
-                              'name' => $name,
-                              'sent' => ($send + 1)
-                         ]);
+                         $send = $invite->sent; 
+                         $data = ['name' => $name, 'sent' => ($send + 1)];
+                         $affected_row = $this->m_master->update($this->table_undangan_terkirim, ['id' => $invite->id], $data);
                     } 
-                    $response = 200;
+                    $code = 200;
                     $message = "Undangan WA Berhasil Dikirim ke $name";
-                    $lastUrl = "$url/send?phone=$newPhone&text=$text";
-               }
-          } else {
-               $event = $this->m_event->get(['event.id' => $id]);
-               $text = remakeTemplate($default, $change, $event->template_wa);
-               //check undangan grup
-               $invite = $this->m_event->get_undangan(['event_id' => $id, 'name' => $name]);
-               if (!$invite) {
-                    $affected_row = $this->m_master->add($this->table_undangan_terkirim, [
-                         'event_id' => $id,
-                         'phone' => $phone,
-                         'name' => $name,
-                         'date_added' => hari_lengkap(),
-                         'sent' => 1
-                    ]);
-               } else {
-                    $send = $invite->sent;
-                    $affected_row = $this->m_master->update($this->table_undangan_terkirim, ['id' => $invite->id], [
-                         'name' => $name,
-                         'sent' => ($send + 1)
-                    ]);
+                    $lastUrl = "$url/?text=$text";
                } 
-               $response = 200;
-               $message = "Undangan WA Berhasil Dikirim ke $name";
-               $lastUrl = "$url/send?text=$text";
-          }
+          // } else {
+          //      require_once('vendor/autoload.php');
+          //      $wa_api = $this->db->get_where('wa_api', ['user_id' => $user_id])->row();
+          //      $wa = new UltraMsg\WhatsAppApi($wa_api->token, $wa_api->instance_id);
+          //      $event = $this->m_event->get(['event.id' => $id]);
+          //      $text = remakeTemplate($default, $change, $event->template_wa);
+          //      $body = str_replace(['%0A', '%26'], ['', '&'], $text); 
+          //      $imgPreview = $_SERVER['SERVER_NAME'] != "localhost" ? base_url("assets/public/images/event/x1920_$event->cover") : "https://ariola-janahtan.my.id/assets/public/images/thumbnail.jpg";
+          //      $result = json_encode($wa->sendImageMessage($newPhone, $imgPreview, $body, 10, null, false)); 
+          //      $resp = json_decode($result);
+          //      if ($resp->sent) { 
+          //           //check undangan
+          //           $invite = $this->m_event->get_undangan(['event_id' => $id, 'phone' => $newPhone]);
+          //           if (!$invite) { 
+          //                $data = [
+          //                     'event_id' => $id,
+          //                     'phone' => $newPhone,
+          //                     'name' => $name,
+          //                     'date_added' => hari_lengkap(),
+          //                     'sent' => 1
+          //                ];
+          //                $affected_row = $this->m_master->add($this->table_undangan_terkirim, $data);
+          //           } else { 
+          //                $send = $invite->sent;
+          //                $data = [
+          //                     'name' => $name,
+          //                     'sent' => ($send + 1)
+          //                ];
+          //                $affected_row = $this->m_master->update($this->table_undangan_terkirim, ['id' => $invite->id], $data);
+          //           } 
+          //           $code = 200; 
+          //           $message = "Undangan WA Berhasil Dikirim ke $name"; 
+          //           $lastUrl = null; 
+          //      } else {
+          //           $event = $this->m_event->get(['event.id' => $id]);
+          //           $code = 500; 
+          //           $message = !is_array($resp->error) ? $resp->error : $resp->error[0]->image; 
+          //           $lastUrl = null; 
+          //           $affected_row = 0; 
+          //      } 
+          // }
 
           $result = [
-               'response' => $response,
-               'message' => $message,
-               'affected_row' => $affected_row,
-               'url' => $lastUrl
+               "code" => $code, 
+               "message" => $message, 
+               "affected_row" => $affected_row, 
+               "url" => $lastUrl, 
+               "response" => $resp
           ];
 
           $this->output

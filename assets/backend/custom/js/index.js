@@ -1,10 +1,9 @@
-function isNumber(evt) {
+const isNumber = (evt) => {
 	var charCode = (evt.which) ? evt.which : evt.keyCode
 	if (charCode > 31 && (charCode < 48 || charCode > 57)) return false
 	return true
-}
-
-function formatRupiah(angka, prefix) {
+}, 
+formatRupiah = (angka, prefix) => {
 	var number_string = angka.replace(/[^,\d]/g, '').toString(),
 		split = number_string.split(','),
 		sisa = split[0].length % 3,
@@ -19,9 +18,8 @@ function formatRupiah(angka, prefix) {
 
 	rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah
 	return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '')
-}
-
-function reloadTables(v, element) {
+},
+reloadTables = (v, element) => {
 	let fullReload = !v ? false : true,
 	el = !element ? 'server_side' : element
 	$('table#' + el || 'server_side').DataTable().ajax.reload(null, fullReload)
@@ -34,41 +32,41 @@ cYear = currentDate.getFullYear()
 nows = cYear + "/" + cMonth + "/" + cDay
 /* current date YYYY/MM/DD */
 
-function selisih_hari(tgl) {
+const selisih_hari = (tgl) => {
 	oneDay = 24 * 60 * 60 * 1000
 	firstDate = new Date(nows)
 	secondDate = new Date(tgl)
 	diffDays = Math.round(Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay)))
 	return diffDays
-}
-
-let siteUrl = (url='') => {
+}, 
+siteUrl = (url='') => {
 	let index = window.location.origin.match(/localhost/i) ? 1 : 0,
 		delimiter = index ? '/' : '',
 		origin = window.location.origin + delimiter,
 		pathname = window.location.pathname.split('/')[index],
 		lastUrl = !url ? '' : '/' + url
 	return origin + pathname + lastUrl
+}, 
+timest = () => {
+	let date = new Date()
+	return Math.ceil(date.getTime() / 1000)
 }
 
 (function (window, document, $) {
 	"use strict"
-	$(document).ajaxStop(function () {
-		$('.tooltip').remove()
-	})
-
 	/* sweetalert & toast */
 	const Toast = Swal.mixin({
 		toast: true,
 		position: 'top-end',
 		showConfirmButton: false,
 		timer: 4000
-	})
-	/* sweetalert & toast */
+	}), 
+	dataTables = $('#dataTables'),
+	$modal = $('#myModal')
 
-	const dataTables = $('#dataTables'),
-	$modal = $('#myModal'),
-	sendWhatsapp = '.send-wa'
+	$(document).ajaxStop(function () {
+		$('.tooltip').remove()
+	})
 
 	/* TinyMCE */
 	$(function () {
@@ -104,23 +102,10 @@ let siteUrl = (url='') => {
 
 	/* datepicker */
 	$(function () {
-		$('#reception_date').datetimepicker({
-			format: 'YYYY-MM-DD',
-			locale: 'id',
-		})
-
-		$('#wedding_date').datetimepicker({
-			format: 'YYYY-MM-DD',
-			locale: 'id',
-		})
-
-		$('#reception_time').datetimepicker({
-			format: 'hh:mm A',
-		})
-
-		$('#wedding_time').datetimepicker({
-			format: 'hh:mm A',
-		})
+		$('#reception_date').datetimepicker({format: 'YYYY-MM-DD', locale: 'id'})
+		$('#wedding_date').datetimepicker({format: 'YYYY-MM-DD', locale: 'id'})
+		$('#reception_time').datetimepicker({format: 'hh:mm A'})
+		$('#wedding_time').datetimepicker({format: 'hh:mm A'})
 	})
 
 	/* Global */
@@ -195,8 +180,7 @@ let siteUrl = (url='') => {
 					}
 				})
 			}
-		})
-
+		}) 
 		$(document).on('click', '.status2', function () {
 			Swal.fire({
 				title: $(this).data('message'),
@@ -210,8 +194,7 @@ let siteUrl = (url='') => {
 					window.location.href = $(this).data('url')
 				}
 			})
-		})
-
+		}) 
 		$(document).on('click', '.delete', function () {
 			Swal.fire({
 				title: $(this).data('message'),
@@ -225,7 +208,7 @@ let siteUrl = (url='') => {
 					window.location.href = $(this).data('url')
 				}
 			})
-		})
+		}) 
 
 		/* open modal */
 		$(document).on('click', '.openPopup', function () {
@@ -507,7 +490,7 @@ let siteUrl = (url='') => {
 					})
 				})
 			}) //done function
-		})
+		}) 
 
 		// To initialize tooltip with body container
 		$(document).tooltip({
@@ -521,7 +504,7 @@ let siteUrl = (url='') => {
 				if (position.top < 110) return "bottom"
 				return "top"
 			}
-		})
+		}) 
 
 		//reload datatables
 		$(document).on('click', '.reloadTable', function () {
@@ -532,7 +515,7 @@ let siteUrl = (url='') => {
 				$id = $parent.find('table.table').attr('id')
 			}
 			reloadTables(null, $id)
-		})
+		}) 
 
 		/* LightBox */
 		$(document).on('click', '[data-toggle="lightbox"]', function (event) {
@@ -540,15 +523,13 @@ let siteUrl = (url='') => {
 			$(this).ekkoLightbox({
 				alwaysShowClose: true
 			})
-		})
-
+		}) 
 		$(document).on('click', '.lightbox', function (event) {
 			event.preventDefault()
 			$(this).ekkoLightbox({
 				alwaysShowClose: true
 			})
 		})
-
 		$(document).on('click', '.gallerybox', function (event) {
 			event.preventDefault()
 			$(this).ekkoLightbox({
@@ -565,51 +546,15 @@ let siteUrl = (url='') => {
 			live: true // default
 		})
 		wow.init()
-
 	})
 
 	/* custom file input */
 	$(function () {
 		// input plugin
 		bsCustomFileInput.init()
-
 		// get file and preview image
 		$("#foto").on("change", function () {
-			var input = $(this)[0]
-			if (input.files && input.files[0]) {
-				var reader = new FileReader()
-				reader.onload = function (e) {
-					$("#preview").attr("src", e.target.result).fadeIn("slow")
-				}
-				reader.readAsDataURL(input.files[0])
-			}
-		})
-
-		$("#foto-produk").on("change", function () {
-			var input = $(this)[0]
-			if (input.files && input.files[0]) {
-				var reader = new FileReader()
-				reader.onload = function (e) {
-					$("#preview-pro").attr("src", e.target.result).fadeIn("slow")
-				}
-				reader.readAsDataURL(input.files[0])
-			}
-		})
-
-		$(".foto-produk").on("change", function () {
-			var input = $(this)[0]
-			if (input.files && input.files[0]) {
-				var reader = new FileReader()
-				reader.onload = function (e) {
-					$(".preview-pro").attr("src", e.target.result).fadeIn("slow")
-				}
-				reader.readAsDataURL(input.files[0])
-			}
-		})
-
-		$(".images").on("change", function () {
-			var input = $(this)[0],
-			previewImage = $(this).parent().next().find('.preview-image')
+			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
 			if (input.files && input.files[0]) {
 				var reader = new FileReader()
 				reader.onload = function (e) {
@@ -618,8 +563,40 @@ let siteUrl = (url='') => {
 				reader.readAsDataURL(input.files[0])
 			}
 		})
-	})
-	/* custom file input */
+
+		$("#foto-produk").on("change", function () {
+			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
+			if (input.files && input.files[0]) {
+				var reader = new FileReader()
+				reader.onload = function (e) {
+					previewImage.attr("src", e.target.result).fadeIn("slow")
+				}
+				reader.readAsDataURL(input.files[0])
+			}
+		})
+
+		$(".foto-produk").on("change", function () {
+			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
+			if (input.files && input.files[0]) {
+				var reader = new FileReader()
+				reader.onload = function (e) {
+					previewImage.attr("src", e.target.result).fadeIn("slow")
+				}
+				reader.readAsDataURL(input.files[0])
+			}
+		})
+
+		$(".images").on("change", function () {
+			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
+			if (input.files && input.files[0]) {
+				var reader = new FileReader()
+				reader.onload = function (e) {
+					previewImage.attr("src", e.target.result).fadeIn("slow")
+				}
+				reader.readAsDataURL(input.files[0])
+			} 
+		})
+	}) 
 
 	/* Flash Data */
 	$(function () {
@@ -647,8 +624,7 @@ let siteUrl = (url='') => {
 				title: pesan,
 			})
 		}
-	})
-	/* Flash Data */
+	}) 
 
 	/* Password Hint */
 	$(function () {
@@ -685,44 +661,35 @@ let siteUrl = (url='') => {
 				repwd.attr('type', 'password')
 			}
 		})
-	})
-	/* Password Hint */
+	}) 
 
 	/* switch theme */
 	$('#switch-theme').click(function () {
-		let tema = $(this).attr('data-tema')
+		let $this = $(this), tema = $this.attr('data-tema')
 		$.ajax({
-			url: $(this).data('href'),
+			url: $this.data('href') + '?_timest=' + timest(),
 			type: 'post',
-			data: {
-				tema: tema,
-			},
+			data: {tema: tema},
 			success: function (res) {
-				$('body').removeClass(tema)
-					.addClass(res.new_theme)
-
-				$('aside#main-sidebar').removeClass('sidebar-dark-navy sidebar-light-navy')
-					.addClass(res.sidebar)
-
+				$('body').removeClass(tema).addClass(res.new_theme)
+				$('aside#main-sidebar').removeClass('sidebar-dark-navy sidebar-light-navy').addClass(res.sidebar)
 				$('#switch-theme').attr('data-tema', res.new_theme)
-
 				if (res.new_theme == 'dark-mode') {
 					$('#switch-theme').attr('checked', 'checked');
 				} else {
 					$('#switch-theme').removeAttr('checked');
-				}
+				} 
 			}
 		}) //end ajax
-	})
-	/* switch theme */
+	}) 
 
 	//on load document
 	$(function () {
 		$(window).on('load', function () {
-			if( $('input#username').length ) {
+			if( $('#login-form').length ) {
 				$('input#username').focus()
-			}
-		})
+			} 
+		}) 
 	})
 
 	/* validate update event */
@@ -810,27 +777,29 @@ let siteUrl = (url='') => {
 			submitHandler: function (form) {
 				let $this = $(form)
 				$.ajax({
-					url: $this.data('href'),
-					method: form.method,
+					url: $this.data('href') + '?_timest=' + timest(),
+					method: $this.attr('method'),
 					data: new FormData(form),
 					contentType: false,
 					processData: false,
 					success: function (res) {
-						if (res.response === 200) {
+						let icon = res.code == 200 ? 'success' : 'error',
+						message = res.message || "something error ..."
+						Swal.mixin({
+							toast: true,
+							position: 'top-end',
+							showConfirmButton: false,
+							timer: 3000
+						}).fire({
+							icon: icon,
+							title: message,
+						}) 
+						if (res.code === 200) {
 							$this[0].reset()
-							window.open(res.url, '_blank')
+							if (res.url) window.open(res.url, '_blank')
 						} else {
-							$this.find('#phone').focus()
-							Swal.mixin({
-								toast: true,
-								position: 'top-end',
-								showConfirmButton: false,
-								timer: 3000
-							}).fire({
-								icon: 'error',
-								title: res.message,
-							})
-						}
+							$this.find('#phone').focus() 
+						} 
 					}
 				})
 			}
@@ -839,7 +808,7 @@ let siteUrl = (url='') => {
 
 	/* Send Whatsapp */
 	$(function () {
-		$(document).on('click', sendWhatsapp, function () {
+		$(document).on('click', '.send-wa', function () {
 			let $this = $(this)
 			$.ajax({
 				cache: false,

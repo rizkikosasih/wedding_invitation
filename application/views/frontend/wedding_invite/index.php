@@ -13,13 +13,24 @@
                ';
           }
      ?>
-     <meta property="og:type" content="article">
+     <meta property="og:type" content="website">
      <meta property="og:title" content="<?= $e->alias_woman ?> &amp; <?= $e->alias_man ?>">
      <meta property="og:description" content="<?= day_indo($e->reception_date) . ", " . date_indo($e->reception_date) ?>">
-     <meta property="og:image" sizes="450x450" content="<?= base_url("$dir_img/event/x1920_$e->background_gallery?_timestamp=$timest") ?>">
+     <!-- <meta property="og:image" content="<?= base_url("$dir_img/thumbnail2.jpg?_timestamp=$timest") ?>">
+     <meta property="og:image:secure_url" content="<?= base_url("$dir_img/thumbnail2.jpg?_timestamp=$timest") ?>"> -->
+     <meta property="og:image" content="<?= base_url("$dir_img/thumbnail.jpg?_timestamp=$timest") ?>">
+     <meta property="og:image:secure_url" content="<?= base_url("$dir_img/thumbnail.jpg?_timestamp=$timest") ?>">
+     <meta property="og:site_name" content="AriolaJanahtan">
      <meta property="og:image:type" content="image/jpg">
      <meta property="og:image:width" content="450">
      <meta property="og:image:height" content="450">
+     <meta name="twitter:card" content="summary_large_image">
+    	<meta name="twitter:site" content="@rizkikosasih">
+    	<meta name="twitter:creator" content="@rizkikosasih">
+    	<meta name="twitter:title" content="<?= $e->alias_woman ?> &amp; <?= $e->alias_man ?>">
+    	<meta name="twitter:image:src" content="<?= base_url("$dir_img/thumbnail.jpg?_timestamp=$timest") ?>">
+    	<meta name="twitter:url" content="<?= base_url() ?>">
+    	<meta name="twitter:description" content="<?= day_indo($e->reception_date) . ", " . date_indo($e->reception_date) ?>">
      <meta name="version" content="1.1.0">
      <title><?= $e->alias_woman ?> & <?= $e->alias_man ?></title>
      <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url("assets/public/images/apple-touch-icon.png?_timestamp=$timest") ?>">

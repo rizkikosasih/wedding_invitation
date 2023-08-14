@@ -1,259 +1,87 @@
-<?php  
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php 
+defined('BASEPATH') OR exit('No direct script access allowed'); 
       
-    if (!function_exists('date_indo')) {
-        function date_indo($tgl) {
-            $expDate = explode(' ', $tgl);
-            $tgl = $expDate[0];
-            $ubah = gmdate($tgl, time()+60*60*8);
-            $pecah = explode("-",$ubah);
-            $tanggal = $pecah[2];
-            $bulan = bulan($pecah[1]);
-            $tahun = $pecah[0];
-            return $tanggal.' '.$bulan.' '.$tahun;
-        }
-    }
+if (!function_exists('date_indo')) {
+    function date_indo($tgl) {
+        $date = substr($tgl, 0, 10);
+        $ubah = gmdate($date, time() + 60 * 60 * 8);
+        $pecah = explode("-", $ubah);
+        $tanggal = $pecah[2];
+        $bulan = bulan($pecah[1]);
+        $tahun = $pecah[0];
+        return "$tanggal $bulan $tahun";
+    } 
+} 
 
-    if (!function_exists('bulan')) {
-        function bulan($bln) {
-            switch ($bln) {
-                case 1:
-                    return "Januari";
-                break;
-                case 2:
-                    return "Februari";
-                break;
-                case 3:
-                    return "Maret";
-                break;
-                case 4:
-                    return "April";
-                break;
-                case 5:
-                    return "Mei";
-                break;
-                case 6:
-                    return "Juni";
-                break;
-                case 7:
-                    return "Juli";
-                break;
-                case 8:
-                    return "Agustus";
-                break;
-                case 9:
-                    return "September";
-                break;
-                case 10:
-                    return "Oktober";
-                break;
-                case 11:
-                    return "November";
-                break;
-                case 12:
-                    return "Desember";
-                break;
-            }
-        }
+if (!function_exists('bulan')) {
+    function bulan($bln) {
+        $a_bulan = [1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        return $a_bulan[intval($bln)];
     }
- 
-    //Format Shortdate
-    if (!function_exists('shortdate_indo')) {
-        function shortdate_indo($tgl) {
-            $ubah = gmdate($tgl, time()+60*60*8);
-            $pecah = explode("-",$ubah);
-            $tanggal = $pecah[2];
-            $bulan = short_bulan($pecah[1]);
-            $tahun = $pecah[0];
-            return $tanggal.'/'.$bulan.'/'.$tahun;
-        }
-    }
+} 
 
-    if (!function_exists('short_bulan')) {
-        function short_bulan($bln) {
-            switch ($bln) {
-                case 1:
-                    return "01";
-                break;
-                case 2:
-                    return "02";
-                break;
-                case 3:
-                    return "03";
-                break;
-                case 4:
-                    return "04";
-                break;
-                case 5:
-                    return "05";
-                break;
-                case 6:
-                    return "06";
-                break;
-                case 7:
-                    return "07";
-                break;
-                case 8:
-                    return "08";
-                break;
-                case 9:
-                    return "09";
-                break;
-                case 10:
-                    return "10";
-                break;
-                case 11:
-                    return "11";
-                break;
-                case 12:
-                    return "12";
-                break;
-            }
-        }
+//Format Shortdate
+if (!function_exists('shortdate_indo')) {
+    function shortdate_indo($tgl) {
+        $date = substr($tgl, 0, 10);
+        $ubah = gmdate($date, time() + 60 * 60 * 8);
+        $pecah = explode("-", $ubah);
+        $tanggal = $pecah[2];
+        $bulan = short_bulan($pecah[1]);
+        $tahun = $pecah[0];
+        return "$tanggal/$bulan/$tahun"; 
     }
- 
-    //Format Medium date
-    if (!function_exists('mediumdate_indo')) {
-        function mediumdate_indo($tgl) {
-            $ubah = gmdate($tgl, time()+60*60*8);
-            $pecah = explode("-",$ubah);
-            $tanggal = $pecah[2];
-            $bulan = bulan($pecah[1]);
-            $tahun = $pecah[0];
-            return $tanggal.' '.$bulan.' '.$tahun;
-        }
+} 
+    
+if (!function_exists('short_bulan')) {
+    function short_bulan($bln) {
+        $a_bulan_short = [1 => "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+        return $a_bulan_short[intval($bln)];
     }
+} 
 
-    if (!function_exists('medium_bulan')) {
-        function medium_bulan($bln) {
-            switch ($bln) {
-                case 1:
-                    return "Jan";
-                break;
-                case 2:
-                    return "Feb";
-                break;
-                case 3:
-                    return "Mar";
-                break;
-                case 4:
-                    return "Apr";
-                break;
-                case 5:
-                    return "Mei";
-                break;
-                case 6:
-                    return "Jun";
-                break;
-                case 7:
-                    return "Jul";
-                break;
-                case 8:
-                    return "Ags";
-                break;
-                case 9:
-                    return "Sep";
-                break;
-                case 10:
-                    return "Okt";
-                break;
-                case 11:
-                    return "Nov";
-                break;
-                case 12:
-                    return "Des";
-                break;
-            }
-        }
+//Format Medium date
+if (!function_exists('mediumdate_indo')) {
+    function mediumdate_indo($tgl) {
+        $date = substr($tgl, 0, 10);
+        $ubah = gmdate($date, time() + 60 * 60 * 8);
+        $pecah = explode("-", $ubah);
+        $tanggal = $pecah[2];
+        $bulan = medium_bulan($pecah[1]);
+        $tahun = $pecah[0];
+        return "$tanggal $bulan $tahun";
     }
-     
-    //Long date indo Format
-    if (!function_exists('longdate_indo')) {
-        function longdate_indo($tanggal) {
-            $ubah = gmdate($tanggal, time()+60*60*8);
-            $pecah = explode("-",$ubah);
-            $tgl = $pecah[2];
-            $bln = $pecah[1];
-            $thn = $pecah[0];
-            $bulan = bulan($pecah[1]);
-
-            $hari = [
-                1 => 'Senin',
-                'Selasa',
-                'Rabu',
-                'Kamis',
-                'Jumat',
-                'Sabtu',
-                'Minggu'
-            ];
-
-            $num = date('N', strtotime($tanggal));
-            $nama_hari = $hari[$num];
-            return $nama_hari . ', ' . $tgl . ' ' . $bulan . ' ' . $thn;
-        }
+} 
+    
+if (!function_exists('medium_bulan')) {
+    function medium_bulan($bln) {
+        $a_bulan = [1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        return substr($a_bulan[intval($bln)], 0, 3);
     }
+} 
 
-    //bulan romawi
-    if (!function_exists('romawi_bulan')) {
-        function romawi_bulan($bln) {
-            switch ($bln) {
-                case 1:
-                    return "I";
-                break;
-                case 2:
-                    return "II";
-                break;
-                case 3:
-                    return "III";
-                break;
-                case 4:
-                    return "IV";
-                break;
-                case 5:
-                    return "V";
-                break;
-                case 6:
-                    return "VI";
-                break;
-                case 7:
-                    return "VII";
-                break;
-                case 8:
-                    return "VIII";
-                break;
-                case 9:
-                    return "IX";
-                break;
-                case 10:
-                    return "X";
-                break;
-                case 11:
-                    return "XI";
-                break;
-                case 12:
-                    return "XII";
-                break;
-            }
-        }
-    }
+//Long date indo Format
+if (!function_exists('longdate_indo')) {
+    function longdate_indo($tanggal) {
+        $date = substr($tgl, 0, 10);
+        $ubah = gmdate($date, time() + 60 * 60 * 8);
+        $pecah = explode("-", $ubah);
+        $tgl = $pecah[2];
+        $bln = $pecah[1];
+        $thn = $pecah[0];
+        $bulan = bulan($pecah[1]);
 
-    if (!function_exists('day_indo')) {
-        function day_indo($date) { 
-            $expDate = explode(' ', $date);
-            $tanggal = $expDate[0];
-            $ubah = gmdate($tanggal, time()+60*60*8);
-            $pecah = explode("-", $ubah);
-            $hari = [
-                1 => 'Senin',
-                'Selasa',
-                'Rabu',
-                'Kamis',
-                'Jumat',
-                'Sabtu',
-                'Minggu'
-            ];
-            $num = date('N', strtotime($tanggal));
-            $nama_hari = $hari[$num];
-            return $nama_hari;
-        }
+        $hari = [1 => "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+        $num = date('N', strtotime($tanggal));
+        $nama_hari = $hari[$num];
+        return $nama_hari . ', ' . $tgl . ' ' . $bulan . ' ' . $thn;
     }
+} 
+
+//bulan romawi
+if (!function_exists('romawi_bulan')) {
+    function romawi_bulan($bln) {
+        $a_bulan_romawi = [1 => "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+        return $a_bulan_romawi[intval($bln)]; 
+    }
+} 

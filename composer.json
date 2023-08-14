@@ -14,7 +14,8 @@
 		"php": ">=5.3.7",
 		"dompdf/dompdf": "^0.8.3",
 		"fzaninotto/faker": "^1.9",
-		"phpmailer/phpmailer": "^6.6"
+		"phpmailer/phpmailer": "^6.6",
+		"ultramsg/whatsapp-php-sdk": "^2.0"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
