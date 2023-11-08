@@ -70,53 +70,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
+$active_group = "default";
 $query_builder = TRUE;
-if ($_SERVER['SERVER_NAME'] == 'localhost') {
-
-	$db['default'] = array(
-		'dsn'	=> '',
-		'hostname' => 'localhost',
-		'username' => 'root',
-		'password' => '',
-		'database' => 'wedding_ola',
-		'dbdriver' => 'mysqli',
-		'dbprefix' => '',
-		'pconnect' => FALSE,
-		'db_debug' => (ENVIRONMENT !== 'production'),
-		'cache_on' => FALSE,
-		'cachedir' => '',
-		'char_set' => 'utf8',
-		'dbcollat' => 'utf8_general_ci',
-		'swap_pre' => '',
-		'encrypt' => FALSE,
-		'compress' => FALSE,
-		'stricton' => FALSE,
-		'failover' => array(),
-		'save_queries' => TRUE,
-		// 'port' => 3307
-	);
-} else {
-	$db['default'] = array(
-		'dsn'	=> '',
-		'hostname' => 'localhost',
-		'username' => 'ariolaja_admin',
-		'password' => 'x2;zM5ln0z}j',
-		'database' => 'ariolaja_wedding',
-		'dbdriver' => 'mysqli',
-		'dbprefix' => '',
-		'pconnect' => FALSE,
-		'db_debug' => (ENVIRONMENT !== 'production'),
-		'cache_on' => FALSE,
-		'cachedir' => '',
-		'char_set' => 'utf8',
-		'dbcollat' => 'utf8_general_ci',
-		'swap_pre' => '',
-		'encrypt' => FALSE,
-		'compress' => FALSE,
-		'stricton' => FALSE,
-		'failover' => array(),
-		'save_queries' => TRUE,
-		// 'port' => 3306
-	);
-}
+$locals = $_SERVER['SERVER_NAME'] == "localhost";
+$db["default"] = array(
+	"dsn"	=> "",
+	"hostname" => "localhost",
+	"username" => $locals ? "root" : "ariolaja_admin",
+	"password" => $locals ? "" : "x2;zM5ln0z}j",
+	"database" => $locals ? "wedding_ola" : "ariolaja_wedding",
+	"dbdriver" => "mysqli",
+	"dbprefix" => "",
+	"pconnect" => FALSE,
+	"db_debug" => (ENVIRONMENT !== "production"),
+	"cache_on" => FALSE,
+	"cachedir" => "",
+	"char_set" => "utf8mb4",
+	"dbcollat" => "utf8_general_ci",
+	"swap_pre" => "",
+	"encrypt" => FALSE,
+	"compress" => FALSE,
+	"stricton" => FALSE,
+	"failover" => array(),
+	"save_queries" => TRUE,
+);
