@@ -38,9 +38,9 @@ class event extends CI_Controller {
 	}
 
 	public function modal($action, $id=null) {
-		$explode = explode('-', $id);
-		$index = $explode[0] != '' ? decode64($explode[0]) : null;
-		$event_id = decode64($explode[1]);
+		$ex = explode('-', $id);
+		$index = $ex[0] != '' ? decode64($ex[0]) : null;
+		$event_id = decode64($ex[1]);
 		$data = [
 			"this_story" => $this->m_event->get_story($index),
 			"this_gallery" => $this->m_event->get_gallery($index),

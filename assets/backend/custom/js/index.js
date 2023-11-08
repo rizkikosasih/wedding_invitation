@@ -20,7 +20,7 @@ formatRupiah = (angka, prefix) => {
 	return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '')
 },
 reloadTables = (v, element) => {
-	let fullReload = !v ? false : true,
+	var fullReload = !v ? false : true,
 	el = !element ? 'server_side' : element
 	$('table#' + el || 'server_side').DataTable().ajax.reload(null, fullReload)
 }
@@ -40,7 +40,7 @@ const selisih_hari = (tgl) => {
 	return diffDays
 },
 siteUrl = (url='') => {
-	let index = window.location.origin.match(/localhost/i) ? 1 : 0,
+	var index = window.location.origin.match(/localhost/i) ? 1 : 0,
 		delimiter = index ? '/' : '',
 		origin = window.location.origin + delimiter,
 		pathname = window.location.pathname.split('/')[index],
@@ -48,7 +48,7 @@ siteUrl = (url='') => {
 	return origin + pathname + lastUrl
 },
 timest = () => {
-	let date = new Date()
+	var date = new Date()
 	return Math.ceil(date.getTime() / 1000)
 }
 
@@ -212,7 +212,7 @@ timest = () => {
 
 		/* open modal */
 		$(document).on('click', '.openPopup', function () {
-			let id, url, title
+			var id, url, title
 			id = $(this).data('id') || ''
 			url = !id ? $(this).data('url') : $(this).data('url') + '/' + id
 			title = $(this).data('original-title') != null ? $(this).data('original-title') : $(this).attr('title')
@@ -271,7 +271,7 @@ timest = () => {
 						}) //ajax
 						.done(function () {
 							$('.modal').modal('hide')
-							let $id, $parent = $('.card')
+							var $id, $parent = $('.card')
 							if ($parent.find('.tab-content').length) {
 								$id = $parent.find('.tab-pane.active').find('table').attr('id')
 							} else {
@@ -498,7 +498,7 @@ timest = () => {
 			container: 'body',
 			html: true,
 			placement: function (context, source) {
-				let position = $(source).position();
+				var position = $(source).position();
 				if (position.left > 515) return "left"
 				if (position.left < 515) return "right"
 				if (position.top < 110) return "bottom"
@@ -508,7 +508,7 @@ timest = () => {
 
 		//reload datatables
 		$(document).on('click', '.reloadTable', function () {
-			let $id, $parent = $(this).parents('.card')
+			var $id, $parent = $(this).parents('.card')
 			if ($parent.find('.tab-content').length) {
 				$id = $parent.find('.tab-pane.active').find('table.table').attr('id')
 			} else {
@@ -554,7 +554,7 @@ timest = () => {
 		bsCustomFileInput.init()
 		// get file and preview image
 		$("#foto").on("change", function () {
-			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
+			var $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
 			if (input.files && input.files[0]) {
 				var reader = new FileReader()
 				reader.onload = function (e) {
@@ -565,7 +565,7 @@ timest = () => {
 		})
 
 		$("#foto-produk").on("change", function () {
-			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
+			var $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
 			if (input.files && input.files[0]) {
 				var reader = new FileReader()
 				reader.onload = function (e) {
@@ -576,7 +576,7 @@ timest = () => {
 		})
 
 		$(".foto-produk").on("change", function () {
-			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
+			var $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
 			if (input.files && input.files[0]) {
 				var reader = new FileReader()
 				reader.onload = function (e) {
@@ -587,7 +587,7 @@ timest = () => {
 		})
 
 		$(".images").on("change", function () {
-			let $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
+			var $this = $(this), input = $this[0], previewImage = $this.parent().next().find('.preview-image')
 			if (input.files && input.files[0]) {
 				var reader = new FileReader()
 				reader.onload = function (e) {
@@ -602,9 +602,9 @@ timest = () => {
 	$(function () {
 		const flashData = $('#flash-data').data('flash')
 		if (flashData) {
-			let pecah = flashData.split('/')
-			let status = pecah[0]
-			let jml = pecah.length
+			var pecah = flashData.split('/')
+			var status = pecah[0]
+			var jml = pecah.length
 			if (jml < 3) {
 				var pesan = pecah[1]
 			} else {
@@ -630,7 +630,7 @@ timest = () => {
 	$(function () {
 		/* show password */
 		$('#show-pwd').click(function () {
-			let pwd = $('.pwd-login')
+			var pwd = $('.pwd-login')
 			if (pwd.attr('type') === 'password') {
 				pwd.attr('type', 'text')
 			} else {
@@ -639,7 +639,7 @@ timest = () => {
 		})
 
 		$('#reset-pwd').click(function () {
-			let pw1 = $('.pass')
+			var pw1 = $('.pass')
 			pw2 = $('.re-pass')
 			if (pw1.attr('type') === 'password' && pw2.attr('type') === 'password') {
 				pw1.attr('type', 'text')
@@ -651,7 +651,7 @@ timest = () => {
 		})
 
 		$('#spr').click(function () {
-			let pwd = $('#password'),
+			var pwd = $('#password'),
 			repwd = $('#re_password')
 			if (pwd.attr('type') === 'password') {
 				pwd.attr('type', 'text')
@@ -665,7 +665,7 @@ timest = () => {
 
 	/* switch theme */
 	$('#switch-theme').click(function () {
-		let $this = $(this), tema = $this.attr('data-tema')
+		var $this = $(this), tema = $this.attr('data-tema')
 		$.ajax({
 			url: $this.data('href') + '?_timest=' + timest(),
 			type: 'post',
@@ -694,7 +694,7 @@ timest = () => {
 
 	/* validate update event */
 	$(function () {
-		let selectBank = tail.select('#bank', {
+		var selectBank = tail.select('#bank', {
 			classNames: 'select-bank',
 			search: true,
 			placeholder: 'Select an option',
@@ -711,7 +711,7 @@ timest = () => {
 
 		$('form.update_event').validate({
 			submitHandler: function (form) {
-				let $this = $(form), bankVal = selectBank.options.selected[0].value, bankVal2 = selectBank2.options.selected[0].value
+				var $this = $(form), bankVal = selectBank.options.selected[0].value, bankVal2 = selectBank2.options.selected[0].value
 				if (!bankVal || !bankVal2) {
 					if (!bankVal) $('#bank_id-error').show().html('Kolom ini diperlukan').prev().focus()
 					if (!bankVal2) $('#bank_id2-error').show().html('Kolom ini diperlukan').prev().focus()
@@ -723,7 +723,7 @@ timest = () => {
 						contentType: false,
 						processData: false,
 						success: function (res) {
-							let icon = res.response == 200 ? 'success' : 'error'
+							var icon = res.response == 200 ? 'success' : 'error'
 							Swal.mixin({
 								toast: true,
 								position: 'top-end',
@@ -747,7 +747,7 @@ timest = () => {
 	$(function () {
 		$('form.update_template_wa').validate({
 			submitHandler: function (form) {
-				let $this = $(form)
+				var $this = $(form)
 				$.ajax({
 					url: $this.data('href'),
 					method: form.method,
@@ -755,7 +755,7 @@ timest = () => {
 					contentType: false,
 					processData: false,
 					success: function (res) {
-						let icon = res.response == 200 ? 'success' : 'error'
+						var icon = res.response == 200 ? 'success' : 'error'
 						Swal.mixin({
 							toast: true,
 							position: 'top-end',
@@ -775,7 +775,7 @@ timest = () => {
 	$(function () {
 		$('form.sendWA').validate({
 			submitHandler: function (form) {
-				let $this = $(form)
+				var $this = $(form)
 				$.ajax({
 					url: $this.data('href') + '?_timest=' + timest(),
 					method: $this.attr('method'),
@@ -783,7 +783,7 @@ timest = () => {
 					contentType: false,
 					processData: false,
 					success: function (res) {
-						let icon = res.code == 200 ? 'success' : 'error',
+						var icon = res.code == 200 ? 'success' : 'error',
 						message = res.message || "something error ..."
 						Swal.mixin({
 							toast: true,
@@ -809,7 +809,7 @@ timest = () => {
 	/* Send Whatsapp */
 	$(function () {
 		$(document).on('click', '.send-wa', function () {
-			let $this = $(this)
+			var $this = $(this)
 			$.ajax({
 				cache: false,
 				method: 'post',
@@ -838,5 +838,4 @@ timest = () => {
 			})
 		})
 	})
-
 })(window, document, jQuery)

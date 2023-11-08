@@ -1,5 +1,5 @@
 <div class="m-1 p-1">
-	<div class="row my-3">
+	<div class="row mb-3">
 		<div class="col-8 d-flex gap-3 flex-wrap">
 			<a
 				href="javascript:void(0)"
