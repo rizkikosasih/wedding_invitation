@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set("Asia/Jakarta");
+error_reporting(E_ERROR | E_STRICT | E_PARSE);
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

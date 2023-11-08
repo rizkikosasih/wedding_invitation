@@ -2,7 +2,7 @@ const isNumber = (evt) => {
 	var charCode = (evt.which) ? evt.which : evt.keyCode
 	if (charCode > 31 && (charCode < 48 || charCode > 57)) return false
 	return true
-}, 
+},
 formatRupiah = (angka, prefix) => {
 	var number_string = angka.replace(/[^,\d]/g, '').toString(),
 		split = number_string.split(','),
@@ -38,7 +38,7 @@ const selisih_hari = (tgl) => {
 	secondDate = new Date(tgl)
 	diffDays = Math.round(Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay)))
 	return diffDays
-}, 
+},
 siteUrl = (url='') => {
 	let index = window.location.origin.match(/localhost/i) ? 1 : 0,
 		delimiter = index ? '/' : '',
@@ -46,7 +46,7 @@ siteUrl = (url='') => {
 		pathname = window.location.pathname.split('/')[index],
 		lastUrl = !url ? '' : '/' + url
 	return origin + pathname + lastUrl
-}, 
+},
 timest = () => {
 	let date = new Date()
 	return Math.ceil(date.getTime() / 1000)
@@ -60,7 +60,7 @@ timest = () => {
 		position: 'top-end',
 		showConfirmButton: false,
 		timer: 4000
-	}), 
+	}),
 	dataTables = $('#dataTables'),
 	$modal = $('#myModal')
 
@@ -116,9 +116,9 @@ timest = () => {
 
 		/* server side datatables */
 		$(document).on('click', '.list-event .nav-link', function () {
-			let $this = $(this),
-			id = $this.attr('aria-controls'),
-			card = $this.parents('.card'),
+			var t = $(this),
+			id = t.attr('aria-controls'),
+			card = t.parents('.card'),
 			sTable = card.find('table#' + id)
 			if (sTable.length) {
 				if (!card.find('#' + id + '_wrapper').length) {
@@ -131,11 +131,11 @@ timest = () => {
 						"order": [],
 						"language": {
 							"processing": (`
-						<div class="spinner-loader">
-							<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
-							<div class="mt-1 font-small-1">Loading...</div>
-						</div>
-					`)
+								<div class="spinner-loader">
+									<img src="${siteUrl('assets/public/images/loader.gif')}" width="25px" height="25px">
+									<div class="mt-1 font-small-1">Loading...</div>
+								</div>
+							`)
 						},
 						"ajax": {
 							"url": sTable.data('url'),
@@ -180,7 +180,7 @@ timest = () => {
 					}
 				})
 			}
-		}) 
+		})
 		$(document).on('click', '.status2', function () {
 			Swal.fire({
 				title: $(this).data('message'),
@@ -194,7 +194,7 @@ timest = () => {
 					window.location.href = $(this).data('url')
 				}
 			})
-		}) 
+		})
 		$(document).on('click', '.delete', function () {
 			Swal.fire({
 				title: $(this).data('message'),
@@ -208,7 +208,7 @@ timest = () => {
 					window.location.href = $(this).data('url')
 				}
 			})
-		}) 
+		})
 
 		/* open modal */
 		$(document).on('click', '.openPopup', function () {
@@ -490,7 +490,7 @@ timest = () => {
 					})
 				})
 			}) //done function
-		}) 
+		})
 
 		// To initialize tooltip with body container
 		$(document).tooltip({
@@ -504,7 +504,7 @@ timest = () => {
 				if (position.top < 110) return "bottom"
 				return "top"
 			}
-		}) 
+		})
 
 		//reload datatables
 		$(document).on('click', '.reloadTable', function () {
@@ -515,7 +515,7 @@ timest = () => {
 				$id = $parent.find('table.table').attr('id')
 			}
 			reloadTables(null, $id)
-		}) 
+		})
 
 		/* LightBox */
 		$(document).on('click', '[data-toggle="lightbox"]', function (event) {
@@ -523,7 +523,7 @@ timest = () => {
 			$(this).ekkoLightbox({
 				alwaysShowClose: true
 			})
-		}) 
+		})
 		$(document).on('click', '.lightbox', function (event) {
 			event.preventDefault()
 			$(this).ekkoLightbox({
@@ -594,9 +594,9 @@ timest = () => {
 					previewImage.attr("src", e.target.result).fadeIn("slow")
 				}
 				reader.readAsDataURL(input.files[0])
-			} 
+			}
 		})
-	}) 
+	})
 
 	/* Flash Data */
 	$(function () {
@@ -624,7 +624,7 @@ timest = () => {
 				title: pesan,
 			})
 		}
-	}) 
+	})
 
 	/* Password Hint */
 	$(function () {
@@ -661,7 +661,7 @@ timest = () => {
 				repwd.attr('type', 'password')
 			}
 		})
-	}) 
+	})
 
 	/* switch theme */
 	$('#switch-theme').click(function () {
@@ -678,18 +678,18 @@ timest = () => {
 					$('#switch-theme').attr('checked', 'checked');
 				} else {
 					$('#switch-theme').removeAttr('checked');
-				} 
+				}
 			}
 		}) //end ajax
-	}) 
+	})
 
 	//on load document
 	$(function () {
 		$(window).on('load', function () {
 			if( $('#login-form').length ) {
 				$('input#username').focus()
-			} 
-		}) 
+			}
+		})
 	})
 
 	/* validate update event */
@@ -773,7 +773,7 @@ timest = () => {
 
 	/* validate send wa */
 	$(function () {
-		$('form.send_wa').validate({
+		$('form.sendWA').validate({
 			submitHandler: function (form) {
 				let $this = $(form)
 				$.ajax({
@@ -793,13 +793,13 @@ timest = () => {
 						}).fire({
 							icon: icon,
 							title: message,
-						}) 
+						})
 						if (res.code === 200) {
 							$this[0].reset()
 							if (res.url) window.open(res.url, '_blank')
 						} else {
-							$this.find('#phone').focus() 
-						} 
+							$this.find('#phone').focus()
+						}
 					}
 				})
 			}
