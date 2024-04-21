@@ -12,13 +12,17 @@
 <ul>
   <li>Buka Terminal, lalu masuk ke direktori project ini.</li>
   <li>
-    ketikkan perintah <b>composer install</b>
+    Ketikkan perintah <b>composer install</b>
     lalu tekan enter
   </li>
   <li>
-    setelah proses install dependencies selesai,
+    Setelah proses install selesai,
     ketika perintah <b>composer dump-autoload</b>
     lalu tekan enter
+  </li>
+  <li>
+    Ketikkan perintah <b>cp .env.local .env</b>
+    installasi selesai
   </li>
 </ul>
 
