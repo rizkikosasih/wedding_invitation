@@ -71,15 +71,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 $active_group = "default";
-$query_builder = TRUE;
-$locals = $_SERVER['SERVER_NAME'] == "localhost";
+
 $db["default"] = array(
 	"dsn"	=> "",
-	"hostname" => "localhost",
-	"username" => $locals ? "root" : "ariolaja_admin",
-	"password" => $locals ? "" : "x2;zM5ln0z}j",
-	"database" => $locals ? "wedding_ola" : "ariolaja_wedding",
-	"dbdriver" => "mysqli",
+	"hostname" => $_ENV['DB_HOST'],
+	"username" => $_ENV['DB_USERNAME'],
+	"password" => $_ENV['DB_PASSWORD'],
+	"database" => $_ENV['DB_NAME'],
+	"dbdriver" => $_ENV['DB_DRIVER'],
 	"dbprefix" => "",
 	"pconnect" => FALSE,
 	"db_debug" => (ENVIRONMENT !== "production"),
@@ -93,4 +92,5 @@ $db["default"] = array(
 	"stricton" => FALSE,
 	"failover" => array(),
 	"save_queries" => TRUE,
+  'port' => $_ENV['DB_PORT']
 );
